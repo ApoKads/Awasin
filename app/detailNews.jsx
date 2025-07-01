@@ -17,7 +17,7 @@ const DetailNews = () => {
             <View style={{ width, height: 300 }} className="relative">
                 <Image
                     source={require('../assets/berita1.png')}
-                    style={{ width: '100%', height: '100%' }}
+                    style={{ width, height: '100%' }}
                     resizeMode="cover"
                 />
                 <TouchableOpacity
@@ -46,6 +46,30 @@ const DetailNews = () => {
                     Ea iure quae ullam cumque libero, blanditiis dolore perspiciatis quia,
                     eaque ex temporibus maxime qui eos quisquam voluptatibus expedita dolores
                     reiciendis atque! Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Ea iure quae ullam cumque libero, blanditiis dolore perspiciatis quia,
+                    eaque ex temporibus maxime qui eos quisquam voluptatibus expedita dolores
+                    reiciendis atque!
+                </Text>
+                <Text className="text-gray-800 leading-relaxed mt-4">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Ea iure quae ullam cumque libero, blanditiis dolore perspiciatis quia,
+                    eaque ex temporibus maxime qui eos quisquam voluptatibus expedita dolores
+                    reiciendis atque!
+                </Text>
+                <Text className="text-gray-800 leading-relaxed mt-4">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Ea iure quae ullam cumque libero, blanditiis dolore perspiciatis quia,
+                    eaque ex temporibus maxime qui eos quisquam voluptatibus expedita dolores
+                    reiciendis atque!
+                </Text>
+                <Text className="text-gray-800 leading-relaxed mt-4">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Ea iure quae ullam cumque libero, blanditiis dolore perspiciatis quia,
+                    eaque ex temporibus maxime qui eos quisquam voluptatibus expedita dolores
+                    reiciendis atque!
+                </Text>
+                <Text className="text-gray-800 leading-relaxed mt-4">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
                     Ea iure quae ullam cumque libero, blanditiis dolore perspiciatis quia,
                     eaque ex temporibus maxime qui eos quisquam voluptatibus expedita dolores
                     reiciendis atque!

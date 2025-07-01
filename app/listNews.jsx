@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, ScrollView, TextInput, Image } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-const categories = ['All', 'Jalan', 'Gedung', 'Taman'];
+const categories = ['All', 'Jalan', 'Gedung', 'Taman', 'Lampu jalan', 'Halte', 'Alun-alun'];
 
 const newsData = [
     {
