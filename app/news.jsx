@@ -42,7 +42,7 @@ const News = () => {
                 showsHorizontalScrollIndicator={false}
                 contentContainerStyle={{ paddingRight: 16 }}
             >
-                <View className="flex-row space-x-4">
+                <View className="flex-row space-x-4 gap-4">
                     {newsData.map((item) => (
                         <View
                             key={item.id}
