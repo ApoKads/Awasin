@@ -14,6 +14,7 @@ const index = () => {
       <Text>Home Awasin</Text>
       <Text className="text-3xl">Home Awasi</Text>
       <Link href="/register">Masuk Ke Login</Link>
+      <Link href="/news">Masuk Ke News</Link>
     </View>
   )
 }

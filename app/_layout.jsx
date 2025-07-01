@@ -18,6 +18,31 @@ const StackLayout = () => {
       />
 
       <Stack.Screen
+        name="listNews"
+        options={{
+          title: 'List news',
+          headerShown:false,
+          // Menambahkan tombol kustom di header kanan
+        }}
+      />
+
+      <Stack.Screen
+        name="detailNews"
+        options={{
+          headerShown:false,
+          // Menambahkan tombol kustom di header kanan
+        }}
+      />
+
+      <Stack.Screen
+        name="news"
+        options={{
+          headerShown:false,
+          // Menambahkan tombol kustom di header kanan
+        }}
+      />
+
+      <Stack.Screen
         name="about"
         options={{
           title: 'Beranda',
