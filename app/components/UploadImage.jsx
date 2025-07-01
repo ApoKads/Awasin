@@ -1,34 +1,42 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import * as ImagePicker from "expo-image-picker";
 import { View, Image, FlatList, TouchableOpacity, Text } from 'react-native';
 
 
 const UploadImage = ({images, setForm}) => {
-  const handleAddImage = async () => {
-    const result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.Images,
-      allowsEditing: true,
-      quality: 1,
-    });
+  const isMounted = useRef(false);
 
-    if (!result.canceled) {
+  useEffect(() => {
+    isMounted.current = true;
+    return () => {
+      isMounted.current = false;
+    };
+  }, []);
+
+  const handleAddImage = async () => {
+      const result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        allowsEditing: true,
+        quality: 1,
+      });
+  
+      if (!result.canceled) {
+        setForm((prevForm) => ({
+          ...prevForm,
+          images: [...prevForm.images, result.assets[0].uri],
+        }));
+      }
+    };
+  
+    const handleRemoveImage = (uri) => {
       setForm((prevForm) => ({
         ...prevForm,
-        images: [...prevForm.images, result.assets[0].uri],
+        images: prevForm.images.filter((imageUri) => imageUri !== uri),
       }));
-      
-    }
-  };
-
-  const handleRemoveImage = (uri) => {
-    setForm((prevForm) => ({
-      ...prevForm,
-      images: prevForm.images.filter((imageUri) => imageUri !== uri),
-    }));
-  };
+    };
 
   return (
-    <View className="flex flex-1 w-full items-center">
+    <View className="w-full items-center">
       <TouchableOpacity
         className="rounded-full bg-[#102E4A] py-3 w-[50%] mb-[25]"
         onPress={handleAddImage}
@@ -36,7 +44,7 @@ const UploadImage = ({images, setForm}) => {
         <Text className="text-white text-center font-poppins-bold">Add Image</Text>
       </TouchableOpacity>
 
-      <View className="flex justify-center w-full mb-[40]">
+      <View className="flex justify-center w-full mb-[30]">
         <FlatList
           data={images}
           keyExtractor={(item, index) => `${item}-${index}`}
