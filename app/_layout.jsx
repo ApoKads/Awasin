@@ -128,6 +128,22 @@ const RootLayout = () => { // Ganti nama StackLayout menjadi RootLayout agar leb
         }}
       />
 
+      <Stack.Screen
+        name="laporanForm"
+        options={{
+          headerShown:false,
+          // Menambahkan tombol kustom di header kanan
+        }}
+      />
+
+      <Stack.Screen
+        name="maps"
+        options={{
+          headerShown:false,
+          // Menambahkan tombol kustom di header kanan
+        }}
+      />
+
 
 
       {/*
