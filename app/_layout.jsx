@@ -80,6 +80,31 @@ const RootLayout = () => { // Ganti nama StackLayout menjadi RootLayout agar leb
       />
 
       <Stack.Screen
+        name="listNews"
+        options={{
+          title: 'List news',
+          headerShown:false,
+          // Menambahkan tombol kustom di header kanan
+        }}
+      />
+
+      <Stack.Screen
+        name="detailNews"
+        options={{
+          headerShown:false,
+          // Menambahkan tombol kustom di header kanan
+        }}
+      />
+
+      <Stack.Screen
+        name="news"
+        options={{
+          headerShown:false,
+          // Menambahkan tombol kustom di header kanan
+        }}
+      />
+
+      <Stack.Screen
         name="about"
         options={{
           title: 'Tentang Kami', // Opsional, jika headerShown: false
@@ -92,6 +117,14 @@ const RootLayout = () => { // Ganti nama StackLayout menjadi RootLayout agar leb
         options={{
           title: 'Tentang Kami', // Opsional, jika headerShown: false
           headerShown: false, // Sembunyikan header untuk halaman 'about'
+        }}
+      />
+
+      <Stack.Screen
+        name="feedbackForm"
+        options={{
+          headerShown:false,
+          // Menambahkan tombol kustom di header kanan
         }}
       />
 
