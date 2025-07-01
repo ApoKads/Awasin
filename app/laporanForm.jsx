@@ -1,20 +1,14 @@
-import React, { useState } from 'react';
-import { View, TextInput, Button, Image, FlatList, TouchableOpacity, Text, StyleSheet, SafeAreaView } from 'react-native';
-import * as ImagePicker from 'expo-image-picker';
-import UploadImage from './components/UploadImage';
-import { useNavigation } from '@react-navigation/native';
+import React, { useState } from "react";
+import { SafeAreaView, TextInput, TouchableOpacity, View } from "react-native";
 
-const FeedbackForm = () => {
-  const navigation = useNavigation();
+const LaporanForm = () => {
   const [form, setForm] = useState({
-    title: '',
-    desc: '',
+    title: "",
+    type: "",
+    desc: "",
+    location: "",
     images: [],
   });
-  
-  const halo = () => {
-    console.log(form)
-  }
 
   return (
     <SafeAreaView className="flex flex-1">
@@ -37,11 +31,9 @@ const FeedbackForm = () => {
             onChangeText={(text) => setForm((prevForm) => ({ ...prevForm, desc: text }))}
           />
 
-          <UploadImage images={form.images} setForm={setForm}></UploadImage>
-
           <TouchableOpacity 
             className="rounded-lg bg-[#102E4A] py-3 w-full"
-            onPress={halo}>
+            >
             <Text className="text-white text-center font-poppins-bold">Submit Form</Text>
           </TouchableOpacity>
         </View>
@@ -50,6 +42,6 @@ const FeedbackForm = () => {
     </SafeAreaView>
 
   );
-}
+};
 
-export default FeedbackForm
+export default LaporanForm;

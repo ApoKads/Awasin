@@ -3,7 +3,7 @@ import * as ImagePicker from "expo-image-picker";
 import { View, Image, FlatList, TouchableOpacity, Text } from 'react-native';
 
 
-export default function UploadImage({images, setForm}) {
+const UploadImage = ({images, setForm}) => {
   const handleAddImage = async () => {
     const result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
@@ -61,3 +61,5 @@ export default function UploadImage({images, setForm}) {
     </View>
   );
 }
+
+export default UploadImage
