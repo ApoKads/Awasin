@@ -16,6 +16,9 @@ const index = () => {
       <Link href="/register">Masuk Ke Login</Link>
       <Link href="/news">Masuk Ke News</Link>
       <Link href="/feedbackForm">Masuk Ke Feedback Form</Link>
+      <Link href="/faq">Masuk Ke FAQ</Link>
+      <Link href="/editProfile">Masuk ke Edit Profile</Link>
+      <Link href="/contactUs">Masuk ke Kontak Kami</Link>
     </View>
   )
 }
