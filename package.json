@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@expo-google-fonts/poppins": "^0.4.0",
+    "@react-native-community/datetimepicker": "^8.4.2",
     "expo": "~53.0.13",
     "expo-constants": "~17.1.6",
     "expo-font": "~13.3.1",
@@ -22,6 +23,7 @@
     "react-dom": "19.0.0",
     "react-native": "0.79.4",
     "react-native-date-picker": "^5.0.13",
+    "react-native-modal-datetime-picker": "^18.0.0",
     "react-native-reanimated": "~3.17.4",
     "react-native-safe-area-context": "^5.4.0",
     "react-native-screens": "~4.11.1",
