@@ -6,7 +6,7 @@ import {
   ActivityIndicator,
   TouchableOpacity,
   KeyboardAvoidingView,
-  Alert
+  Alert,
 } from "react-native";
 import MapView, { Marker } from "react-native-maps";
 import * as Location from "expo-location";
@@ -41,6 +41,7 @@ const Maps = () => {
     })();
   }, []);
 
+
   const handleMapPress = async (event) => {
     const { latitude, longitude } = event.nativeEvent.coordinate;
     setMarker({ latitude, longitude });
@@ -50,7 +51,10 @@ const Maps = () => {
       latitude,
       longitude,
     }));
+    await searchLocation(latitude, longitude);
+  };
 
+  const searchLocation = async (latitude, longitude) => {
     try {
       const [result] = await Location.reverseGeocodeAsync({
         latitude,
@@ -59,13 +63,22 @@ const Maps = () => {
 
       if (result) {
         const { street, name, city, region: addressRegion } = result;
-        setLocationName(`${street || name}, ${city}, ${addressRegion}`);
+
+        const parts = [];
+
+        if (name && name !== street) parts.push(name);
+        if (street) parts.push(street);
+        if (city) parts.push(city);
+        if (addressRegion) parts.push(addressRegion);
+
+        const formattedAddress = parts.join(", ");
+        setLocationName(formattedAddress);
       } else {
-        setLocationName("Unknown location");
+        setLocationName("Lokasi Tidak Diketahui");
       }
     } catch (error) {
       console.error("Reverse geocoding failed: ", error);
-      setLocationName("Could not find address");
+      setLocationName("Lokasi Tidak Bisa Ditemukan");
     }
   };
 
@@ -74,7 +87,7 @@ const Maps = () => {
     router.push({
       pathname: "/laporanForm",
       params: {
-        ...params, 
+        ...params,
         latitude: marker.latitude.toString(),
         longitude: marker.longitude.toString(),
         address: locationName,
