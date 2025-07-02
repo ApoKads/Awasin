@@ -35,7 +35,7 @@ const FeedbackForm = () => {
   const handleSubmit = () => {
     if(validateForm()){
       Alert.alert("Success", "Form submitted successfully!");
-      navigation.navigate("/");
+      navigation.navigate("news");
     }
   };
 
