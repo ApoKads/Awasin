@@ -1,5 +1,5 @@
-import React from 'react';
-import { View, Text, ScrollView, TextInput, Image } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, ScrollView, TextInput, Image, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 const categories = ['All', 'Jalan', 'Gedung', 'Taman', 'Lampu jalan', 'Halte', 'Alun-alun'];
@@ -9,40 +9,54 @@ const newsData = [
         id: 1,
         image: require('../assets/berita1.png'),
         title: 'Bogor Siapkan Destinasi Wisata Baru untuk Sambut Liburan Akhir',
-        category: 'Sport',
+        category: 'Jalan',
         date: 'May 3, 2025 09.00 AM',
     },
     {
         id: 2,
         image: require('../assets/berita2.png'),
-        title: 'Bogor Siapkan Destinasi Wisata Baru untuk Sambut Liburan Akhir',
-        category: 'Sport',
+        title: 'Bogor Bangun Gedung Baru untuk UMKM',
+        category: 'Gedung',
         date: 'May 3, 2025 09.00 AM',
     },
     {
         id: 3,
         image: require('../assets/berita2.png'),
-        title: 'Bogor Siapkan Destinasi Wisata Baru untuk Sambut Liburan Akhir',
-        category: 'Sport',
+        title: 'Penataan Taman Kota Dipercepat',
+        category: 'Taman',
         date: 'May 3, 2025 09.00 AM',
     },
     {
         id: 4,
         image: require('../assets/berita2.png'),
-        title: 'Bogor Siapkan Destinasi Wisata Baru untuk Sambut Liburan Akhir',
-        category: 'Sport',
+        title: 'Perbaikan Lampu Jalan Mulai Dijalankan',
+        category: 'Lampu jalan',
         date: 'May 3, 2025 09.00 AM',
     },
     {
         id: 5,
         image: require('../assets/berita2.png'),
-        title: 'Bogor Siapkan Destinasi Wisata Baru untuk Sambut Liburan Akhir',
-        category: 'Sport',
+        title: 'Renovasi Halte dan Fasilitas Publik',
+        category: 'Halte',
+        date: 'May 3, 2025 09.00 AM',
+    },
+    {
+        id: 6,
+        image: require('../assets/berita2.png'),
+        title: 'Alun-alun Bogor Dipercantik Menjelang Hari Raya',
+        category: 'Alun-alun',
         date: 'May 3, 2025 09.00 AM',
     },
 ];
 
 const DiscoverNews = () => {
+    const [activeCategory, setActiveCategory] = useState('All');
+
+    // Filter data by activeCategory
+    const filteredNews = activeCategory === 'All'
+        ? newsData
+        : newsData.filter(item => item.category === activeCategory);
+
     return (
         <ScrollView className="flex-1 bg-white">
             {/* Layer background */}
@@ -67,22 +81,23 @@ const DiscoverNews = () => {
                 <ScrollView horizontal showsHorizontalScrollIndicator={false} className="mt-4">
                     <View className="flex-row space-x-3">
                         {categories.map((cat, idx) => (
-                            <View
+                            <TouchableOpacity
                                 key={idx}
+                                onPress={() => setActiveCategory(cat)}
                                 className={`px-5 py-2 rounded-full border-2 ${
-                                    idx === 0
+                                    activeCategory === cat
                                         ? 'bg-[#0C4A6E] border-[#0C4A6E]'
                                         : 'border-[#0C4A6E]'
                                 }`}
                             >
                                 <Text
                                     className={`font-semibold ${
-                                        idx === 0 ? 'text-white' : 'text-[#0C4A6E]'
+                                        activeCategory === cat ? 'text-white' : 'text-[#0C4A6E]'
                                     }`}
                                 >
                                     {cat}
                                 </Text>
-                            </View>
+                            </TouchableOpacity>
                         ))}
                     </View>
                 </ScrollView>
@@ -90,7 +105,7 @@ const DiscoverNews = () => {
 
             {/* List News */}
             <View className="p-6 pt-8">
-                {newsData.map((item) => (
+                {filteredNews.map((item) => (
                     <View key={item.id} className="flex-row mb-4">
                         <Image
                             source={item.image}
@@ -110,6 +125,9 @@ const DiscoverNews = () => {
                         </View>
                     </View>
                 ))}
+                {filteredNews.length === 0 && (
+                    <Text className="text-center text-gray-400">No news found.</Text>
+                )}
             </View>
         </ScrollView>
     );

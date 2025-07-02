@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, ScrollView, Image, TouchableOpacity, Dimensions } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const { width } = Dimensions.get('window');
 
@@ -11,6 +12,7 @@ export const options = {
 
 const DetailNews = () => {
     const router = useRouter();
+    const insets = useSafeAreaInsets();
 
     return (
         <ScrollView className="flex-1 bg-black">
@@ -22,7 +24,8 @@ const DetailNews = () => {
                 />
                 <TouchableOpacity
                     onPress={() => router.back()}
-                    className="absolute top-6 left-4 bg-black/50 p-2 rounded-full"
+                    style={{ top: insets.top + 8 }} // safe area + sedikit jarak
+                    className="absolute left-4 bg-black/50 p-2 rounded-full"
                 >
                     <Ionicons name="arrow-back" size={24} color="white" />
                 </TouchableOpacity>
