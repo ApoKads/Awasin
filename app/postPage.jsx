@@ -46,15 +46,15 @@ export default function HomePostList() {
             <Text className="text-sm text-gray-500 mb-1">{post.username}</Text>
             <Text className="text-lg font-bold text-gray-900">{post.title}</Text>
             <View className="flex-row items-center mb-1">
-  <View className="w-6 h-6 rounded-full bg-[#102E4A] items-center justify-center mr-2">
-    <Image
-      source={require('../assets/icons/vectorart-location.png')}
-      className="w-3.5 h-3.5"
-      resizeMode="contain"
-    />
-  </View>
-  <Text className="text-sm text-gray-700">{post.location}</Text>
-</View>
+              <View className="w-6 h-6 rounded-full bg-[#102E4A] items-center justify-center mr-2">
+                <Image
+                  source={require('../assets/icons/vectorart-location.png')}
+                  className="w-3.5 h-3.5"
+                  resizeMode="contain"
+                />
+              </View>
+              <Text className="text-sm text-gray-700">{post.location}</Text>
+            </View>
 
             <Text className="text-sm text-gray-700">{post.description}</Text>
           </View>
