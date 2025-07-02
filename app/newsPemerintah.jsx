@@ -19,11 +19,11 @@ const News = () => {
     const router = useRouter();
 
     return (
-        <View 
+        <View
             className="flex-1 bg-white px-4 w-full"
             style={{ paddingTop: insets.top }}
         >
-            <ScrollView 
+            <ScrollView
                 className="flex-1 w-full"
                 showsVerticalScrollIndicator={false}
                 contentContainerStyle={{ paddingBottom: 100 }}
@@ -94,7 +94,7 @@ const News = () => {
 
             {/* Floating Add News Button */}
             <TouchableOpacity
-                onPress={() => router.push('/addNews')}
+                onPress={() => router.push('/formNews')}
                 style={{
                     position: 'absolute',
                     bottom: 90,
@@ -115,7 +115,6 @@ const News = () => {
             >
                 <Ionicons name="add" size={28} color="#fff" />
             </TouchableOpacity>
-
             <BottomNavbar />
         </View>
     );

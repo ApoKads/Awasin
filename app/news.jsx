@@ -1,121 +1,87 @@
 import React from 'react';
-import { View, Text, ScrollView, Image } from 'react-native';
-import { Link } from 'expo-router';
+import { View, Text, ScrollView, Image, TouchableOpacity, Dimensions } from 'react-native';
+import { Link, useRouter } from 'expo-router';
 import BottomNavbar from './components/BottomNavbar';
-import { TouchableOpacity } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { Ionicons } from '@expo/vector-icons';
+import jsonData from '../assets/data/newsData.json';
 
+const { width: windowWidth } = Dimensions.get('window');
 
-export const screenOptions = {
-    headerShown: false,
+const imageMap = {
+    "../assets/berita1.png": require('../assets/berita1.png'),
+    "../assets/berita2.png": require('../assets/berita2.png'),
+    "../assets/berita3.png": require('../assets/berita3.png')
 };
 
-
-const newsData = [
-    {
-        id: 1,
-        image: require('../assets/berita1.png'),
-        title: 'Bogor Siapkan Destinasi Wisata Baru',
-        category: 'Travel',
-        date: 'July 1, 2025 09.00 AM'
-    },
-    {
-        id: 2,
-        image: require('../assets/berita2.png'),
-        title: 'Persiapan MotoGP Mandalika',
-        category: 'Sport',
-        date: 'June 28, 2025 14.00 PM'
-    },
-    {
-        id: 3,
-        image: require('../assets/berita3.png'),
-        title: 'Festival Kuliner Nusantara',
-        category: 'Food',
-        date: 'June 27, 2025 11.00 AM'
-    },
-    {
-        id: 4,
-        image: require('../assets/berita3.png'),
-        title: 'Festival Kuliner Nusantara',
-        category: 'Food',
-        date: 'June 27, 2025 11.00 AM'
-    },
-    {
-        id: 5,
-        image: require('../assets/berita3.png'),
-        title: 'Festival Kuliner Nusantara',
-        category: 'Food',
-        date: 'June 27, 2025 11.00 AM'
-    },
-    {
-        id: 6,
-        image: require('../assets/berita3.png'),
-        title: 'Festival Kuliner Nusantara',
-        category: 'Food',
-        date: 'June 27, 2025 11.00 AM'
-    },
-    {
-        id: 7,
-        image: require('../assets/berita3.png'),
-        title: 'Festival Kuliner Nusantara',
-        category: 'Food',
-        date: 'June 27, 2025 11.00 AM'
-    },
-];
-
 const News = () => {
+    const insets = useSafeAreaInsets();
+    const router = useRouter();
+
     return (
-        <View className="flex-1 bg-white pt-12 px-4">
-            <ScrollView className="flex-1">
+        <View
+            className="flex-1 bg-white px-4 w-full"
+            style={{ paddingTop: insets.top }}
+        >
+            <ScrollView
+                className="flex-1 w-full"
+                showsVerticalScrollIndicator={false}
+                contentContainerStyle={{ paddingBottom: 100 }}
+            >
                 <Text className="text-2xl font-bold mb-4">Berita Harian</Text>
 
-                {/* Carousel */}
                 <ScrollView
                     horizontal
                     showsHorizontalScrollIndicator={false}
                     contentContainerStyle={{ paddingRight: 16 }}
                 >
-                    <View className="flex-row space-x-4 gap-4">
-                        {newsData.map((item) => (
-                            <View
-                                key={item.id}
-                                className="w-80 h-48 rounded-xl overflow-hidden bg-gray-300"
-                            >
-                                <Image
-                                    source={item.image}
-                                    style={{ width: '100%', height: '100%' }}
-                                    resizeMode="cover"
-                                />
-                                <View className="absolute bottom-0 left-0 right-0 bg-black/40 p-2">
-                                    <Text className="text-white font-bold">
-                                        {item.title}
-                                    </Text>
-                                </View>
+                    {jsonData.map((item) => (
+                        <View
+                            key={item.id}
+                            style={{
+                                width: windowWidth * 0.9,
+                                height: 200,
+                                borderRadius: 15,
+                                overflow: 'hidden',
+                                backgroundColor: '#ccc',
+                                marginRight: 16
+                            }}
+                        >
+                            <Image
+                                source={imageMap[item.image]}
+                                style={{ width: '100%', height: '100%' }}
+                                resizeMode="cover"
+                            />
+                            <View className="absolute bottom-0 left-0 right-0 bg-black/40 p-2">
+                                <Text className="text-white font-bold">
+                                    {item.title}
+                                </Text>
                             </View>
-                        ))}
-                    </View>
+                        </View>
+                    ))}
                 </ScrollView>
 
                 {/* Berita terbaru */}
-                <View className="mt-8">
-                    <View className="flex-row justify-between items-center mb-4">
+                <View className="mt-8 w-full">
+                    <View className="flex-row justify-between items-center mb-4 w-full">
                         <Text className="text-lg font-bold">Berita Terbaru</Text>
                         <Link href="/listNews">
                             <Text className="text-sm text-gray-500">Lihat Semua</Text>
                         </Link>
                     </View>
-                    <View className="gap-4">
-                        {newsData.map((item) => (
+                    <View className="gap-4 w-full">
+                        {jsonData.map((item) => (
                             <Link key={item.id} href="/detailNews" asChild>
-                                <TouchableOpacity className="flex-row items-center mb-4">
+                                <TouchableOpacity className="flex-row items-center mb-4 w-full">
                                     <Image
-                                        source={item.image}
+                                        source={imageMap[item.image]}
                                         className="w-16 h-16 rounded-lg mr-4"
                                         resizeMode="cover"
                                     />
                                     <View className="flex-1">
                                         <Text className="font-semibold">{item.title}</Text>
                                         <Text className="text-gray-400 text-xs">{item.date}</Text>
-                                        <Text className="bg-blue-200 text-blue-800 text-xs px-2 py-1 rounded mt-1 w-16 text-center">
+                                        <Text className="bg-blue-200 text-blue-800 text-xs px-2 py-1 rounded mt-1 w-20 text-center">
                                             {item.category}
                                         </Text>
                                     </View>
@@ -123,12 +89,10 @@ const News = () => {
                             </Link>
                         ))}
                     </View>
-
                 </View>
             </ScrollView>
             <BottomNavbar />
         </View>
-
     );
 };
 

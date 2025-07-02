@@ -23,6 +23,7 @@ const index = () => {
       <Link href="/maps">Masuk Ke Map</Link>
       <Link href="/settings">Masuk Ke Setting</Link>
       <Link href="/postPage">Masuk Ke Post Page</Link>
+      <Link href="/newsPemerintah">Masuk Ke News Pemerintah</Link>
     </View>
   )
 }
