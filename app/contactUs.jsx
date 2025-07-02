@@ -43,11 +43,14 @@ export default function ContactUsScreen() {
         {/* Info Kontak */}
         <View className="gap-4 mb-8">
           {/* Email */}
-          <View className="flex-row items-start gap-2">
-            <Image
-              source={require('../assets/default-avatar.jpg')}
-              className="w-5 h-5 mt-1"
-            />
+          <View className="flex-row items-start gap-3">
+            <View className="w-8 h-8 rounded-full bg-[#102E4A] items-center justify-center mt-1">
+              <Image
+                source={require('../assets/icons/vectorart-email.png')}
+                className="w-4 h-4"
+                resizeMode="contain"
+              />
+            </View>
             <View>
               <Text className="font-semibold">E-mail</Text>
               <Text className="text-gray-700">awasin@gmail.com</Text>
@@ -55,11 +58,14 @@ export default function ContactUsScreen() {
           </View>
 
           {/* Telepon */}
-          <View className="flex-row items-start gap-2">
-            <Image
-              source={require('../assets/default-avatar.jpg')}
-              className="w-5 h-5 mt-1"
-            />
+          <View className="flex-row items-start gap-3">
+            <View className="w-8 h-8 rounded-full bg-[#102E4A] items-center justify-center mt-1">
+              <Image
+                source={require('../assets/icons/vectorart-phone.png')}
+                className="w-4 h-4"
+                resizeMode="contain"
+              />
+            </View>
             <View>
               <Text className="font-semibold">Nomor Telepon</Text>
               <Text className="text-gray-700">08123456789</Text>
@@ -67,11 +73,14 @@ export default function ContactUsScreen() {
           </View>
 
           {/* Alamat */}
-          <View className="flex-row items-start gap-2">
-            <Image
-              source={require('../assets/default-avatar.jpg')}
-              className="w-5 h-5 mt-1"
-            />
+          <View className="flex-row items-start gap-3">
+            <View className="w-8 h-8 rounded-full bg-[#102E4A] items-center justify-center mt-1">
+              <Image
+                source={require('../assets/icons/vectorart-location.png')}
+                className="w-4 h-4"
+                resizeMode="contain"
+              />
+            </View>
             <View className="flex-1">
               <Text className="font-semibold">Alamat</Text>
               <Text className="text-gray-700">
@@ -80,6 +89,7 @@ export default function ContactUsScreen() {
             </View>
           </View>
         </View>
+
 
         {/* Form Input */}
         <View className="gap-4 mb-6">

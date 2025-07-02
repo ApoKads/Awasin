@@ -12,24 +12,24 @@ const BottomNavbar = () => {
             {/* Navbar */}
             <View style={styles.navbar}>
                 <TouchableOpacity onPress={() => router.push('/home')} style={styles.navItem}>
-                    <Ionicons name="home" size={24} color="#F2EAD3" />
+                    <Ionicons name="home" size={24} color="#FFFFFF" />
                     <Text style={styles.navText}>Beranda</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity onPress={() => router.push('/news')} style={styles.navItem}>
-                    <MaterialIcons name="article" size={24} color="#F2EAD3" />
+                    <MaterialIcons name="article" size={24} color="#FFFFFF" />
                     <Text style={styles.navText}>Berita</Text>
                 </TouchableOpacity>
 
                 <View style={styles.spacer} />
 
                 <TouchableOpacity onPress={() => router.push('/notifications')} style={styles.navItem}>
-                    <Ionicons name="notifications" size={24} color="#F2EAD3" />
+                    <Ionicons name="notifications" size={24} color="#FFFFFF" />
                     <Text style={styles.navText}>Notifikasi</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity onPress={() => router.push('/profile')} style={styles.navItem}>
-                    <Feather name="user" size={24} color="#F2EAD3" />
+                    <Feather name="user" size={24} color="#FFFFFF" />
                     <Text style={styles.navText}>Profil</Text>
                 </TouchableOpacity>
             </View>
@@ -43,7 +43,7 @@ const BottomNavbar = () => {
                     colors={['#0891b2', '#3b82f6']}
                     style={styles.gradientButton}
                 >
-                    <Ionicons name="add" size={32} color="#fff" />
+                    <Ionicons name="add" size={32} color="#FFFFFF" />
                 </LinearGradient>
             </TouchableOpacity>
         </View>
@@ -62,7 +62,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-between',
         paddingHorizontal: 24,
-        paddingVertical: 12,
+        paddingVertical: 16,
+        paddingBottom: 20,
         backgroundColor: '#0C4A6E',
         borderTopLeftRadius: 24,
         borderTopRightRadius: 24,

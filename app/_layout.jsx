@@ -113,6 +113,22 @@ const RootLayout = () => { // Ganti nama StackLayout menjadi RootLayout agar leb
       />
 
       <Stack.Screen
+        name="newsPemerintah"
+        options={{
+          title: 'Tentang Kami', // Opsional, jika headerShown: false
+          headerShown: false, // Sembunyikan header untuk halaman 'about'
+        }}
+      />
+
+      <Stack.Screen
+        name="formNews"
+        options={{
+          title: 'Tentang Kami', // Opsional, jika headerShown: false
+          headerShown: false, // Sembunyikan header untuk halaman 'about'
+        }}
+      />
+
+      <Stack.Screen
         name="(auth)"
         options={{
           title: 'Tentang Kami', // Opsional, jika headerShown: false
