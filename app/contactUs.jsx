@@ -9,6 +9,7 @@ import {
   Alert,
   ImageBackground
 } from 'react-native';
+import { useRouter } from 'expo-router'; // gunakan router dari expo-router
 
 export default function ContactUsScreen() {
   const [form, setForm] = useState({
@@ -17,6 +18,8 @@ export default function ContactUsScreen() {
     phone: '',
     message: '',
   });
+
+  const router = useRouter(); // inisialisasi router
 
   const handleChange = (name, value) => {
     setForm({ ...form, [name]: value });
@@ -29,14 +32,23 @@ export default function ContactUsScreen() {
 
   return (
     <ImageBackground
-      source={require('../assets/Background.png')} // Ganti sesuai gambar background kamu
+      source={require('../assets/Background.png')}
       className="flex-1"
       resizeMode="cover"
     >
       <ScrollView className="px-6 pt-12 pb-10 bg-white/80">
+        {/* Tombol Back */}
+        <TouchableOpacity className="-ml-2 mt-5 mb-5" onPress={() => router.back()}>
+          <Image
+            source={require("../assets/icons/vectorart-backblue.png")}
+            style={{ width: 30, height: 30 }}
+            resizeMode="contain"
+          />
+        </TouchableOpacity>
+
         {/* Judul dan Deskripsi */}
-        <Text className="text-2xl font-bold mb-1">Kontak Kami</Text>
-        <Text className="text-gray-700 mb-5">
+        <Text className="text-2xl font-poppins-bold mb-1">Kontak Kami</Text>
+        <Text className="text-gray-700 font-poppins mb-5">
           Silakan hubungi kami jika Anda membutuhkan bantuan
         </Text>
 
@@ -52,8 +64,8 @@ export default function ContactUsScreen() {
               />
             </View>
             <View>
-              <Text className="font-semibold">E-mail</Text>
-              <Text className="text-gray-700">awasin@gmail.com</Text>
+              <Text className="font-poppins-semibold">E-mail</Text>
+              <Text className="font-poppins text-gray-700">awasin@gmail.com</Text>
             </View>
           </View>
 
@@ -67,8 +79,8 @@ export default function ContactUsScreen() {
               />
             </View>
             <View>
-              <Text className="font-semibold">Nomor Telepon</Text>
-              <Text className="text-gray-700">08123456789</Text>
+              <Text className="font-poppins-semibold">Nomor Telepon</Text>
+              <Text className="font-poppins text-gray-700">08123456789</Text>
             </View>
           </View>
 
@@ -82,14 +94,13 @@ export default function ContactUsScreen() {
               />
             </View>
             <View className="flex-1">
-              <Text className="font-semibold">Alamat</Text>
-              <Text className="text-gray-700">
+              <Text className="font-poppins-semibold">Alamat</Text>
+              <Text className="font-poppins text-gray-700">
                 Sentul City, Jl. Pakuan No.3, Sumur Batu, Babakan Madang, Bogor Regency, West Java 16810
               </Text>
             </View>
           </View>
         </View>
-
 
         {/* Form Input */}
         <View className="gap-4 mb-6">
@@ -128,7 +139,7 @@ export default function ContactUsScreen() {
           onPress={handleSubmit}
           className="bg-[#102E4A] py-3 rounded-lg items-center"
         >
-          <Text className="text-white text-lg font-semibold">Kirim</Text>
+          <Text className="text-white text-lg font-poppins-semibold">Kirim</Text>
         </TouchableOpacity>
       </ScrollView>
     </ImageBackground>

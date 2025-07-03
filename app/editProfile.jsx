@@ -10,6 +10,7 @@ import {
   ImageBackground
 } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
+import { useNavigation } from "@react-navigation/native";
 
 export default function EditProfileScreen() {
   const [image, setImage] = useState(null);
@@ -58,6 +59,14 @@ export default function EditProfileScreen() {
     className="flex-1"
   >
     <ScrollView className="bg-white/80 px-6 pt-12">
+    <TouchableOpacity className="-ml-2 mt-5 mb-5" onPress={() => navigation.goBack()}>
+                  <Image
+                        source={require("../assets/icons/vectorart-backblue.png")}
+                        style={{ width: 30, height: 30 }}
+                        className="w-6 h-6"
+                        resizeMode="contain"
+                      />
+                </TouchableOpacity>
       <TouchableOpacity onPress={pickImage} className="items-center mb-4">
         <Image
           source={
@@ -67,7 +76,7 @@ export default function EditProfileScreen() {
           }
           className="w-28 h-28 rounded-full"
         />
-        <Text className="text-base text-gray-700 mt-2">Ubah Foto</Text>
+        <Text className="text-base font-poppins text-gray-700 mt-2">Ubah Foto</Text>
       </TouchableOpacity>
 
       {/** Input Fields */}
@@ -117,7 +126,7 @@ export default function EditProfileScreen() {
         onPress={handleSubmit}
         className="w-full p-3 bg-[#102E4A] rounded-lg items-center mb-4 mt-5"
       >
-        <Text className="text-white text-xl uppercase font-poppins-medium">Simpan</Text>
+        <Text className="text-white text-lg font-poppins-medium">Simpan</Text>
       </TouchableOpacity>
     </ScrollView>
   </ImageBackground>

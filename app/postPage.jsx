@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useNavigation } from '@react-navigation/native';
 import BottomNavbar from './components/BottomNavbar';
 
 const dummyPosts = [
@@ -49,6 +50,7 @@ const dummyPosts = [
 
 export default function HomePostList() {
   const insets = useSafeAreaInsets();
+  const navigation = useNavigation();
 
   const [query, setQuery] = useState('');
   const [categories] = useState(['All', 'Trending', 'Roads', 'Floods']);
@@ -78,9 +80,19 @@ export default function HomePostList() {
         <View className="absolute top-0 left-0 right-0 h-40 bg-[#0C4A6E] rounded-b-3xl z-0" />
 
         {/* Header & Search */}
-        <View style={{ paddingTop: insets.top + 10 }} className="z-10 w-full px-4">
-          <Text className="text-3xl font-extrabold text-white mb-1">Discover</Text>
-          <Text className="text-sm text-[#d0d0d0] mb-4">News from Bogor</Text>
+        <View style={{ paddingTop: insets.top }} className="z-10 w-full px-4">
+          <View className="flex-row justify-between items-center mb-3">
+            <View>
+              <Text className="text-3xl font-poppins-extrabold text-white">Awasin</Text>
+              <Text className="text-sm font-poppins text-[#d0d0d0]">AWAS KALI</Text>
+            </View>
+            <Image
+              source={require('../assets/logo-white.png')}
+              style={{ width: 60, height: 60 }}
+              className="w-10 h-10"
+              resizeMode="contain"
+            />
+          </View>
 
           {/* Search Bar */}
           <View className="bg-white rounded-full flex-row items-center px-4 py-2 shadow w-full">
@@ -132,8 +144,9 @@ export default function HomePostList() {
             </Text>
           ) : (
             filteredPosts.map((post) => (
-              <View
+              <TouchableOpacity
                 key={post.id}
+                onPress={() => navigation.navigate('postDetail')} // pastikan route 'PostDetail' sudah dibuat
                 className="bg-white rounded-2xl shadow mb-6 overflow-hidden w-full"
               >
                 <View className="relative">
@@ -175,7 +188,7 @@ export default function HomePostList() {
 
                   <Text className="text-sm text-gray-700">{post.description}</Text>
                 </View>
-              </View>
+              </TouchableOpacity>
             ))
           )}
         </View>

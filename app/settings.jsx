@@ -13,29 +13,34 @@ export default function SettingScreen() {
   const router = useRouter();
 
   const handleLogout = () => {
-  Alert.alert(
-    "Konfirmasi Logout",
-    "Apakah Anda yakin ingin keluar?",
-    [
-      {
-        text: "Batal",
-        style: "cancel"
-      },
-      {
-        text: "Ya",
-        onPress: () => {
-          // Logika logout asli di sini
-          console.log("User logged out");
-          router.replace('/login'); // Arahkan ke login
+    Alert.alert(
+      "Konfirmasi Logout",
+      "Apakah Anda yakin ingin keluar?",
+      [
+        { text: "Batal", style: "cancel" },
+        {
+          text: "Ya",
+          onPress: () => {
+            console.log("User logged out");
+            router.replace('/login');
+          }
         }
-      }
-    ],
-    { cancelable: true }
-  );
-};
+      ],
+      { cancelable: true }
+    );
+  };
 
   return (
     <ScrollView className="bg-white px-6 pt-12">
+      {/* Back Button */}
+      <TouchableOpacity className="-ml-2 mt-5 mb-5" onPress={() => router.back()}>
+        <Image
+          source={require("../assets/icons/vectorart-backblue.png")}
+          style={{ width: 30, height: 30 }}
+          resizeMode="contain"
+        />
+      </TouchableOpacity>
+
       {/* Akun */}
       <Text className="text-xl font-poppins-bold mb-4">Akun</Text>
 
@@ -45,7 +50,7 @@ export default function SettingScreen() {
       >
         <View className="flex-row items-center space-x-3">
           <Image
-            source={require('../assets/default-avatar.jpg')} // Ganti dengan avatar default
+            source={require('../assets/default-avatar.jpg')}
             className="w-14 h-14 rounded-full"
           />
           <View>
@@ -62,52 +67,58 @@ export default function SettingScreen() {
       <Text className="text-xl font-bold mb-4">Settings</Text>
 
       {/* Riwayat */}
-      <TouchableOpacity className="flex-row items-center justify-between mb-4"
-      onPress={() => router.push('/history')}>
+      <TouchableOpacity
+        className="flex-row items-center justify-between mb-4"
+        onPress={() => router.push('/history')}
+      >
         <View className="flex-row items-center space-x-3">
-            <View className="w-12 h-12 rounded-full bg-[#102E4A] items-center justify-center">
-                <Image
-                source={require('../assets/icons/vectorart-history.png')}
-                className="w-6 h-6"
-                resizeMode="contain"
-                />
-            </View>
-            <Text className="text-lg font-poppins-medium ml-5">Riwayat</Text>
+          <View className="w-12 h-12 rounded-full bg-[#102E4A] items-center justify-center">
+            <Image
+              source={require('../assets/icons/vectorart-history.png')}
+              className="w-6 h-6"
+              resizeMode="contain"
+            />
+          </View>
+          <Text className="text-lg font-poppins-medium ml-5">Riwayat</Text>
         </View>
-            <Text className="text-2xl text-gray-500">{'>'}</Text>
-    </TouchableOpacity>
+        <Text className="text-2xl text-gray-500">{'>'}</Text>
+      </TouchableOpacity>
 
       {/* Kontak Kami */}
-      <TouchableOpacity className="flex-row items-center justify-between mb-4"
-      onPress={() => router.push('/contactUs')}>
+      <TouchableOpacity
+        className="flex-row items-center justify-between mb-4"
+        onPress={() => router.push('/contactUs')}
+      >
         <View className="flex-row items-center space-x-3">
-            <View className="w-12 h-12 rounded-full bg-[#102E4A] items-center justify-center">
-                <Image
-                source={require('../assets/icons/vectorart-phone.png')}
-                className="w-6 h-6"
-                resizeMode="contain"
-                />
-            </View>
-            <Text className="text-lg font-poppins-medium ml-5">Kontak Kami</Text>
+          <View className="w-12 h-12 rounded-full bg-[#102E4A] items-center justify-center">
+            <Image
+              source={require('../assets/icons/vectorart-phone.png')}
+              className="w-6 h-6"
+              resizeMode="contain"
+            />
+          </View>
+          <Text className="text-lg font-poppins-medium ml-5">Kontak Kami</Text>
         </View>
-            <Text className="text-2xl text-gray-500">{'>'}</Text>
-    </TouchableOpacity>
+        <Text className="text-2xl text-gray-500">{'>'}</Text>
+      </TouchableOpacity>
 
       {/* FAQ */}
-      <TouchableOpacity className="flex-row items-center justify-between mb-4"
-      onPress={() => router.push('/faq')}>
+      <TouchableOpacity
+        className="flex-row items-center justify-between mb-4"
+        onPress={() => router.push('/faq')}
+      >
         <View className="flex-row items-center space-x-3">
-            <View className="w-12 h-12 rounded-full bg-[#102E4A] items-center justify-center">
-                <Image
-                source={require('../assets/icons/vectorart-message.png')}
-                className="w-6 h-6"
-                resizeMode="contain"
-                />
-            </View>
-            <Text className="text-lg font-poppins-medium ml-5">FAQ</Text>
+          <View className="w-12 h-12 rounded-full bg-[#102E4A] items-center justify-center">
+            <Image
+              source={require('../assets/icons/vectorart-message.png')}
+              className="w-6 h-6"
+              resizeMode="contain"
+            />
+          </View>
+          <Text className="text-lg font-poppins-medium ml-5">FAQ</Text>
         </View>
-            <Text className="text-2xl text-gray-500">{'>'}</Text>
-    </TouchableOpacity>
+        <Text className="text-2xl text-gray-500">{'>'}</Text>
+      </TouchableOpacity>
 
       {/* Logout */}
       <TouchableOpacity

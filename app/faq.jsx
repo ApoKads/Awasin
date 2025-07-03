@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { ScrollView, Text, TouchableOpacity, View, ImageBackground } from 'react-native';
+import { ScrollView, Text, TouchableOpacity, View, ImageBackground, Image } from 'react-native';
+import { useRouter } from 'expo-router'; // Tambahkan ini
 
 const faqData = [
   {
@@ -25,14 +26,13 @@ const faqData = [
 ];
 
 export default function FAQScreen() {
+  const router = useRouter(); // Tambahkan ini
   const [openIndexes, setOpenIndexes] = useState([]);
 
   const toggleDropdown = (index) => {
     if (openIndexes.includes(index)) {
-      // Jika sudah terbuka, tutup
       setOpenIndexes(openIndexes.filter(i => i !== index));
     } else {
-      // Tambahkan ke daftar terbuka
       setOpenIndexes([...openIndexes, index]);
     }
   };
@@ -44,7 +44,16 @@ export default function FAQScreen() {
       resizeMode="cover"
     >
       <ScrollView className="bg-white/70 px-4 pt-12 pb-10">
-        <Text className="text-2xl font-bold text-center mb-6">FAQ</Text>
+        {/* Tombol Back */}
+        <TouchableOpacity className="-ml-2 mt-5 mb-5" onPress={() => router.back()}>
+          <Image
+            source={require("../assets/icons/vectorart-backblue.png")}
+            style={{ width: 30, height: 30 }}
+            resizeMode="contain"
+          />
+        </TouchableOpacity>
+
+        <Text className="text-2xl font-poppins-bold text-center mb-6">FAQ</Text>
 
         {faqData.map((item, index) => {
           const isOpen = openIndexes.includes(index);
@@ -56,12 +65,12 @@ export default function FAQScreen() {
                   isOpen ? 'bg-blue-100 border-blue-300' : 'bg-white border-gray-300'
                 }`}
               >
-                <Text className="text-base font-semibold text-gray-800">{item.question}</Text>
+                <Text className="text-base font-poppins-semibold text-gray-800">{item.question}</Text>
               </TouchableOpacity>
 
               {isOpen && (
-                <View className="bg-blue-50 px-4 py-3 border-l border-r border-b border-blue-300 rounded-b-xl">
-                  <Text className="text-gray-700 text-sm">{item.answer}</Text>
+                <View className="bg-blue-50 px-4 py-3 border-l border-r border-b border-blue-800 rounded-b-xl">
+                  <Text className="text-gray-700 font-poppins text-sm">{item.answer}</Text>
                 </View>
               )}
             </View>
