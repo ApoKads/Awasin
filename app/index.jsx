@@ -26,6 +26,7 @@ const index = () => {
       <Link href="/newsPemerintah">Masuk Ke News Pemerintah</Link>
       <Link href="/postDetail">Masuk Ke Post Details</Link>
       <Link href="/postDetail_Admin">Masuk Ke Post Details Admin</Link>
+      <Link href="/history">Masuk Ke Laporan</Link>
     </View>
   )
 }
