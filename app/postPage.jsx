@@ -117,16 +117,14 @@ export default function HomePostList() {
                 <TouchableOpacity
                   key={idx}
                   onPress={() => setActiveCategory(cat)}
-                  className={`px-5 py-2 rounded-full border-2 ${
-                    activeCategory === cat
-                      ? 'bg-[#0C4A6E] border-[#0C4A6E]'
-                      : 'border-[#0C4A6E]'
-                  }`}
+                  className={`px-5 py-2 rounded-full border-2 ${activeCategory === cat
+                    ? 'bg-[#0C4A6E] border-[#0C4A6E]'
+                    : 'border-[#0C4A6E]'
+                    }`}
                 >
                   <Text
-                    className={`font-semibold ${
-                      activeCategory === cat ? 'text-white' : 'text-[#0C4A6E]'
-                    }`}
+                    className={`font-semibold ${activeCategory === cat ? 'text-white' : 'text-[#0C4A6E]'
+                      }`}
                   >
                     {cat}
                   </Text>
@@ -148,11 +146,21 @@ export default function HomePostList() {
                 key={post.id}
                 onPress={() => navigation.navigate('postDetail')} // pastikan route 'PostDetail' sudah dibuat
                 className="bg-white rounded-2xl shadow mb-6 overflow-hidden w-full"
+                className="mb-6 w-full"
+                style={{
+                  backgroundColor: 'white',
+                  borderRadius: 16,
+                  shadowColor: '#000',
+                  shadowOffset: { width: 0, height: 6 },
+                  shadowOpacity: 0.1,
+                  shadowRadius: 8,
+                  elevation: 6,
+                }}
               >
                 <View className="relative">
                   <Image
                     source={post.image}
-                    className="w-full h-48"
+                    className="w-full h-48 rounded-t-2xl"
                     resizeMode="cover"
                   />
                   {post.trending && (
@@ -168,12 +176,8 @@ export default function HomePostList() {
                 </View>
 
                 <View className="px-4 py-3">
-                  <Text className="text-sm text-gray-500 mb-1">
-                    {post.username}
-                  </Text>
-                  <Text className="text-lg font-bold text-gray-900 mb-1">
-                    {post.title}
-                  </Text>
+                  <Text className="text-sm text-gray-500 mb-1">{post.username}</Text>
+                  <Text className="text-lg font-bold text-gray-900 mb-1">{post.title}</Text>
 
                   <View className="flex-row items-center mb-2">
                     <View className="w-6 h-6 rounded-full bg-[#102E4A] items-center justify-center mr-2">
