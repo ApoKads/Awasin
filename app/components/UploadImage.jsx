@@ -38,12 +38,17 @@ const UploadImage = ({images, setForm}) => {
   return (
     <View className="w-full items-center">
       <TouchableOpacity
-        className="rounded-full bg-[#102E4A] py-3 w-[50%] mb-[25]"
+        className="flex flex-row justify-between items-center w-full mb-5"
         onPress={handleAddImage}
       >
-        <Text className="text-white text-center font-poppins-bold">Add Image</Text>
+        <View>
+          <Text className="text-md text-black font-poppins">Tambah Gambar</Text>
+        </View>
+        <View className="flex justify-center items-center w-[35] h-[35] rounded-md bg-[#102E4A]">
+          <Text className="text-white">a</Text>
+        </View>
       </TouchableOpacity>
-
+      
       <View className="flex justify-center w-full mb-[30]">
         <FlatList
           data={images}
