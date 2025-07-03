@@ -37,7 +37,7 @@ export default function SettingScreen() {
   return (
     <ScrollView className="bg-white px-6 pt-12">
       {/* Akun */}
-      <Text className="text-xl font-bold mb-4">Akun</Text>
+      <Text className="text-xl font-poppins-bold mb-4">Akun</Text>
 
       <TouchableOpacity
         onPress={() => router.push('/editProfile')}
@@ -49,8 +49,8 @@ export default function SettingScreen() {
             className="w-14 h-14 rounded-full"
           />
           <View>
-            <Text className="text-lg font-semibold ml-5">Nama User</Text>
-            <Text className="text-sm text-gray-600 ml-5">Informasi Pribadi</Text>
+            <Text className="text-lg font-poppins-semibold ml-5">Nama User</Text>
+            <Text className="text-sm font-poppins text-gray-600 ml-5">Informasi Pribadi</Text>
           </View>
         </View>
         <Text className="text-2xl text-gray-500">{'>'}</Text>
@@ -72,7 +72,7 @@ export default function SettingScreen() {
                 resizeMode="contain"
                 />
             </View>
-            <Text className="text-lg font-medium ml-5">Riwayat</Text>
+            <Text className="text-lg font-poppins-medium ml-5">Riwayat</Text>
         </View>
             <Text className="text-2xl text-gray-500">{'>'}</Text>
     </TouchableOpacity>
@@ -88,7 +88,7 @@ export default function SettingScreen() {
                 resizeMode="contain"
                 />
             </View>
-            <Text className="text-lg font-medium ml-5">Kontak Kami</Text>
+            <Text className="text-lg font-poppins-medium ml-5">Kontak Kami</Text>
         </View>
             <Text className="text-2xl text-gray-500">{'>'}</Text>
     </TouchableOpacity>
@@ -104,7 +104,7 @@ export default function SettingScreen() {
                 resizeMode="contain"
                 />
             </View>
-            <Text className="text-lg font-medium ml-5">FAQ</Text>
+            <Text className="text-lg font-poppins-medium ml-5">FAQ</Text>
         </View>
             <Text className="text-2xl text-gray-500">{'>'}</Text>
     </TouchableOpacity>
@@ -114,7 +114,7 @@ export default function SettingScreen() {
         onPress={handleLogout}
         className="bg-red-600 py-3 rounded-xl mt-10"
       >
-        <Text className="text-white text-center font-bold text-base">Keluar</Text>
+        <Text className="text-white text-center font-poppins-bold text-base">Keluar</Text>
       </TouchableOpacity>
     </ScrollView>
   );

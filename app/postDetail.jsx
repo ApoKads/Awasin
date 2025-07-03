@@ -31,8 +31,13 @@ const PostDetail = () => {
 
   return (
     <ScrollView className="flex-1 p-6 pt-10 font-poppins">
-      <TouchableOpacity className="-ml-2" onPress={() => navigation.goBack()}>
-        <Ionicons name="arrow-back" size={32} color="#000000" />
+      <TouchableOpacity className="-ml-2 mt-5" onPress={() => navigation.goBack()}>
+        <Image
+              source={require("../assets/icons/vectorart-backblue.png")}
+              style={{ width: 30, height: 30 }}
+              className="w-6 h-6"
+              resizeMode="contain"
+            />
       </TouchableOpacity>
 
       <View className="flex flex-row justify-between items-center mt-4">
@@ -54,7 +59,7 @@ const PostDetail = () => {
         <View className="flex flex-row gap-2 justify-start items-center mb-2">
           <View className="flex w-8 h-8 justify-center items-center bg-[#102E4A] rounded-full">
             <Image
-              source={require("../assets/vectorart-profile.png")}
+              source={require("../assets/icons/vectorart-profile.png")}
               style={{ width: 24, height: 24 }}
               className="w-6 h-6"
               resizeMode="contain"
@@ -95,24 +100,28 @@ const PostDetail = () => {
       </View>
 
       <View className="flex flex-row mt-3 gap-4">
-        <View className=" flex flex-row justify-center items-center gap-1">
-          <Image
-            source={require("../assets/upvote.png")}
-            style={{ width: 24, height: 24 }}
-            className="w-6 h-6"
-            resizeMode="contain"
-          />
+        <View className="flex flex-row justify-center items-center gap-1">
+          <View className="flex w-8 h-8 justify-center items-center bg-[#102E4A] rounded-full">
+            <Image
+              source={require("../assets/icons/vectorart-upvote.png")}
+              style={{ width: 24, height: 24 }}
+              className="w-6 h-6"
+              resizeMode="contain"
+            />
+          </View>
           <Text className="text-[#102E4A] font-poppins mt-1">
             11,4K upvotes
           </Text>
         </View>
         <View className=" flex flex-row justify-center items-center gap-1">
-          <Image
-            source={require("../assets/mata.png")}
-            style={{ width: 24, height: 24 }}
-            className="w-6 h-6"
-            resizeMode="contain"
-          />
+          <View className="flex w-8 h-8 justify-center items-center bg-[#102E4A] rounded-full">
+            <Image
+              source={require("../assets/icons/vectorart-eyes.png")}
+              style={{ width: 24, height: 24 }}
+              className="w-6 h-6"
+              resizeMode="contain"
+            />
+          </View>
           <Text className="text-[#102E4A] font-poppins mt-1">10,1K seen</Text>
         </View>
       </View>
