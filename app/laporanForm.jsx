@@ -9,12 +9,10 @@ import {
 } from "react-native";
 import UploadImage from "./components/UploadImage";
 import RNPickerSelect from "react-native-picker-select";
-import { useNavigation, useLocalSearchParams, router } from "expo-router";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useLocalSearchParams, router } from "expo-router";
 import { Ionicons } from '@expo/vector-icons';
 
 const LaporanForm = () => {
-  const insets = useSafeAreaInsets();
   const params = useLocalSearchParams();
 
   const [form, setForm] = useState({
@@ -78,22 +76,23 @@ const LaporanForm = () => {
   };
 
   return (
-    <SafeAreaView className="flex flex-1">
-      <View className="flex flex-1 items-center pt-[80]">
+    <SafeAreaView className="flex-1 bg-white">
+      <View className="flex-1 items-center px-6 pt-4">
+        {/* Tombol Back */}
         <TouchableOpacity
           onPress={() => router.back()}
-          style={{ top: insets.top + 8 }} // safe area + sedikit jarak
-          className="absolute left-4 bg-black/50 p-2 rounded-full"
+          className="absolute left-4 top-4 bg-black/50 p-2 rounded-full z-50"
         >
           <Ionicons name="arrow-back" size={24} color="white" />
         </TouchableOpacity>
 
-        <Text className="text-3xl text-gray-800 font-bold mb-[40] font-poppins-bold">
+        <Text className="text-3xl text-gray-800 font-bold mb-10 mt-12 font-poppins-bold">
           Buat Laporan
         </Text>
-        <View className="flex-1 items-center w-[90%] px-[5%] rounded-lg mb-[10]">
+
+        <View className="w-full flex-1">
           <TextInput
-            className="border border-gray-400 rounded-md px-4 py-2 w-full h-[55] text-[1rem] mb-[20] font-poppins"
+            className="border border-gray-400 rounded-md px-4 py-2 w-full h-[55] text-[1rem] mb-5 font-poppins"
             placeholder="Title"
             placeholderTextColor="#A0AEC0"
             value={form.title}
@@ -102,7 +101,7 @@ const LaporanForm = () => {
             }
           />
 
-          <View className="border border-gray-400 rounded-lg w-full mb-[20]">
+          <View className="border border-gray-400 rounded-lg w-full mb-5">
             <RNPickerSelect
               onValueChange={(value) =>
                 setForm((prevForm) => ({ ...prevForm, type: value }))
@@ -114,12 +113,13 @@ const LaporanForm = () => {
                 { label: "Taman", value: "taman" },
                 { label: "Lainnya", value: "lainnya" },
               ]}
-              placeholder={{ label: "Pilih Bahasa Pemrograman", value: "" }}
+              placeholder={{ label: "Pilih Jenis", value: "" }}
               style={{
                 inputIOS: {
                   fontSize: 16,
                   color: "#4A5568",
                   paddingHorizontal: 10,
+                  paddingVertical: 12,
                 },
                 inputAndroid: {
                   fontSize: 16,
@@ -131,11 +131,10 @@ const LaporanForm = () => {
           </View>
 
           <TextInput
-            className="border border-gray-400 rounded-md px-4 py-2 w-full h-[55] mb-[25] font-poppins"
+            className="border border-gray-400 rounded-md px-4 py-2 w-full h-[100] mb-5 font-poppins"
             placeholder="Description"
             placeholderTextColor="#A0AEC0"
             multiline
-            numberOfLines={5}
             value={form.desc}
             onChangeText={(text) =>
               setForm((prevForm) => ({ ...prevForm, desc: text }))
@@ -146,18 +145,14 @@ const LaporanForm = () => {
             className="flex flex-row justify-between items-center w-full mb-5"
             onPress={handleLocation}
           >
-            <View>
-              <Text className="text-md text-black font-poppins">
-                Tambah Lokasi
-              </Text>
-            </View>
+            <Text className="text-md text-black font-poppins">Tambah Lokasi</Text>
             <View className="flex justify-center items-center w-[35] h-[35] rounded-md bg-[#102E4A]">
-              <Text className="text-white">a</Text>
+              <Text className="text-white font-bold">+</Text>
             </View>
           </TouchableOpacity>
 
           {form.location && (
-            <Text className="border border-gray-400 rounded-md px-4 py-2 w-full h-[55] mb-[25] font-poppins">
+            <Text className="border border-gray-400 rounded-md px-4 py-2 w-full h-[55] mb-5 font-poppins">
               {form.location}
             </Text>
           )}
@@ -165,7 +160,7 @@ const LaporanForm = () => {
           <UploadImage images={form.images} setForm={setForm} />
 
           <TouchableOpacity
-            className="rounded-lg bg-[#102E4A] py-3 w-full"
+            className="rounded-lg bg-[#102E4A] py-3 w-full mt-6"
             onPress={handleSubmit}
           >
             <Text className="text-white text-center font-poppins-bold">

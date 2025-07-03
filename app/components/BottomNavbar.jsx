@@ -28,7 +28,7 @@ const BottomNavbar = () => {
                     <Text style={styles.navText}>Notifikasi</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity onPress={() => router.push('/profile')} style={styles.navItem}>
+                <TouchableOpacity onPress={() => router.push('/settings')} style={styles.navItem}>
                     <Feather name="user" size={24} color="#FFFFFF" />
                     <Text style={styles.navText}>Profil</Text>
                 </TouchableOpacity>
