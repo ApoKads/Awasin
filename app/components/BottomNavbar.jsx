@@ -11,7 +11,7 @@ const BottomNavbar = () => {
         <View style={styles.container}>
             {/* Navbar */}
             <View style={styles.navbar}>
-                <TouchableOpacity onPress={() => router.push('/home')} style={styles.navItem}>
+                <TouchableOpacity onPress={() => router.push('/postPage')} style={styles.navItem}>
                     <Ionicons name="home" size={24} color="#FFFFFF" />
                     <Text style={styles.navText}>Beranda</Text>
                 </TouchableOpacity>
@@ -36,7 +36,7 @@ const BottomNavbar = () => {
 
             {/* Floating center button */}
             <TouchableOpacity
-                onPress={() => router.push('/add')}
+                onPress={() => router.push('/laporanForm')}
                 style={styles.floatingButton}
             >
                 <LinearGradient

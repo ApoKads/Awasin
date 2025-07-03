@@ -24,20 +24,20 @@ const DetailNews = () => {
                 />
                 <TouchableOpacity
                     onPress={() => router.back()}
-                    style={{ top: insets.top + 8 }} // safe area + sedikit jarak
+                    style={{ top: insets.top + 8 }}
                     className="absolute left-4 bg-black/50 p-2 rounded-full"
                 >
                     <Ionicons name="arrow-back" size={24} color="white" />
                 </TouchableOpacity>
 
-                <View className="absolute bottom-6 left-4 right-4">
-                    <Text className="bg-[#6B9EBD] text-white px-3 py-1 rounded-xl self-start mb-2 text-xs font-bold">
+                <View className="absolute bottom-6 left-4 right-4 gap-2">
+                    <Text className="bg-[#6B9EBD] text-white px-3 py-1 rounded-xl self-start mb-1 text-sm font-bold">
                         Category
                     </Text>
                     <Text className="text-white font-bold text-2xl">
                         Bogor diserang akatsuki, Siapa yang akan menjadi pahlawan?
                     </Text>
-                    <Text className="text-gray-200 text-xs mt-1">
+                    <Text className="text-gray-200 text-sm mb-4">
                         May 2, 2025 09.00 AM
                     </Text>
                 </View>
