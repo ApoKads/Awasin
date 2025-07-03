@@ -146,7 +146,6 @@ export default function HomePostList() {
                 key={post.id}
                 onPress={() => navigation.navigate('postDetail')} // pastikan route 'PostDetail' sudah dibuat
                 className="bg-white rounded-2xl shadow mb-6 overflow-hidden w-full"
-                className="mb-6 w-full"
                 style={{
                   backgroundColor: 'white',
                   borderRadius: 16,
