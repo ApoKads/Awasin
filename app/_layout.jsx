@@ -167,6 +167,13 @@ const RootLayout = () => { // Ganti nama StackLayout menjadi RootLayout agar leb
           // Menambahkan tombol kustom di header kanan
         }}
       />
+      <Stack.Screen
+        name="postDetail_Admin"
+        options={{
+          headerShown:false,
+          // Menambahkan tombol kustom di header kanan
+        }}
+      />
 
 
 
