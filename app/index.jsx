@@ -13,8 +13,12 @@ const index = () => {
       <Text>Home Awasin</Text>
       <Text>Home Awasin</Text>
       <Text className="text-3xl">Home Awasi</Text>
-      <Link href="/register">Masuk Ke Login</Link>
+      <Link href="/register">Masuk Ke Register</Link>
       <Link href="/news">Masuk Ke News</Link>
+      <Link href="/landing">Masuk Ke Landing</Link>
+      <Link href="/login">Masuk Ke Login</Link>
+      <Link href="/faq">Masuk Ke FAQ</Link>
+      <Link href="/notification">Masuk Ke Notification</Link>
     </View>
   )
 }
