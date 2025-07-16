@@ -13,10 +13,9 @@ const index = () => {
       <Text>Home Awasin</Text>
       <Text>Home Awasin</Text>
       <Text className="text-3xl">Home Awasi</Text>
-      <Link href="/register">Masuk Ke Login</Link>
+      <Link href="/register">Masuk Ke Register</Link>
       <Link href="/news">Masuk Ke News</Link>
       <Link href="/feedbackForm">Masuk Ke Feedback Form</Link>
-      <Link href="/faq">Masuk Ke FAQ</Link>
       <Link href="/editProfile">Masuk ke Edit Profile</Link>
       <Link href="/contactUs">Masuk ke Kontak Kami</Link>
       <Link href="/laporanForm">Masuk Ke Laporan Form</Link>
@@ -27,6 +26,10 @@ const index = () => {
       <Link href="/postDetail">Masuk Ke Post Details</Link>
       <Link href="/postDetail_Admin">Masuk Ke Post Details Admin</Link>
       <Link href="/history">Masuk Ke Laporan</Link>
+      <Link href="/landing">Masuk Ke Landing</Link>
+      <Link href="/login">Masuk Ke Login</Link>
+      <Link href="/faq">Masuk Ke FAQ</Link>
+      <Link href="/notification">Masuk Ke Notification</Link>
     </View>
   )
 }
