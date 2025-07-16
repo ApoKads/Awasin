@@ -1,10 +1,10 @@
 import React from 'react';
 import { View, Text, ScrollView, Image, TouchableOpacity, Dimensions } from 'react-native';
 import { Link, useRouter } from 'expo-router';
-import BottomNavbar from './components/BottomNavbar';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import jsonData from '../assets/data/newsData.json';
+import BottomNavbarAdmin from './components/BottomNavbarAdmin';
 
 const { width: windowWidth } = Dimensions.get('window');
 
@@ -151,7 +151,7 @@ const News = () => {
             </TouchableOpacity>
 
             {/* Bottom Navbar */}
-            <BottomNavbar />
+            <BottomNavbarAdmin />
         </View>
     );
 };
