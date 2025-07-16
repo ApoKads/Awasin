@@ -19,10 +19,7 @@ const News = () => {
     const router = useRouter();
 
     return (
-        <View
-            className="flex-1 bg-white px-4 w-full"
-            style={{ paddingTop: insets.top }}
-        >
+        <View className="flex-1 bg-white px-4 w-full" style={{ paddingTop: insets.top }}>
             <ScrollView
                 className="flex-1 w-full"
                 showsVerticalScrollIndicator={false}
@@ -30,6 +27,7 @@ const News = () => {
             >
                 <Text className="text-2xl font-bold mb-4">Berita Harian</Text>
 
+                {/* ✅ Carousel DENGAN kategori di atas judul */}
                 <ScrollView
                     horizontal
                     showsHorizontalScrollIndicator={false}
@@ -39,21 +37,57 @@ const News = () => {
                         <View
                             key={item.id}
                             style={{
-                                width: windowWidth * 0.9,
+                                width: windowWidth * 0.8,
                                 height: 200,
-                                borderRadius: 15,
+                                borderRadius: 16,
                                 overflow: 'hidden',
+                                marginRight: 16,
                                 backgroundColor: '#ccc',
-                                marginRight: 16
+                                position: 'relative',
                             }}
                         >
+                            {/* Background image */}
                             <Image
                                 source={imageMap[item.image]}
                                 style={{ width: '100%', height: '100%' }}
                                 resizeMode="cover"
                             />
-                            <View className="absolute bottom-0 left-0 right-0 bg-black/40 p-2">
-                                <Text className="text-white font-bold">
+
+                            {/* Overlay bawah dengan kategori dan judul */}
+                            <View
+                                style={{
+                                    position: 'absolute',
+                                    bottom: 0,
+                                    left: 0,
+                                    right: 0,
+                                    padding: 12,
+                                    backgroundColor: 'rgba(0,0,0,0.4)',
+                                }}
+                            >
+                                <View
+                                    style={{
+                                        alignSelf: 'flex-start',
+                                        backgroundColor: '#102E4A',
+                                        paddingHorizontal: 10,
+                                        paddingVertical: 4,
+                                        borderRadius: 10,
+                                        marginBottom: 6,
+                                    }}
+                                >
+                                    <Text style={{ color: '#fff', fontSize: 12, fontWeight: 'bold' }}>
+                                        {item.category}
+                                    </Text>
+                                </View>
+
+                                <Text
+                                    style={{
+                                        color: '#fff',
+                                        fontSize: 14,
+                                        fontWeight: '600',
+                                        lineHeight: 18,
+                                    }}
+                                    numberOfLines={2}
+                                >
                                     {item.title}
                                 </Text>
                             </View>
@@ -61,7 +95,7 @@ const News = () => {
                     ))}
                 </ScrollView>
 
-                {/* Berita terbaru */}
+                {/* 🔽 Berita terbaru list */}
                 <View className="mt-8 w-full">
                     <View className="flex-row justify-between items-center mb-4 w-full">
                         <Text className="text-lg font-bold">Berita Terbaru</Text>
@@ -79,9 +113,9 @@ const News = () => {
                                         resizeMode="cover"
                                     />
                                     <View className="flex-1">
-                                        <Text className="font-semibold">{item.title}</Text>
-                                        <Text className="text-gray-400 text-xs">{item.date}</Text>
-                                        <Text className="bg-blue-200 text-blue-800 text-xs px-2 py-1 rounded mt-1 w-20 text-center">
+                                        <Text className="font-poppins-semibold">{item.title}</Text>
+                                        <Text className="text-gray-400 text-xs font-poppins-medium">{item.date}</Text>
+                                        <Text className="bg-[#6B9EBD] text-white text-xs px-2 py-1 rounded mt-1 w-24 text-center font-poppins-semibold">
                                             {item.category}
                                         </Text>
                                     </View>
@@ -91,6 +125,8 @@ const News = () => {
                     </View>
                 </View>
             </ScrollView>
+
+            {/* 🧭 Bottom Nav */}
             <BottomNavbar />
         </View>
     );

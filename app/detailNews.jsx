@@ -31,20 +31,20 @@ const DetailNews = () => {
                 </TouchableOpacity>
 
                 <View className="absolute bottom-6 left-4 right-4 gap-2">
-                    <Text className="bg-[#6B9EBD] text-white px-3 py-1 rounded-xl self-start mb-1 text-sm font-bold">
+                    <Text className="bg-[#6B9EBD] text-white px-3 py-1 rounded-xl self-start mb-1 text-sm font-poppins-bold">
                         Category
                     </Text>
-                    <Text className="text-white font-bold text-2xl">
+                    <Text className="text-white font-poppins-bold text-2xl">
                         Bogor diserang akatsuki, Siapa yang akan menjadi pahlawan?
                     </Text>
-                    <Text className="text-gray-200 text-sm mb-4">
+                    <Text className="text-gray-200 font-poppins-medium mb-4">
                         May 2, 2025 09.00 AM
                     </Text>
                 </View>
             </View>
 
             <View className="bg-white mt-[-20px] rounded-t-3xl p-6">
-                <Text className="text-gray-800 leading-relaxed">
+                <Text className="text-gray-800 font-poppins-medium leading-relaxed">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
                     Ea iure quae ullam cumque libero, blanditiis dolore perspiciatis quia,
                     eaque ex temporibus maxime qui eos quisquam voluptatibus expedita dolores
@@ -53,31 +53,31 @@ const DetailNews = () => {
                     eaque ex temporibus maxime qui eos quisquam voluptatibus expedita dolores
                     reiciendis atque!
                 </Text>
-                <Text className="text-gray-800 leading-relaxed mt-4">
+                <Text className="text-gray-800 font-poppins-medium leading-relaxed mt-4">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
                     Ea iure quae ullam cumque libero, blanditiis dolore perspiciatis quia,
                     eaque ex temporibus maxime qui eos quisquam voluptatibus expedita dolores
                     reiciendis atque!
                 </Text>
-                <Text className="text-gray-800 leading-relaxed mt-4">
+                <Text className="text-gray-800 font-poppins-medium leading-relaxed mt-4">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
                     Ea iure quae ullam cumque libero, blanditiis dolore perspiciatis quia,
                     eaque ex temporibus maxime qui eos quisquam voluptatibus expedita dolores
                     reiciendis atque!
                 </Text>
-                <Text className="text-gray-800 leading-relaxed mt-4">
+                <Text className="text-gray-800 font-poppins-medium leading-relaxed mt-4">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
                     Ea iure quae ullam cumque libero, blanditiis dolore perspiciatis quia,
                     eaque ex temporibus maxime qui eos quisquam voluptatibus expedita dolores
                     reiciendis atque!
                 </Text>
-                <Text className="text-gray-800 leading-relaxed mt-4">
+                <Text className="text-gray-800 font-poppins-medium leading-relaxed mt-4">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
                     Ea iure quae ullam cumque libero, blanditiis dolore perspiciatis quia,
                     eaque ex temporibus maxime qui eos quisquam voluptatibus expedita dolores
                     reiciendis atque!
                 </Text>
-                <Text className="text-gray-800 leading-relaxed mt-4">
+                <Text className="text-gray-800 font-poppins-medium leading-relaxed mt-4">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
                     Ea iure quae ullam cumque libero, blanditiis dolore perspiciatis quia,
                     eaque ex temporibus maxime qui eos quisquam voluptatibus expedita dolores
