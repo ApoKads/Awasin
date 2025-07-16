@@ -1,40 +1,96 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import { Ionicons, MaterialIcons, Feather } from '@expo/vector-icons';
-import { useRouter } from 'expo-router';
+import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+import { useRouter, usePathname } from 'expo-router';
 import { LinearGradient } from 'expo-linear-gradient';
 
 const BottomNavbar = () => {
     const router = useRouter();
+    const pathname = usePathname(); // untuk tahu path saat ini
+
+    const navItems = [
+        {
+            label: 'Beranda',
+            icon: require('../../assets/icons/vectorart-home.png'),
+            path: '/postPage',
+        },
+        {
+            label: 'Berita',
+            icon: require('../../assets/icons/vectorart-news.png'),
+            path: '/news',
+        },
+        {
+            label: 'Notifikasi',
+            icon: require('../../assets/icons/vectorart-notification.png'),
+            path: '/notifications',
+        },
+        {
+            label: 'Profil',
+            icon: require('../../assets/icons/vectorart-profile.png'),
+            path: '/settings',
+        },
+    ];
 
     return (
         <View style={styles.container}>
-            {/* Navbar */}
             <View style={styles.navbar}>
-                <TouchableOpacity onPress={() => router.push('/postPage')} style={styles.navItem}>
-                    <Ionicons name="home" size={24} color="#FFFFFF" />
-                    <Text style={styles.navText}>Beranda</Text>
-                </TouchableOpacity>
+                {navItems.slice(0, 2).map((item, index) => {
+                    const isActive = pathname === item.path;
+                    return (
+                        <TouchableOpacity
+                            key={index}
+                            onPress={() => router.push(item.path)}
+                            style={styles.navItem}
+                        >
+                            <View style={styles.iconWrapper}>
+                                <Image
+                                    source={item.icon}
+                                    style={{
+                                        width: 24,
+                                        height: 24,
+                                        tintColor: isActive ? '#FFFFFF' : '#94A3B8',
+                                    }}
+                                />
+                                {isActive && <View style={styles.underline} />}
+                            </View>
 
-                <TouchableOpacity onPress={() => router.push('/news')} style={styles.navItem}>
-                    <MaterialIcons name="article" size={24} color="#FFFFFF" />
-                    <Text style={styles.navText}>Berita</Text>
-                </TouchableOpacity>
+                            <Text style={[styles.navText, isActive && styles.activeText]}>
+                                {item.label}
+                            </Text>
+                        </TouchableOpacity>
+                    );
+                })}
 
                 <View style={styles.spacer} />
 
-                <TouchableOpacity onPress={() => router.push('/notifications')} style={styles.navItem}>
-                    <Ionicons name="notifications" size={24} color="#FFFFFF" />
-                    <Text style={styles.navText}>Notifikasi</Text>
-                </TouchableOpacity>
+                {navItems.slice(2).map((item, index) => {
+                    const isActive = pathname === item.path;
+                    return (
+                        <TouchableOpacity
+                            key={index}
+                            onPress={() => router.push(item.path)}
+                            style={styles.navItem}
+                        >
+                            <View style={styles.iconWrapper}>
+                                <Image
+                                    source={item.icon}
+                                    style={{
+                                        width: 24,
+                                        height: 24,
+                                        tintColor: isActive ? '#FFFFFF' : '#94A3B8',
+                                    }}
+                                />
+                                {isActive && <View style={styles.underline} />}
+                            </View>
 
-                <TouchableOpacity onPress={() => router.push('/settings')} style={styles.navItem}>
-                    <Feather name="user" size={24} color="#FFFFFF" />
-                    <Text style={styles.navText}>Profil</Text>
-                </TouchableOpacity>
+                            <Text style={[styles.navText, isActive && styles.activeText]}>
+                                {item.label}
+                            </Text>
+                        </TouchableOpacity>
+                    );
+                })}
             </View>
 
-            {/* Floating center button */}
             <TouchableOpacity
                 onPress={() => router.push('/laporanForm')}
                 style={styles.floatingButton}
@@ -57,6 +113,13 @@ const styles = StyleSheet.create({
         left: 0,
         right: 0,
     },
+    underline: {
+        marginTop: 4,
+        width: 20,
+        height: 3,
+        borderRadius: 2,
+        backgroundColor: '#FFFFFF',
+    },
     navbar: {
         flexDirection: 'row',
         alignItems: 'center',
@@ -64,7 +127,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 24,
         paddingVertical: 16,
         paddingBottom: 20,
-        backgroundColor: '#0C4A6E',
+        backgroundColor: '#102E42',
         borderTopLeftRadius: 24,
         borderTopRightRadius: 24,
     },
@@ -73,9 +136,13 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     navText: {
-        color: '#F2EAD3',
+        color: '#94A3B8', // slate-400
         fontSize: 12,
         marginTop: 4,
+    },
+    activeText: {
+        color: '#FFFFFF',
+        fontWeight: 'bold',
     },
     spacer: {
         flex: 1,
@@ -98,6 +165,19 @@ const styles = StyleSheet.create({
         borderRadius: 32,
         justifyContent: 'center',
         alignItems: 'center',
+    },
+    iconWrapper: {
+        position: 'relative',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    activeDot: {
+        position: 'absolute',
+        bottom: -6,
+        width: 6,
+        height: 6,
+        borderRadius: 3,
+        backgroundColor: '#FFFFFF',
     },
 });
 

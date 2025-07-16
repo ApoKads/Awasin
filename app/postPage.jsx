@@ -70,7 +70,7 @@ export default function HomePostList() {
   });
 
   return (
-    <View className="flex-1 bg-white w-full" style={{ paddingTop: insets.top }}>
+    <View className="flex-1 bg-white w-full" style={{ paddingTop: insets.top, paddingBottom: 8 }}>
       <ScrollView
         showsVerticalScrollIndicator={false}
         className="bg-white w-full"
