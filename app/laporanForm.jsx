@@ -20,6 +20,7 @@ const LaporanForm = () => {
     desc: "",
     type: "",
     location: "",
+    customType: "",
     images: [],
     latitude: null,
     longitude: null,
@@ -61,8 +62,13 @@ const LaporanForm = () => {
   };
 
   const validateForm = () => {
-    if (!form.title || !form.desc || form.images.length === 0) {
+    if (!form.title || !form.desc || form.images.length === 0 || !form.type) {
       Alert.alert("Error", "Semua field harus diisi");
+      return false;
+    }
+    if(form.type === "lainnya" && !form.customType ){
+      Alert.alert("Error", "Semua field harus diisi");
+
       return false;
     }
     return true;
@@ -129,6 +135,18 @@ const LaporanForm = () => {
               }}
             />
           </View>
+          {form.type === "lainnya" && (
+            <TextInput
+              className="border border-gray-400 rounded-md px-4 py-2 w-full h-[55] text-[1rem] mb-5 font-poppins"
+              placeholder="Tulis jenis fasilitas lainnya"
+              placeholderTextColor="#A0AEC0"
+              value={form.customType}
+              onChangeText={(text) =>
+                setForm((prevForm) => ({ ...prevForm, customType: text }))
+              }
+            />
+          )}
+
 
           <TextInput
             className="border border-gray-400 rounded-md px-4 py-2 w-full h-[100] mb-5 font-poppins"
