@@ -6,7 +6,7 @@ import { useRouter } from 'expo-router';
 import { Link } from 'expo-router';
 import jsonData from '../assets/data/newsData.json';
 
-const categories = ['All', 'Jalan', 'Gedung', 'Taman', 'Lampu jalan', 'Halte', 'Alun-alun'];
+const categories = ['All', 'Politik', 'Sosial', 'Ekonomi', 'Lingkungan'];
 
 // Mapping agar path JSON bisa load ke require()
 const imageMap = {
@@ -45,7 +45,7 @@ const DiscoverNews = () => {
                         }}
                     >
                         <Image
-                            source={require('../assets/icons/vectorart-back.png')} // ← path ini disesuaikan
+                            source={require('../assets/icons/vectorart-back.png')}
                             style={{ width: 24, height: 24, tintColor: 'white' }}
                         />
                     </TouchableOpacity>
