@@ -77,7 +77,7 @@ export default function HomePostList() {
         contentContainerStyle={{ paddingBottom: 90 }}
       >
         {/* Background Layer */}
-        <View className="absolute top-0 left-0 right-0 h-40 bg-[#0C4A6E] rounded-b-3xl z-0" />
+        <View className="absolute top-0 left-0 right-0 h-40 bg-[#102E4A] font-poppins-extrabold rounded-b-3xl z-0" />
 
         {/* Header & Search */}
         <View style={{ paddingTop: insets.top }} className="z-10 w-full px-4">
@@ -118,8 +118,8 @@ export default function HomePostList() {
                   key={idx}
                   onPress={() => setActiveCategory(cat)}
                   className={`px-5 py-2 rounded-full border-2 ${activeCategory === cat
-                    ? 'bg-[#0C4A6E] border-[#0C4A6E]'
-                    : 'border-[#0C4A6E]'
+                    ? 'bg-[#102E4A] border-[#102E4A]'
+                    : 'border-[#102E4A]'
                     }`}
                 >
                   <Text
@@ -144,7 +144,7 @@ export default function HomePostList() {
             filteredPosts.map((post) => (
               <TouchableOpacity
                 key={post.id}
-                onPress={() => navigation.navigate('postDetail')} // pastikan route 'PostDetail' sudah dibuat
+                onPress={() => navigation.navigate('postDetail')}
                 className="bg-white rounded-2xl shadow mb-6 overflow-hidden w-full"
                 style={{
                   backgroundColor: 'white',
