@@ -91,6 +91,30 @@ const News = () => {
                     </View>
                 </View>
             </ScrollView>
+
+            {/* Floating Add News Button */}
+            <TouchableOpacity
+                onPress={() => router.push('/formNews')}
+                style={{
+                    position: 'absolute',
+                    bottom: 90,
+                    right: 24,
+                    backgroundColor: '#0C4A6E',
+                    width: 56,
+                    height: 56,
+                    borderRadius: 28,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    shadowColor: '#000',
+                    shadowOffset: { width: 0, height: 2 },
+                    shadowOpacity: 0.3,
+                    shadowRadius: 3,
+                    elevation: 5,
+                    zIndex: 50
+                }}
+            >
+                <Ionicons name="add" size={28} color="#fff" />
+            </TouchableOpacity>
             <BottomNavbar />
         </View>
     );

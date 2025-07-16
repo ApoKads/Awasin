@@ -57,89 +57,26 @@ const RootLayout = () => { // Ganti nama StackLayout menjadi RootLayout agar leb
   }
 
   return (
-    <Stack>
-      {/*
-        Set headerShown: false secara global untuk Stack ini jika Anda tidak ingin ada header sama sekali.
-        Jika Anda ingin beberapa header, Anda bisa menentukannya per Stack.Screen.
-      */}
-      {/*
-        Contoh global headerShown: false
-        <Stack screenOptions={{ headerShown: false }}>
-      */}
-
-      {/*
-        Definisikan Stack.Screen hanya untuk rute-rute *langsung* di level ini
-        atau jika Anda ingin mengoverride konfigurasi default mereka.
-      */}
-      <Stack.Screen
-        name="index"
-        options={{
-          title: 'Beranda Utama', // Opsional, jika headerShown: false
-          headerShown: false, // Sembunyikan header untuk halaman 'index'
-        }}
-      />
-
-      <Stack.Screen
-        name="listNews"
-        options={{
-          title: 'List news',
-          headerShown:false,
-          // Menambahkan tombol kustom di header kanan
-        }}
-      />
-
-      <Stack.Screen
-        name="detailNews"
-        options={{
-          headerShown:false,
-          // Menambahkan tombol kustom di header kanan
-        }}
-      />
-
-      <Stack.Screen
-        name="news"
-        options={{
-          headerShown:false,
-          // Menambahkan tombol kustom di header kanan
-        }}
-      />
-
-      <Stack.Screen
-        name="about"
-        options={{
-          title: 'Tentang Kami', // Opsional, jika headerShown: false
-          headerShown: false, // Sembunyikan header untuk halaman 'about'
-        }}
-      />
-
-      <Stack.Screen
-        name="(auth)"
-        options={{
-          title: 'Tentang Kami', // Opsional, jika headerShown: false
-          headerShown: false, // Sembunyikan header untuk halaman 'about'
-        }}
-      />
-
-
-
-      {/*
-        JANGAN DEKLARASIKAN GRUP SEBAGAI Stack.Screen seperti ini:
-        <Stack.Screen name="(auth)" options={{ headerShown:false }} />
-
-        Karena:
-        1. (auth) adalah grup folder, bukan file layar tunggal.
-        2. Grup (auth) seharusnya memiliki _layout.jsx sendiri yang mengatur navigasi di dalamnya.
-           Jika app/(auth)/_layout.jsx sudah ada Stack Navigatornya, maka ini akan konflik.
-
-        Expo Router akan secara otomatis menyertakan grup (auth)
-        dan menggunakan _layout.jsx di dalamnya sebagai layout untuk rute-rute tersebut.
-      */}
-
-      {/* Jika Anda ingin secara eksplisit mengecualikan grup dari Stack ini,
-          Anda bisa menggunakan `unstable_settings` atau penamaan rute.
-          Tapi untuk kasus umum, tidak perlu mendeklarasikan grup di sini.
-      */}
-
+    <Stack
+      screenOptions={{
+        headerShown: false,   // menyembunyikan semua header
+        animation: 'none',    // nonaktifkan animasi transisi antar screen
+      }}
+    >
+      {/* Semua Stack.Screen tetap bisa didefinisikan di sini */}
+      <Stack.Screen name="index" />
+      <Stack.Screen name="listNews" />
+      <Stack.Screen name="detailNews" />
+      <Stack.Screen name="news" />
+      <Stack.Screen name="about" />
+      <Stack.Screen name="newsPemerintah" />
+      <Stack.Screen name="formNews" />
+      <Stack.Screen name="postPage" />
+      <Stack.Screen name="(auth)" />
+      <Stack.Screen name="feedbackForm" />
+      <Stack.Screen name="laporanForm" />
+      <Stack.Screen name="maps" />
+      <Stack.Screen name="postDetail" />
     </Stack>
   );
 };

@@ -19,6 +19,18 @@ const index = () => {
       <Link href="/login">Masuk Ke Login</Link>
       <Link href="/faq">Masuk Ke FAQ</Link>
       <Link href="/notification">Masuk Ke Notification</Link>
+      <Link href="/feedbackForm">Masuk Ke Feedback Form</Link>
+      <Link href="/faq">Masuk Ke FAQ</Link>
+      <Link href="/editProfile">Masuk ke Edit Profile</Link>
+      <Link href="/contactUs">Masuk ke Kontak Kami</Link>
+      <Link href="/laporanForm">Masuk Ke Laporan Form</Link>
+      <Link href="/maps">Masuk Ke Map</Link>
+      <Link href="/settings">Masuk Ke Setting</Link>
+      <Link href="/postPage">Masuk Ke Post Page</Link>
+      <Link href="/newsPemerintah">Masuk Ke News Pemerintah</Link>
+      <Link href="/postDetail">Masuk Ke Post Details</Link>
+      <Link href="/postDetail_Admin">Masuk Ke Post Details Admin</Link>
+      <Link href="/history">Masuk Ke Laporan</Link>
     </View>
   )
 }

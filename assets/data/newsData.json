@@ -1,0 +1,58 @@
+[
+    {
+        "id": 1,
+        "image": "../assets/berita1.png",
+        "title": "Perbaikan Jalan Utama Bogor Dimulai",
+        "category": "Jalan",
+        "date": "July 2, 2025 08.00 AM"
+    },
+    {
+        "id": 2,
+        "image": "../assets/berita2.png",
+        "title": "Pembangunan Gedung Serbaguna Diresmikan",
+        "category": "Gedung",
+        "date": "July 3, 2025 10.30 AM"
+    },
+    {
+        "id": 3,
+        "image": "../assets/berita3.png",
+        "title": "Penataan Taman Kota Menambah Ruang Hijau",
+        "category": "Taman",
+        "date": "July 4, 2025 09.15 AM"
+    },
+    {
+        "id": 4,
+        "image": "../assets/berita1.png",
+        "title": "Jalan Alternatif Siap Digunakan Saat Libur",
+        "category": "Jalan",
+        "date": "July 5, 2025 11.00 AM"
+    },
+    {
+        "id": 5,
+        "image": "../assets/berita2.png",
+        "title": "Gedung Kesenian Baru Jadi Ikon Wisata",
+        "category": "Gedung",
+        "date": "July 6, 2025 14.00 PM"
+    },
+    {
+        "id": 6,
+        "image": "../assets/berita3.png",
+        "title": "Alun-alun Bogor Disulap Lebih Modern",
+        "category": "Alun-alun",
+        "date": "July 7, 2025 16.45 PM"
+    },
+    {
+        "id": 7,
+        "image": "../assets/berita1.png",
+        "title": "Warga Nikmati Suasana Baru di Taman Sukasari",
+        "category": "Taman",
+        "date": "July 8, 2025 10.00 AM"
+    },
+    {
+        "id": 8,
+        "image": "../assets/berita2.png",
+        "title": "Perluasan Area Alun-alun untuk Festival",
+        "category": "Alun-alun",
+        "date": "July 9, 2025 13.20 PM"
+    }
+]

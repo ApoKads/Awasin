@@ -5,137 +5,198 @@ import {
   TextInput,
   TouchableOpacity,
   StyleSheet,
-  SafeAreaView, 
-  Platform, 
+  Platform,
   Alert,
+  KeyboardAvoidingView, ScrollView
 } from 'react-native';
-
+import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import { useNavigation } from '@react-navigation/native';
 import Layout from '../components/AuthLayout';
 
 const Register = () => {
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
-  const [dob, setDob] = useState(''); // Date of Birth
+  // Ubah inisialisasi dob menjadi null atau new Date()
+  // Kita akan menggunakan null untuk menunjukkan belum dipilih
+  const [dob, setDob] = useState(null);
+  const [showDatePicker, setShowDatePicker] = useState(false);
   const [city, setCity] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  // const [showDatePicker, setShowDatePicker] = useState(false); // Untuk date picker
+  const navigation = useNavigation();
+
+  // Format tanggal ke "DD-MM-YYYY"
+  const formatDate = (date) => {
+    // Jika date adalah null (belum dipilih), kembalikan teks default
+    if (!date) {
+      return 'Tanggal Lahir (DD-MM-YYYY)'; // Teks default Anda
+    }
+    // Jika date adalah objek Date, format
+    return date.toLocaleDateString('id-ID', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+    });
+  };
 
   const handleRegister = () => {
-    // Validate all fields
+    // Cek apakah dob sudah berupa objek Date atau string kosong (sekarang null)
     if (!email || !username || !dob || !city || !password || !confirmPassword) {
       Alert.alert('Error', 'Semua field harus diisi');
       return;
     }
 
     if (password !== confirmPassword) {
-      Alert.alert('Error', 'Password dan Konfirmasi Password tidak cocok!');
+      Alert.alert('Error', 'Password tidak cocok!');
       return;
     }
 
-    console.log({ email, username, dob, city, password });
+    console.log({
+      email,
+      username,
+      dob: formatDate(dob), // Sekarang aman karena formatDate sudah menangani null
+      city,
+      password,
+    });
+
     navigation.navigate('facescan');
   };
 
+  // Fungsi yang dipanggil saat tanggal dikonfirmasi atau dibatalkan
+  const handleConfirmDate = (date) => {
+    setDob(date); // Simpan objek Date
+    setShowDatePicker(false);
+  };
 
+  const handleCancelDate = () => {
+    setShowDatePicker(false);
+  };
 
   return (
     <Layout>
-        {/* BG */}
-      <View className="absolute inset-0 z-0">
-        <View className="absolute -top-24 -left-56 w-[500px] h-[500px] rounded-full bg-blue-100 opacity-30 blur-3xl"></View>
-        <View className="absolute -bottom-20 -right-10 w-[400px] h-[400px] rounded-full bg-blue-100 opacity-20 blur-3xl"></View>
-      </View>
-
-
-
-      <View className="flex-1 justify-center items-center p-6 px-10 z-10">
-        {/* Header/Title */}
-        <View className="w-full h-[100px] justify-center items-center">
-          <Text className="text-3xl font-poppins-bold text-gray-800 mb-8">Buat Akun</Text>
-        </View>
-
-        {/* Input Fields */}
-        <TextInput
-          className="w-full p-4 mb-4 bg-white border border-gray-300 rounded-lg text-lg"
-          placeholder="Email"
-          keyboardType="email-address"
-          autoCapitalize="none"
-          value={email}
-          onChangeText={setEmail}
-        />
-        <TextInput
-          className="w-full p-4 mb-4 bg-white border border-gray-300 rounded-lg text-lg"
-          placeholder="Username"
-          autoCapitalize="none"
-          value={username}
-          onChangeText={setUsername}
-        />
-
-        {/* Input Tanggal Lahir (Contoh sederhana dengan TextInput, lebih baik pakai Date Picker) */}
-        <TextInput
-          className="w-full p-4 mb-4 bg-white border border-gray-300 rounded-lg text-lg"
-          placeholder="Tanggal Lahir (YYYY-MM-DD)"
-          value={dob}
-          onChangeText={setDob}
-          keyboardType="numeric" // Contoh, bisa diatur ke date picker
-          // onPressIn={() => setShowDatePicker(true)} // Jika menggunakan Date Picker
-          // editable={!Platform.OS === 'ios'} // Jika iOS date picker muncul sendiri
-        />
-        {/* {showDatePicker && (
-          <DateTimePicker
-            testID="datePicker"
-            value={new Date()} // Nilai awal
-            mode="date"
-            display="default"
-            onChange={onDateChange}
-          />
-        )} */}
-
-        <TextInput
-          className="w-full p-4 mb-4 bg-white border border-gray-300 rounded-lg text-lg"
-          placeholder="Kota"
-          value={city}
-          onChangeText={setCity}
-        />
-        <TextInput
-          className="w-full p-4 mb-4 bg-white border border-gray-300 rounded-lg text-lg"
-          placeholder="Password"
-          secureTextEntry // Menyembunyikan teks password
-          value={password}
-          onChangeText={setPassword}
-        />
-        <TextInput
-          className="w-full p-4 mb-6 bg-white border border-gray-300 rounded-lg text-lg"
-          placeholder="Konfirmasi password"
-          secureTextEntry
-          value={confirmPassword}
-          onChangeText={setConfirmPassword}
-        />
-
-        {/* Register Button */}
-        <TouchableOpacity
-          className="w-full p-4 bg-[#102E4A] rounded-lg items-center mb-4 mt-10"
-          onPress={handleRegister}
+      <KeyboardAvoidingView
+        behavior={'padding'}
+        className="flex-1"
+      >
+        <ScrollView
+          contentContainerStyle={{flexGrow: 1}}
+          keyboardShouldPersistTaps="handled"
         >
-          <Text className="text-white text-xl uppercase font-poppins-medium">Register</Text>
-        </TouchableOpacity>
+          <View className="flex-1 justify-center items-center p-6 px-10 z-10">
+            <Text className="text-3xl font-poppins-bold text-gray-800 mb-8">Buat Akun</Text>
 
-        {/* Sign In Link */}
-        <View className="flex items-center justify-center">
-          <Text className="text-gray-600 font-poppins">Sudah punya akun? </Text>
-          <TouchableOpacity onPress={() => console.log('Go to Sign In')}>
-            <Text className="text-gray-600 font-poppins text-base underline">SIGN IN</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
+            {/* Input Fields */}
+            <TextInput
+              className={`w-full p-4 mb-4 bg-white border border-gray-300 rounded-lg text-lg leading-[1.5] text-black`}
+              placeholder="Email"
+              placeholderTextColor="#9CA3AF" // Warna gray-400
+              value={email}
+              onChangeText={setEmail}
+              keyboardType="email-address"
+            />
+
+            <TextInput
+              className="w-full p-4 mb-4 bg-white border border-gray-300 rounded-lg text-lg leading-[1.5] text-black"
+              placeholder="Username"
+              placeholderTextColor="#9CA3AF" // Warna gray-400
+              value={username}
+              onChangeText={setUsername}
+            />
+
+            <View className="w-full">
+              {/* Tombol Trigger untuk Date Picker */}
+              <TouchableOpacity
+                className=""
+                onPress={() => setShowDatePicker(true)}
+              >
+                {/* Tampilkan teks yang diformat atau teks default */}
+                <Text className={`w-full p-4 mb-4 bg-white border border-gray-300 rounded-lg text-lg ${dob ? 'text-black' : 'text-gray-400'}`}>
+                  {formatDate(dob)}
+                </Text>
+              </TouchableOpacity>
+
+              {/* DateTimePickerModal untuk iOS */}
+              {Platform.OS === 'ios' && (
+                <DateTimePickerModal
+                  isVisible={showDatePicker} // Gunakan showDatePicker
+                  mode="date"
+                  // Pastikan date prop selalu objek Date yang valid
+                  date={dob || new Date()} // Gunakan dob jika ada, atau tanggal saat ini sebagai default
+                  onConfirm={handleConfirmDate}
+                  onCancel={handleCancelDate}
+                  display="inline" // Tampilan inline (iOS 14+)
+                  locale="id_ID" // Format Indonesia
+                  themeVariant="light" // Tema light
+                  // iOS biasanya tidak membutuhkan container tambahan untuk inline display,
+                  // modal akan muncul di atas View.
+                />
+              )}
+
+              {/* DateTimePickerModal untuk Android */}
+              {Platform.OS === 'android' && (
+                <DateTimePickerModal
+                  isVisible={showDatePicker}
+                  mode="date"
+                  // Pastikan date prop selalu objek Date yang valid
+                  date={dob || new Date()} // Gunakan dob jika ada, atau tanggal saat ini sebagai default
+                  onConfirm={handleConfirmDate}
+                  onCancel={handleCancelDate}
+                  // Untuk Android, display='default' atau 'spinner' biasanya
+                  // lebih sesuai karena 'inline' tidak didukung atau memiliki perilaku berbeda.
+                />
+              )}
+            </View>
+
+            <TextInput
+              className={`w-full p-4 mb-4 bg-white border border-gray-300 rounded-lg text-lg leading-[1.5]text-black`}
+              placeholder="Kota"
+              placeholderTextColor="#9CA3AF" // Warna gray-400
+              value={city}
+              onChangeText={setCity}
+            />
+
+            <TextInput
+              className={`w-full p-4 mb-4 bg-white border border-gray-300 rounded-lg text-lg leading-[1.5] text-black`}        
+              placeholder="Password"
+              placeholderTextColor="#9CA3AF" // Warna gray-400
+
+              secureTextEntry
+              value={password}
+              onChangeText={setPassword}
+            />
+
+            <TextInput
+              className={`w-full p-4 mb-4 bg-white border border-gray-300 rounded-lg text-lg leading-[1.5] text-black`}       
+              placeholder="Konfirmasi Password"
+              placeholderTextColor="#9CA3AF" // Warna gray-400
+              secureTextEntry
+              value={confirmPassword}
+              onChangeText={setConfirmPassword}
+            />
+
+            {/* Tombol Register */}
+            <TouchableOpacity
+              className="w-full p-4 bg-[#102E4A] rounded-lg items-center mb-4 mt-10"
+              onPress={handleRegister}
+            >
+              <Text className="text-white text-xl uppercase font-poppins-medium">Register</Text>
+            </TouchableOpacity>
+
+            {/* Link Sign In */}
+            <View className="flex-row items-center">
+              <Text className="text-gray-600 font-poppins">Sudah punya akun? </Text>
+              <TouchableOpacity onPress={() => navigation.navigate('login')}>
+                <Text className="text-blue-600 font-poppins underline">Sign In</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </ScrollView>
+      </KeyboardAvoidingView>
+      
     </Layout>
   );
 };
 
 export default Register;
 
-// Anda mungkin masih butuh StyleSheet.create untuk gaya yang lebih kompleks
-// atau untuk properti yang NativeWind belum support langsung (jarang terjadi sekarang).
 const styles = StyleSheet.create({});
