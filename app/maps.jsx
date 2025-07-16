@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   KeyboardAvoidingView,
   Alert,
+  TextInput
 } from "react-native";
 import MapView, { Marker } from "react-native-maps";
 import * as Location from "expo-location";
@@ -117,20 +118,26 @@ const Maps = () => {
           {marker && <Marker coordinate={marker} />}
         </MapView>
 
-        {locationName && (
-          <View className="absolute bottom-[20] left-[20] right-[20] bg-white p-[20] rounded-lg elevation-md">
-            <Text className="text-2xl font-bold mb-3">Lokasi Laporan</Text>
-            <Text className="text-lg mb-[8]">{locationName}</Text>
-            <TouchableOpacity
-              onPress={handleConfirm}
-              className="bg-blue-600 w-fit p-4 rounded-lg shadow-lg"
-            >
-              <Text className="text-white text-lg font-bold text-center">
-                Konfirmasi Lokasi
-              </Text>
-            </TouchableOpacity>
-          </View>
-        )}
+        {/* {locationName && ( */}
+        <View className="absolute bottom-[20] left-[20] right-[20] bg-white p-[20] rounded-lg elevation-md">
+          <Text className="text-2xl font-bold mb-5">Lokasi Laporan</Text>
+          <TextInput
+            className="border border-gray-400 rounded-full px-4 py-2 w-full h-[45] text-[1rem] mb-[30] font-poppins"
+            placeholder="Search"
+            placeholderTextColor="#A0AEC0"
+            value={locationName}
+            onChange={(text) => setLocationName(text)}
+          />
+          <TouchableOpacity
+            onPress={handleConfirm}
+            className="bg-[#102E4A] w-[180] p-4 rounded-full shadow-lg ml-auto"
+          >
+            <Text className="text-white text-md font-bold text-center">
+              Konfirmasi Lokasi
+            </Text>
+          </TouchableOpacity>
+        </View>
+        {/* )} */}
       </View>
     </KeyboardAvoidingView>
   );

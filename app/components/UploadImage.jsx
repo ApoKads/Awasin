@@ -41,11 +41,20 @@ const UploadImage = ({images, setForm}) => {
         className="flex flex-row justify-between items-center w-full mb-5"
         onPress={handleAddImage}
       >
-        <View>
-          <Text className="text-md text-black font-poppins">Tambah Gambar</Text>
+        <View className="flex flex-row items-center gap-[10] w-[200]">
+          <Image 
+            source={require("../../assets/icons/vectorart-uploadimageblue.png")}
+            className="w-[40] h-[40]"
+          />
+          <View>
+            <Text className="text-md text-black font-poppins">Tambah Gambar</Text>
+          </View>
         </View>
         <View className="flex justify-center items-center w-[35] h-[35] rounded-md bg-[#102E4A]">
-          <Text className="text-white">a</Text>
+          <Image 
+            source={require('../../assets/icons/vectorart-panahwhite.png')}
+            className="w-[10] h-[10]"
+          />
         </View>
       </TouchableOpacity>
       
