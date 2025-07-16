@@ -143,6 +143,7 @@ const LaporanForm = () => {
             placeholder="Description"
             placeholderTextColor="#A0AEC0"
             multiline
+            textAlignVertical="top"
             value={form.desc}
             onChangeText={(text) =>
               setForm((prevForm) => ({ ...prevForm, desc: text }))
