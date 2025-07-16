@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, ScrollView, TextInput, Image, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useRouter } from 'expo-router';
 import { Link } from 'expo-router';
 import jsonData from '../assets/data/newsData.json';
 
@@ -15,6 +16,7 @@ const imageMap = {
 };
 
 const DiscoverNews = () => {
+    const router = useRouter();
     const [activeCategory, setActiveCategory] = useState('All');
     const [query, setQuery] = useState('');
     const insets = useSafeAreaInsets();
@@ -29,11 +31,29 @@ const DiscoverNews = () => {
         <ScrollView className="flex-1 bg-white">
             {/* Layer background */}
             <View className="absolute top-0 left-0 right-0 h-40 bg-[#0C4A6E] rounded-b-3xl z-0" />
-
-            {/* Content */}
             <View style={{ paddingTop: insets.top + 10 }} className="px-6 z-10">
-                <Text className="text-3xl font-extrabold text-white mb-1">Discover</Text>
-                <Text className="text-sm text-[#d0d0d0] mb-4">News from Bogor</Text>
+                {/* Header Row */}
+                <View className="flex-row items-center mb-3">
+                    <TouchableOpacity
+                        onPress={() => router.back()}
+                        style={{
+                            position: 'absolute',
+                            top: insets.top + 10,
+                            left: 16,
+                            zIndex: 20,
+                            padding: 8,
+                        }}
+                    >
+                        <Image
+                            source={require('../assets/icons/vectorart-back.png')} // ← path ini disesuaikan
+                            style={{ width: 24, height: 24, tintColor: 'white' }}
+                        />
+                    </TouchableOpacity>
+                    <View>
+                        <Text className="text-3xl font-poppins-extrabold text-white">Discover</Text>
+                        <Text className="text-sm text-[#d0d0d0] font-poppins-light">News from Bogor</Text>
+                    </View>
+                </View>
 
                 {/* Search bar */}
                 <View className="bg-white rounded-full flex-row items-center px-4 py-2 shadow">
@@ -54,16 +74,14 @@ const DiscoverNews = () => {
                             <TouchableOpacity
                                 key={idx}
                                 onPress={() => setActiveCategory(cat)}
-                                className={`px-5 py-2 rounded-full border-2 ${
-                                    activeCategory === cat
-                                        ? 'bg-[#0C4A6E] border-[#0C4A6E]'
-                                        : 'border-[#0C4A6E]'
-                                }`}
+                                className={`px-5 py-2 rounded-full border-2 ${activeCategory === cat
+                                    ? 'bg-[#102E4A] border-[#102E4A]'
+                                    : 'border-[#102E4A]'
+                                    }`}
                             >
                                 <Text
-                                    className={`font-semibold ${
-                                        activeCategory === cat ? 'text-white' : 'text-[#0C4A6E]'
-                                    }`}
+                                    className={`font-poppins-semibold ${activeCategory === cat ? 'text-white' : 'text-[#102E4A]'
+                                        }`}
                                 >
                                     {cat}
                                 </Text>
@@ -84,9 +102,9 @@ const DiscoverNews = () => {
                                 resizeMode="cover"
                             />
                             <View className="flex-1">
-                                <Text className="font-semibold">{item.title}</Text>
-                                <Text className="text-gray-400 text-xs">{item.date}</Text>
-                                <Text className="bg-blue-200 text-blue-800 text-xs px-2 py-1 rounded mt-1 w-24 text-center">
+                                <Text className="font-poppins-semibold">{item.title}</Text>
+                                <Text className="text-gray-400 text-xs font-poppins-medium">{item.date}</Text>
+                                <Text className="bg-[#6B9EBD] text-white text-xs px-2 py-1 rounded mt-1 w-24 text-center font-poppins-semibold">
                                     {item.category}
                                 </Text>
                             </View>
