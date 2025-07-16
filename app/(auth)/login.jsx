@@ -65,17 +65,17 @@ const SignInScreen = () => {
                 >
                     <View className="w-full max-w-sm bg-white/90 rounded-2xl p-8 shadow-lg">
                         
-                        <Text className={`text-4xl font-bold text-center text-[${primaryDark}]`}>
+                        <Text className={`text-4xl font-poppins-bold text-center text-[${primaryDark}]`}>
                             Hi, Awasers!
                         </Text>
 
                         <Image
                             source={require('../../assets/logo-awasin-dark.png')}
-                            className="w-24 h-24 self-center my-6"
+                            className="w-40 h-40 self-center my-6"
                             resizeMode="contain"
                         />
 
-                        <Text className={`text-center text-gray-600 mb-6 text-[${primaryDark}]`}>
+                        <Text className={`font-poppins-bold text-center text-gray-600 mb-6 text-[${primaryDark}]`}>
                             Please sign in to your account
                         </Text>
 
@@ -104,7 +104,7 @@ const SignInScreen = () => {
                         ) : null}
 
                         <TouchableOpacity className="self-end mt-2">
-                            <Text className={`text-sm text-gray-500`}>
+                            <Text className={`font-poppins text-sm text-gray-500`}>
                                 Forgot password?
                             </Text>
                         </TouchableOpacity>
@@ -115,16 +115,16 @@ const SignInScreen = () => {
                             activeOpacity={0.8}
                             onPress={handleSignIn} 
                         >
-                            <Text className="text-white text-center font-bold text-lg">
+                            <Text className="font-poppins-medium text-white text-center font-bold text-lg">
                                 SIGN IN
                             </Text>
                         </TouchableOpacity>
 
                         {/* Link ke halaman Register */}
                         <View className="flex-row justify-center items-center mt-8">
-                            <Text className="text-gray-600">Belum punya akun? </Text>
+                            <Text className="font-poppins text-gray-600">Belum punya akun? </Text>
                             <TouchableOpacity onPress={() => router.push('/register')}>
-                                <Text className={`font-bold text-[${primaryDark}] underline`}>
+                                <Text className={`font-poppins text-[${primaryDark}] underline`}>
                                     REGISTER
                                 </Text>
                             </TouchableOpacity>

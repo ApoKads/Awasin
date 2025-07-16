@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import NotificationItem from './components/notificationItem';
+import BottomNavbar from './components/BottomNavbar';
 
 export const options = {
     headerShown: false,
@@ -69,7 +70,7 @@ const NotificationScreen = () => {
         <SafeAreaView className="flex-1 bg-gray-100">
             {/* Header Kustom */}
             <View className="flex-row justify-between items-center p-4 bg-white">
-                <Text className="text-2xl font-bold text-gray-800">Notifikasi</Text>
+                <Text className="text-2xl font-poppins-bold text-gray-800">Notifikasi</Text>
                 <TouchableOpacity onPress={() => setOptionsMenuVisible(true)}>
                     <Ionicons name="ellipsis-vertical" size={24} color="black" />
                 </TouchableOpacity>
@@ -81,12 +82,12 @@ const NotificationScreen = () => {
                     className="flex-row items-center" 
                     onPress={() => setDropdownVisible(true)}
                  >
-                    <Text className="text-white font-semibold mr-1">{filter}</Text>
+                    <Text className="text-white font-poppins mr-1">{filter}</Text>
                     {/* Ikon sudah tidak memiliki className, aman */}
                     <Ionicons name="chevron-down" size={16} color="white" />
                 </TouchableOpacity>
                 <TouchableOpacity onPress={handleMarkAllAsRead}>
-                    <Text className="text-white font-semibold">Mark All As Read</Text>
+                    <Text className="text-white font-poppins">Mark All As Read</Text>
                 </TouchableOpacity>
             </View>
 
@@ -94,7 +95,7 @@ const NotificationScreen = () => {
             <Modal transparent={true} visible={isDropdownVisible} animationType="fade" onRequestClose={() => setDropdownVisible(false)}>
                  <TouchableOpacity className="flex-1" activeOpacity={1} onPressOut={() => setDropdownVisible(false)}>
                     <View className="absolute top-36 left-4 bg-white rounded-lg shadow-xl w-40">
-                        <FlatList data={filterOptions} keyExtractor={(item) => item} renderItem={({ item }) => ( <TouchableOpacity className="p-3 border-b border-gray-100" onPress={() => handleSelectFilter(item)}> <Text className={`text-base ${filter === item ? 'font-bold text-sky-600' : 'text-gray-700'}`}>{item}</Text> </TouchableOpacity> )} />
+                        <FlatList data={filterOptions} keyExtractor={(item) => item} renderItem={({ item }) => ( <TouchableOpacity className="p-3 border-b border-gray-100" onPress={() => handleSelectFilter(item)}> <Text className={`text-base ${filter === item ? 'font-poppins text-sky-600' : 'text-gray-700'}`}>{item}</Text> </TouchableOpacity> )} />
                     </View>
                 </TouchableOpacity>
             </Modal>
@@ -147,11 +148,12 @@ const NotificationScreen = () => {
                         />
                     </TouchableOpacity>
                 )}
-                renderSectionHeader={({ section: { title } }) => ( <Text className="text-lg font-bold text-gray-700 px-4 pt-6 pb-2">{title}</Text> )}
+                renderSectionHeader={({ section: { title } }) => ( <Text className="text-lg font-poppins-bold text-gray-700 px-4 pt-6 pb-2">{title}</Text> )}
                 ItemSeparatorComponent={() => <View className="h-px bg-gray-200" />}
                 contentContainerStyle={{ paddingBottom: 20 }}
                 ListEmptyComponent={ <View className="flex-1 justify-center items-center mt-20"><Text className="text-gray-500 text-lg">Tidak ada notifikasi</Text></View>}
             />
+            <BottomNavbar />
         </SafeAreaView>
     );
 };

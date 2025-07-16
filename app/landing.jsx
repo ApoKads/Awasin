@@ -65,10 +65,10 @@ const WelcomeScreen = () => {
                 </View>
 
                 {/* Bagian Teks */}
-                <Text className="text-white text-3xl font-bold text-center">
+                <Text className="text-white text-3xl font-poppins-bold text-center">
                     Bersama Awasin, Kita Beresin
                 </Text>
-                <Text className="text-slate-300 text-base text-center mt-4 px-4">
+                <Text className="text-slate-300 font-poppins text-base text-center mt-4 px-4">
                     Laporkan fasilitas yang rusak, untuk kota yang lebih baik. Setiap laporan mu membuat perbedaan!
                 </Text>
 
@@ -80,7 +80,7 @@ const WelcomeScreen = () => {
                         // ↓↓↓ Ini akan mengarahkan ke halaman sign-in (misalnya, app/sign-in.js) ↓↓↓
                         onPress={() => router.push('/login')} 
                     >
-                        <Text className="text-white text-center font-bold text-lg">
+                        <Text className="text-white text-center font-poppins-bold text-lg">
                             SIGN IN
                         </Text>
                     </TouchableOpacity>
@@ -91,7 +91,7 @@ const WelcomeScreen = () => {
                         // ↓↓↓ Ini akan mengarahkan ke halaman register (misalnya, app/register.js) ↓↓↓
                         onPress={() => router.push('/register')} 
                     >
-                        <Text className="text-white text-center font-bold text-lg">
+                        <Text className="text-white text-center font-poppins-bold text-lg">
                             REGISTER
                         </Text>
                     </TouchableOpacity>
