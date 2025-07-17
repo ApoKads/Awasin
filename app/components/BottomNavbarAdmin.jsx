@@ -22,7 +22,7 @@ const BottomNavbarAdmin = () => {
         {
             label: 'Profil',
             icon: require('../../assets/icons/vectorart-profile.png'),
-            path: '/settings',
+            path: '/settingsAdmin',
         },
     ];
 
