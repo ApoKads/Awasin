@@ -78,8 +78,8 @@ const NotificationScreen = () => {
 
             {/* Bar Filter - DENGAN PERBAIKAN */}
             <View className="flex-row justify-between items-center bg-[#1E3A5F] px-4 py-3">
-                 <TouchableOpacity 
-                    className="flex-row items-center" 
+                <TouchableOpacity
+                    className="flex-row items-center"
                     onPress={() => setDropdownVisible(true)}
                  >
                     <Text className="text-white font-poppins mr-1">{filter}</Text>
@@ -93,7 +93,7 @@ const NotificationScreen = () => {
 
             {/* Modal Dropdown Filter */}
             <Modal transparent={true} visible={isDropdownVisible} animationType="fade" onRequestClose={() => setDropdownVisible(false)}>
-                 <TouchableOpacity className="flex-1" activeOpacity={1} onPressOut={() => setDropdownVisible(false)}>
+                <TouchableOpacity className="flex-1" activeOpacity={1} onPressOut={() => setDropdownVisible(false)}>
                     <View className="absolute top-36 left-4 bg-white rounded-lg shadow-xl w-40">
                         <FlatList data={filterOptions} keyExtractor={(item) => item} renderItem={({ item }) => ( <TouchableOpacity className="p-3 border-b border-gray-100" onPress={() => handleSelectFilter(item)}> <Text className={`text-base ${filter === item ? 'font-poppins text-sky-600' : 'text-gray-700'}`}>{item}</Text> </TouchableOpacity> )} />
                     </View>
@@ -107,20 +107,20 @@ const NotificationScreen = () => {
                 animationType="fade"
                 onRequestClose={() => setOptionsMenuVisible(false)}
             >
-                <TouchableOpacity 
-                    className="flex-1" 
-                    activeOpacity={1} 
+                <TouchableOpacity
+                    className="flex-1"
+                    activeOpacity={1}
                     onPressOut={() => setOptionsMenuVisible(false)}
                 >
                     <View className="absolute top-16 right-4 bg-white rounded-lg shadow-xl w-60">
-                        <TouchableOpacity 
+                        <TouchableOpacity
                             className="flex-row items-center p-3 border-b border-gray-100"
                             onPress={handleClearReadNotifications}
                         >
                             <Ionicons name="trash-bin-outline" size={20} color="#4B5563" style={{ marginRight: 12 }} />
                             <Text className="text-base text-gray-700">Hapus Notifikasi Terbaca</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity 
+                        <TouchableOpacity
                             className="flex-row items-center p-3"
                             onPress={() => {
                                 setOptionsMenuVisible(false);
@@ -151,7 +151,7 @@ const NotificationScreen = () => {
                 renderSectionHeader={({ section: { title } }) => ( <Text className="text-lg font-poppins-bold text-gray-700 px-4 pt-6 pb-2">{title}</Text> )}
                 ItemSeparatorComponent={() => <View className="h-px bg-gray-200" />}
                 contentContainerStyle={{ paddingBottom: 20 }}
-                ListEmptyComponent={ <View className="flex-1 justify-center items-center mt-20"><Text className="text-gray-500 text-lg">Tidak ada notifikasi</Text></View>}
+                ListEmptyComponent={<View className="flex-1 justify-center items-center mt-20"><Text className="text-gray-500 text-lg">Tidak ada notifikasi</Text></View>}
             />
             <BottomNavbar />
         </SafeAreaView>

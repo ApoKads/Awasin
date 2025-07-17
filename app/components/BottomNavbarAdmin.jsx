@@ -4,37 +4,32 @@ import { Ionicons } from '@expo/vector-icons';
 import { useRouter, usePathname } from 'expo-router';
 import { LinearGradient } from 'expo-linear-gradient';
 
-const BottomNavbar = () => {
+const BottomNavbarAdmin = () => {
     const router = useRouter();
-    const pathname = usePathname(); // untuk tahu path saat ini
+    const pathname = usePathname();
 
     const navItems = [
         {
             label: 'Beranda',
             icon: require('../../assets/icons/vectorart-home.png'),
-            path: '/postPage',
+            path: '/postPageAdmin',
         },
         {
             label: 'Berita',
             icon: require('../../assets/icons/vectorart-news.png'),
-            path: '/news',
-        },
-        {
-            label: 'Notifikasi',
-            icon: require('../../assets/icons/vectorart-notification.png'),
-            path: '/notification',
+            path: '/newsPemerintah',
         },
         {
             label: 'Profil',
             icon: require('../../assets/icons/vectorart-profile.png'),
-            path: '/settings',
+            path: '/settingsAdmin',
         },
     ];
 
     return (
         <View style={styles.container}>
             <View style={styles.navbar}>
-                {navItems.slice(0, 2).map((item, index) => {
+                {navItems.map((item, index) => {
                     const isActive = pathname === item.path;
                     return (
                         <TouchableOpacity
@@ -53,36 +48,6 @@ const BottomNavbar = () => {
                                 />
                                 {isActive && <View style={styles.underline} />}
                             </View>
-
-                            <Text style={[styles.navText, isActive && styles.activeText]}>
-                                {item.label}
-                            </Text>
-                        </TouchableOpacity>
-                    );
-                })}
-
-                <View style={styles.spacer} />
-
-                {navItems.slice(2).map((item, index) => {
-                    const isActive = pathname === item.path;
-                    return (
-                        <TouchableOpacity
-                            key={index}
-                            onPress={() => router.push(item.path)}
-                            style={styles.navItem}
-                        >
-                            <View style={styles.iconWrapper}>
-                                <Image
-                                    source={item.icon}
-                                    style={{
-                                        width: 24,
-                                        height: 24,
-                                        tintColor: isActive ? '#FFFFFF' : '#94A3B8',
-                                    }}
-                                />
-                                {isActive && <View style={styles.underline} />}
-                            </View>
-
                             <Text style={[styles.navText, isActive && styles.activeText]}>
                                 {item.label}
                             </Text>
@@ -90,18 +55,6 @@ const BottomNavbar = () => {
                     );
                 })}
             </View>
-
-            <TouchableOpacity
-                onPress={() => router.push('/laporanForm')}
-                style={styles.floatingButton}
-            >
-                <LinearGradient
-                    colors={['#0891b2', '#3b82f6']}
-                    style={styles.gradientButton}
-                >
-                    <Ionicons name="add" size={32} color="#FFFFFF" />
-                </LinearGradient>
-            </TouchableOpacity>
         </View>
     );
 };
@@ -123,7 +76,7 @@ const styles = StyleSheet.create({
     navbar: {
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'space-between',
+        justifyContent: 'space-around',
         paddingHorizontal: 24,
         paddingVertical: 16,
         paddingBottom: 20,
@@ -136,16 +89,13 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     navText: {
-        color: '#94A3B8', // slate-400
+        color: '#94A3B8',
         fontSize: 12,
         marginTop: 4,
     },
     activeText: {
         color: '#FFFFFF',
         fontWeight: 'bold',
-    },
-    spacer: {
-        flex: 1,
     },
     floatingButton: {
         position: 'absolute',
@@ -171,14 +121,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    activeDot: {
-        position: 'absolute',
-        bottom: -6,
-        width: 6,
-        height: 6,
-        borderRadius: 3,
-        backgroundColor: '#FFFFFF',
-    },
 });
 
-export default BottomNavbar;
+export default BottomNavbarAdmin;

@@ -6,13 +6,16 @@ import {
   Text,
   Alert,
   SafeAreaView,
+  Image,
 } from "react-native";
 import UploadImage from "./components/UploadImage";
 import RNPickerSelect from "react-native-picker-select";
 import { useLocalSearchParams, router } from "expo-router";
-import { Ionicons } from '@expo/vector-icons';
+import { Ionicons } from "@expo/vector-icons";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const LaporanForm = () => {
+  const insets = useSafeAreaInsets();
   const params = useLocalSearchParams();
 
   const [form, setForm] = useState({
@@ -76,14 +79,19 @@ const LaporanForm = () => {
   };
 
   return (
-    <SafeAreaView className="flex-1 bg-white">
+    <SafeAreaView
+      className="flex-1 bg-white"
+      style={{ paddingTop: insets.top }}
+    >
       <View className="flex-1 items-center px-6 pt-4">
-        {/* Tombol Back */}
         <TouchableOpacity
           onPress={() => router.back()}
-          className="absolute left-4 top-4 bg-black/50 p-2 rounded-full z-50"
+          className="absolute left-4 top-4 p-2 rounded-full z-50"
         >
-          <Ionicons name="arrow-back" size={24} color="white" />
+          <Image
+            source={require("../assets/icons/vectorart-backblue.png")}
+            className="w-[30] h-[30]"
+          />
         </TouchableOpacity>
 
         <Text className="text-3xl text-gray-800 font-bold mb-10 mt-12 font-poppins-bold">
@@ -135,6 +143,7 @@ const LaporanForm = () => {
             placeholder="Description"
             placeholderTextColor="#A0AEC0"
             multiline
+            textAlignVertical="top"
             value={form.desc}
             onChangeText={(text) =>
               setForm((prevForm) => ({ ...prevForm, desc: text }))
@@ -145,9 +154,20 @@ const LaporanForm = () => {
             className="flex flex-row justify-between items-center w-full mb-5"
             onPress={handleLocation}
           >
-            <Text className="text-md text-black font-poppins">Tambah Lokasi</Text>
+            <View className="flex flex-row items-center gap-[10] w-[200]">
+              <Image
+                source={require("../assets/icons/vectorart-locationblue.png")}
+                className="w-[40] h-[40]"
+              />
+              <Text className="text-md text-black font-poppins">
+                Tambah Lokasi
+              </Text>
+            </View>
             <View className="flex justify-center items-center w-[35] h-[35] rounded-md bg-[#102E4A]">
-              <Text className="text-white font-bold">+</Text>
+              <Image
+                source={require("../assets/icons/vectorart-panahwhite.png")}
+                className="w-[10] h-[10]"
+              />
             </View>
           </TouchableOpacity>
 

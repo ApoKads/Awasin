@@ -59,7 +59,7 @@ const RootLayout = () => { // Ganti nama StackLayout menjadi RootLayout agar leb
   return (
     <Stack
       screenOptions={{
-        headerShown: false,   // menyembunyikan semua header
+        headerShown: false,   
         animation: 'none',    // nonaktifkan animasi transisi antar screen
       }}
     >

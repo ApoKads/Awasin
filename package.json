@@ -29,7 +29,6 @@
     "react-dom": "19.0.0",
     "react-native": "0.79.4",
     "react-native-date-picker": "^5.0.13",
-    "react-native-modal-dropdown": "^1.0.2",
     "react-native-google-places-autocomplete": "^2.5.7",
     "react-native-maps": "1.20.1",
     "react-native-modal-datetime-picker": "^18.0.0",

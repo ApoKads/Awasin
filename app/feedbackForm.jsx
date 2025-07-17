@@ -13,9 +13,11 @@ import {
 } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import UploadImage from "./components/UploadImage";
-import { useNavigation } from "expo-router";
+import { router, useNavigation } from "expo-router";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const FeedbackForm = () => {
+  const insets = useSafeAreaInsets();
   const navigation = useNavigation();
   const [form, setForm] = useState({
     title: "",
@@ -33,22 +35,34 @@ const FeedbackForm = () => {
   };
 
   const handleSubmit = () => {
-    if(validateForm()){
+    if (validateForm()) {
       Alert.alert("Success", "Form submitted successfully!");
       navigation.navigate("news");
     }
   };
 
   return (
-    <SafeAreaView className="flex flex-1">
-      <View className="flex flex-1 items-center pt-[80]">
-        <Text className="text-3xl text-gray-800 font-bold mb-[20] font-poppins-bold">
+    <SafeAreaView className="flex-1" style={{ paddingTop: insets.top }}>
+      <View className="flex-1 items-center">
+        <TouchableOpacity
+          onPress={() => router.back()}
+          className="absolute left-4 top-4 p-2 rounded-full z-50"
+        >
+          <Image
+            source={require("../assets/icons/vectorart-backblue.png")}
+            className="w-[30] h-[30]"
+          />
+        </TouchableOpacity>
+
+        <Text className="text-3xl text-gray-800 font-bold mt-12 mb-[10] font-poppins-bold">
           Balas Laporan
         </Text>
+
         <View className="flex-1 items-center w-[90%] p-[5%] rounded-lg mb-[10]">
           <TextInput
             className="border border-gray-400 rounded-md px-4 py-2 w-full h-[55] mb-[20] font-poppins"
             placeholder="Title"
+            placeholderTextColor="#A0AEC0"
             value={form.title}
             onChangeText={(text) =>
               setForm((prevForm) => ({ ...prevForm, title: text }))
@@ -56,24 +70,23 @@ const FeedbackForm = () => {
           />
 
           <TextInput
-            className="border border-gray-400 rounded-md px-4 py-2 w-full h-[55] mb-[25] font-poppins"
+            className="border border-gray-400 rounded-md px-4 py-2 w-full h-[100] mb-5 font-poppins"
             placeholder="Description"
+            placeholderTextColor="#A0AEC0"
             multiline
-            numberOfLines={5}
+            textAlignVertical="top"
             value={form.desc}
             onChangeText={(text) =>
               setForm((prevForm) => ({ ...prevForm, desc: text }))
             }
           />
 
-          <UploadImage
-            images={form.images}
-            setForm={setForm}
-          />
+          <UploadImage images={form.images} setForm={setForm} />
 
-          <TouchableOpacity 
+          <TouchableOpacity
             className="rounded-lg bg-[#102E4A] py-3 w-full"
-            onPress={handleSubmit}>
+            onPress={handleSubmit}
+          >
             <Text className="text-white text-center font-poppins-bold">
               Submit Form
             </Text>
