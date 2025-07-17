@@ -22,7 +22,7 @@ const BottomNavbar = () => {
         {
             label: 'Notifikasi',
             icon: require('../../assets/icons/vectorart-notification.png'),
-            path: '/notifications',
+            path: '/notification',
         },
         {
             label: 'Profil',
