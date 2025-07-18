@@ -25,7 +25,7 @@ const KtpScan = () => {
   };
 
   const handleNext = () => {
-    navigation.navigate('listNews'); // Change to your next screen
+    navigation.navigate('postPage'); // Change to your next screen
   };
 
   if (!permission) {

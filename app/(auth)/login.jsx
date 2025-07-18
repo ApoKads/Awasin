@@ -41,14 +41,14 @@ const SignInScreen = () => {
         // Role-based Redirect: Cek kredensial admin
         if (username.toLowerCase() === 'admin' && password === 'admin') {
             Alert.alert('Login Berhasil', 'Selamat datang, Admin!');
-            router.replace('/admin'); // Gunakan replace agar tidak bisa kembali ke login
+            router.replace('/postPageAdmin'); // Gunakan replace agar tidak bisa kembali ke login
             return;
         }
         
         // Redirect untuk user biasa
         // Di sini Anda biasanya akan memanggil API untuk verifikasi user
         Alert.alert('Login Berhasil', `Selamat datang, ${username}!`);
-        router.replace('/news'); // Gunakan replace agar tidak bisa kembali ke login
+        router.replace('/postPage'); // Gunakan replace agar tidak bisa kembali ke login
     };
 
     return (
