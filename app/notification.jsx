@@ -10,8 +10,9 @@ import {
     FlatList,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import NotificationItem from './components/notificationItem';
-import BottomNavbar from './components/BottomNavbar';
+// Pastikan path ini benar
+import NotificationItem from './components/notificationItem'; // Ganti dengan path yang sesuai
+import BottomNavbar from './components/BottomNavbar'
 
 export const options = {
     headerShown: false,
@@ -67,7 +68,7 @@ const NotificationScreen = () => {
     }, [notifications, filter]);
 
     return (
-        <SafeAreaView className="flex-1 bg-gray-100">
+        <SafeAreaView className="flex-1 bg-white">
             {/* Header Kustom */}
             <View className="flex-row justify-between items-center p-4 bg-white">
                 <Text className="text-2xl font-poppins-bold text-gray-800">Notifikasi</Text>
@@ -76,7 +77,7 @@ const NotificationScreen = () => {
                 </TouchableOpacity>
             </View>
 
-            {/* Bar Filter - DENGAN PERBAIKAN */}
+            {/* Bar Filter */}
             <View className="flex-row justify-between items-center bg-[#1E3A5F] px-4 py-3">
                 <TouchableOpacity
                     className="flex-row items-center"
@@ -100,33 +101,15 @@ const NotificationScreen = () => {
                 </TouchableOpacity>
             </Modal>
 
-            {/* Modal Menu Opsi (Tiga Titik) - DENGAN PERBAIKAN */}
-            <Modal
-                transparent={true}
-                visible={isOptionsMenuVisible}
-                animationType="fade"
-                onRequestClose={() => setOptionsMenuVisible(false)}
-            >
-                <TouchableOpacity
-                    className="flex-1"
-                    activeOpacity={1}
-                    onPressOut={() => setOptionsMenuVisible(false)}
-                >
+            {/* Modal Menu Opsi (Tiga Titik) */}
+            <Modal transparent={true} visible={isOptionsMenuVisible} animationType="fade" onRequestClose={() => setOptionsMenuVisible(false)}>
+                <TouchableOpacity className="flex-1" activeOpacity={1} onPressOut={() => setOptionsMenuVisible(false)}>
                     <View className="absolute top-16 right-4 bg-white rounded-lg shadow-xl w-60">
-                        <TouchableOpacity
-                            className="flex-row items-center p-3 border-b border-gray-100"
-                            onPress={handleClearReadNotifications}
-                        >
+                        <TouchableOpacity className="flex-row items-center p-3 border-b border-gray-100" onPress={handleClearReadNotifications}>
                             <Ionicons name="trash-bin-outline" size={20} color="#4B5563" style={{ marginRight: 12 }} />
                             <Text className="text-base text-gray-700">Hapus Notifikasi Terbaca</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity
-                            className="flex-row items-center p-3"
-                            onPress={() => {
-                                setOptionsMenuVisible(false);
-                                Alert.alert("Hapus Semua?", "Aksi ini tidak bisa dibatalkan.", [{ text: "Batal", style: "cancel" }, { text: "Hapus", style: "destructive", onPress: () => setNotifications([]) }]);
-                            }}
-                        >
+                        <TouchableOpacity className="flex-row items-center p-3" onPress={() => { setOptionsMenuVisible(false); Alert.alert("Hapus Semua?", "Aksi ini tidak bisa dibatalkan.", [{ text: "Batal" }, { text: "Hapus", style: "destructive", onPress: () => setNotifications([]) }]); }}>
                             <Ionicons name="trash-outline" size={20} color="#EF4444" style={{ marginRight: 12 }} />
                             <Text className="text-base text-red-500">Hapus Semua Notifikasi</Text>
                         </TouchableOpacity>
@@ -138,21 +121,35 @@ const NotificationScreen = () => {
             <SectionList
                 sections={processedData}
                 keyExtractor={(item) => item.id}
+                
+                // --- PERUBAHAN 1: LOGIKA SEPARATOR DIPINDAHKAN KE SINI ---
                 renderItem={({ item }) => (
-                    <TouchableOpacity onPress={() => handleMarkAsRead(item.id)}>
-                        <NotificationItem
-                            title={item.title}
-                            message={item.message}
-                            time={item.time}
-                            isRead={item.isRead}
-                        />
-                    </TouchableOpacity>
+                    <View className="bg-white">
+                        <TouchableOpacity onPress={() => handleMarkAsRead(item.id)}>
+                            <NotificationItem
+                                title={item.title}
+                                message={item.message}
+                                time={item.time}
+                                isRead={item.isRead}
+                            />
+                        </TouchableOpacity>
+                        {/* Garis separator dirender setelah setiap item */}
+                        <View className="px-4">
+                            <View className="h-px bg-gray-200" />
+                        </View>
+                    </View>
                 )}
-                renderSectionHeader={({ section: { title } }) => ( <Text className="text-lg font-poppins-bold text-gray-700 px-4 pt-6 pb-2">{title}</Text> )}
-                ItemSeparatorComponent={() => <View className="h-px bg-gray-200" />}
-                contentContainerStyle={{ paddingBottom: 20 }}
+
+                renderSectionHeader={({ section: { title } }) => (<Text className="text-lg font-bold text-gray-700 px-4 pt-6 pb-2 bg-white">{title}</Text>)}
+                
+                // --- ItemSeparatorComponent DIHAPUS ---
+
+                // --- PERUBAHAN 2: PADDING UNTUK BOTTOM NAVBAR ---
+                contentContainerStyle={{ paddingBottom: 100 }} // Memberi ruang agar tidak tertutup navbar
+
                 ListEmptyComponent={<View className="flex-1 justify-center items-center mt-20"><Text className="text-gray-500 text-lg">Tidak ada notifikasi</Text></View>}
             />
+            
             <BottomNavbar />
         </SafeAreaView>
     );
