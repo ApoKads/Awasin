@@ -7,10 +7,9 @@ import {
     SectionList,
     Alert,
     Modal,
+    Image,
     FlatList,
 } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-// Pastikan path ini benar
 import NotificationItem from './components/notificationItem'; // Ganti dengan path yang sesuai
 import BottomNavbar from './components/BottomNavbar'
 
@@ -73,7 +72,11 @@ const NotificationScreen = () => {
             <View className="flex-row justify-between items-center p-4 bg-white mt-10">
                 <Text className="text-2xl font-poppins-bold text-gray-800">Notifikasi</Text>
                 <TouchableOpacity onPress={() => setOptionsMenuVisible(true)}>
-                    <Ionicons name="ellipsis-vertical" size={24} color="black" />
+                     <Image 
+                        source={require('../assets/icons/vectorart-menu.png')}
+                        className="w-6 h-6"
+                        style={{ tintColor: 'black' }}
+                    />
                 </TouchableOpacity>
             </View>
 
@@ -85,7 +88,11 @@ const NotificationScreen = () => {
                  >
                     <Text className="text-white font-poppins mr-1">{filter}</Text>
                     {/* Ikon sudah tidak memiliki className, aman */}
-                    <Ionicons name="chevron-down" size={16} color="white" />
+                    <Image
+                        source={require('../assets/icons/vectorart-dropdown.png')}
+                        className="w-4 h-4"
+                        style={{marginBottom: 3}}
+                    />
                 </TouchableOpacity>
                 <TouchableOpacity onPress={handleMarkAllAsRead}>
                     <Text className="text-white font-poppins">Mark All As Read</Text>
@@ -106,11 +113,19 @@ const NotificationScreen = () => {
                 <TouchableOpacity className="flex-1" activeOpacity={1} onPressOut={() => setOptionsMenuVisible(false)}>
                     <View className="absolute top-16 right-4 bg-white rounded-lg shadow-xl w-60">
                         <TouchableOpacity className="flex-row items-center p-3 border-b border-gray-100" onPress={handleClearReadNotifications}>
-                            <Ionicons name="trash-bin-outline" size={20} color="#4B5563" style={{ marginRight: 12 }} />
+                            <Image 
+                                source={require('../assets/icons/vectorart-trashblue.png')}
+                                className="w-5 h-5"
+                                style={{ marginRight: 12}}
+                            />
                             <Text className="text-base text-gray-700">Hapus Notifikasi Terbaca</Text>
                         </TouchableOpacity>
                         <TouchableOpacity className="flex-row items-center p-3" onPress={() => { setOptionsMenuVisible(false); Alert.alert("Hapus Semua?", "Aksi ini tidak bisa dibatalkan.", [{ text: "Batal" }, { text: "Hapus", style: "destructive", onPress: () => setNotifications([]) }]); }}>
-                            <Ionicons name="trash-outline" size={20} color="#EF4444" style={{ marginRight: 12 }} />
+                            <Image 
+                                source={require('../assets/icons/vectorart-trash.png')}
+                                className="w-5 h-5"
+                                style={{ marginRight: 12}}
+                            />
                             <Text className="text-base text-red-500">Hapus Semua Notifikasi</Text>
                         </TouchableOpacity>
                     </View>
@@ -141,8 +156,6 @@ const NotificationScreen = () => {
                 )}
 
                 renderSectionHeader={({ section: { title } }) => (<Text className="text-lg font-bold text-gray-700 px-4 pt-6 pb-2 bg-white">{title}</Text>)}
-                
-                // --- ItemSeparatorComponent DIHAPUS ---
 
                 // --- PERUBAHAN 2: PADDING UNTUK BOTTOM NAVBAR ---
                 contentContainerStyle={{ paddingBottom: 100 }} // Memberi ruang agar tidak tertutup navbar
