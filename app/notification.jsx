@@ -70,7 +70,7 @@ const NotificationScreen = () => {
     return (
         <SafeAreaView className="flex-1 bg-white">
             {/* Header Kustom */}
-            <View className="flex-row justify-between items-center p-4 bg-white">
+            <View className="flex-row justify-between items-center p-4 bg-white mt-10">
                 <Text className="text-2xl font-poppins-bold text-gray-800">Notifikasi</Text>
                 <TouchableOpacity onPress={() => setOptionsMenuVisible(true)}>
                     <Ionicons name="ellipsis-vertical" size={24} color="black" />
@@ -96,7 +96,7 @@ const NotificationScreen = () => {
             <Modal transparent={true} visible={isDropdownVisible} animationType="fade" onRequestClose={() => setDropdownVisible(false)}>
                 <TouchableOpacity className="flex-1" activeOpacity={1} onPressOut={() => setDropdownVisible(false)}>
                     <View className="absolute top-36 left-4 bg-white rounded-lg shadow-xl w-40">
-                        <FlatList data={filterOptions} keyExtractor={(item) => item} renderItem={({ item }) => ( <TouchableOpacity className="p-3 border-b border-gray-100" onPress={() => handleSelectFilter(item)}> <Text className={`text-base ${filter === item ? 'font-poppins text-sky-600' : 'text-gray-700'}`}>{item}</Text> </TouchableOpacity> )} />
+                        <FlatList data={filterOptions} keyExtractor={(item) => item} renderItem={({ item }) => ( <TouchableOpacity className="p-3 border-b border-gray-100" onPress={() => handleSelectFilter(item)}><Text className={`text-base ${filter === item ? 'font-bold text-sky-600' : 'text-gray-700'}`}>{item}</Text></TouchableOpacity> )} />
                     </View>
                 </TouchableOpacity>
             </Modal>
