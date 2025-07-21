@@ -1,6 +1,7 @@
-import { View, ActivityIndicator } from 'react-native';
+import { StyleSheet, Text, View, ActivityIndicator } from 'react-native'
 import React, { useEffect } from 'react';
 import { useRouter } from 'expo-router';
+import "../global.css"
 
 const index = () => {
   const router = useRouter();
@@ -21,3 +22,5 @@ const index = () => {
 };
 
 export default index;
+
+const styles = StyleSheet.create({})

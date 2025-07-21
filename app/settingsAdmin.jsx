@@ -6,60 +6,63 @@ import {
     TouchableOpacity,
     Image,
     Alert,
-    ScrollView,
 } from 'react-native';
 import { useRouter } from 'expo-router';
-import BottomNavbarAdmin from './components/BottomNavbarAdmin';
+import BottomNavbar from './components/BottomNavbarAdmin';
 
-export default function SettingScreenAdmin() {
+const SettingsAdmin = () => {
     const router = useRouter();
 
     const handleLogout = () => {
         Alert.alert(
-            'Konfirmasi Logout',
-            'Apakah Anda yakin ingin keluar?',
+            "Konfirmasi Logout",
+            "Apakah Anda yakin ingin keluar?",
             [
-                { text: 'Batal', style: 'cancel' },
+                { text: "Batal", style: "cancel" },
                 {
-                    text: 'Ya',
+                    text: "Ya",
                     onPress: () => {
-                        console.log('Admin logged out');
-                        router.replace('/landing');
-                    },
-                },
+                        console.log("Admin logged out");
+                        router.replace('/landing'); // Atau '/login' sesuai alur kamu
+                    }
+                }
             ],
             { cancelable: true }
         );
     };
 
     return (
-        <SafeAreaView style={{ flex: 1, backgroundColor: '#F3F4F6' }}>
+        <SafeAreaView className="flex-1 bg-white">
+            {/* Header */}
+            <View className="px-6 py-4 bg-white border-b border-gray-200">
+                <Text className="text-2xl font-bold text-gray-800">Pengaturan</Text>
+            </View>
 
-            <View style={{ backgroundColor: 'white', marginTop: 8, paddingHorizontal: 24, paddingVertical: 16 }}>
-                <Text style={{ fontSize: 20, fontWeight: 'bold', marginBottom: 16 }}>Admin</Text>
-
-                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                    <Image
-                        source={require('../assets/default-avatar.jpg')}
-                        style={{ width: 56, height: 56, borderRadius: 28 }}
-                    />
-                    <View style={{ marginLeft: 20 }}>
-                        <Text style={{ fontSize: 18, fontWeight: '600' }}>Admin</Text>
-                        <Text style={{ fontSize: 14, color: '#4B5563' }}>Akun Admin</Text>
-                    </View>
+            {/* Info Admin */}
+            <View className="bg-white px-6 py-6 flex-row items-center gap-4">
+                <Image
+                    source={require('../assets/default-avatar.jpg')}
+                    className="w-16 h-16 rounded-full"
+                />
+                <View>
+                    <Text className="text-lg font-semibold">Admin</Text>
+                    <Text className="text-sm text-gray-500">Akun Admin</Text>
                 </View>
             </View>
 
-            <View style={{ paddingHorizontal: 24, marginTop: 24 }}>
+            {/* Logout */}
+            <View className="px-6 mt-6">
                 <TouchableOpacity
                     onPress={handleLogout}
-                    style={{ backgroundColor: '#DC2626', paddingVertical: 12, borderRadius: 12 }}
+                    className="bg-red-600 py-3 rounded-xl"
                 >
-                    <Text style={{ color: 'white', textAlign: 'center', fontWeight: 'bold', fontSize: 16 }}>Keluar</Text>
+                    <Text className="text-white text-center font-bold text-base">Keluar</Text>
                 </TouchableOpacity>
             </View>
 
-            <BottomNavbarAdmin />
+            <BottomNavbar />
         </SafeAreaView>
     );
-}
+};
+
+export default SettingsAdmin;
