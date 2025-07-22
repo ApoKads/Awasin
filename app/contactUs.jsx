@@ -106,20 +106,20 @@ export default function ContactUsScreen() {
         <View className="gap-4 mb-6">
           <TextInput
             placeholder="Nama"
-            className="border border-gray-300 bg-white rounded-lg px-4 py-3 text-base"
+            className="border border-gray-300 bg-white rounded-xl px-4 py-3 text-base font-poppins-light"
             value={form.name}
             onChangeText={(text) => handleChange('name', text)}
           />
           <TextInput
             placeholder="Email"
-            className="border border-gray-300 bg-white rounded-lg px-4 py-3 text-base"
+            className="border border-gray-300 bg-white rounded-xl px-4 py-3 text-base font-poppins-light"
             value={form.email}
             onChangeText={(text) => handleChange('email', text)}
           />
           <TextInput
             placeholder="Nomor Telepon"
             keyboardType="phone-pad"
-            className="border border-gray-300 bg-white rounded-lg px-4 py-3 text-base"
+            className="border border-gray-300 bg-white rounded-xl px-4 py-3 text-base font-poppins-light"
             value={form.phone}
             onChangeText={(text) => handleChange('phone', text)}
           />
@@ -128,7 +128,7 @@ export default function ContactUsScreen() {
             multiline
             numberOfLines={4}
             textAlignVertical="top"
-            className="border border-gray-300 bg-white rounded-lg px-4 py-3 text-base h-32"
+            className="border border-gray-300 bg-white rounded-xl px-4 py-3 text-base h-32 font-poppins-light"
             value={form.message}
             onChangeText={(text) => handleChange('message', text)}
           />
@@ -137,7 +137,7 @@ export default function ContactUsScreen() {
         {/* Tombol Kirim */}
         <TouchableOpacity
           onPress={handleSubmit}
-          className="bg-[#102E4A] py-3 rounded-lg items-center"
+          className="bg-[#102E4A] py-3 rounded-xl items-center"
         >
           <Text className="text-white text-lg font-poppins-semibold">Kirim</Text>
         </TouchableOpacity>

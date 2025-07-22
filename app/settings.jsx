@@ -36,7 +36,7 @@ export default function SettingScreen() {
     <SafeAreaView className="flex-1 bg-white">
       <ScrollView className="px-6 pt-4">
         {/* Akun */}
-        <Text className="text-xl font-bold mb-4">Akun</Text>
+        <Text className="text-xl font-bold mb-4 font-poppins-bold">Akun</Text>
 
         <TouchableOpacity
           onPress={() => router.push('/editProfile')}
@@ -48,17 +48,21 @@ export default function SettingScreen() {
               className="w-14 h-14 rounded-full"
             />
             <View>
-              <Text className="text-lg font-semibold ml-5">Nama User</Text>
-              <Text className="text-sm text-gray-600 ml-5">Informasi Pribadi</Text>
+              <Text className="text-lg font-semibold ml-5 font-poppins-semibold">Nama User</Text>
+              <Text className="text-sm text-gray-600 ml-5 font-poppins">Informasi Pribadi</Text>
             </View>
           </View>
-          <Text className="text-2xl text-gray-500">{'>'}</Text>
+          <Image
+    source={require('../assets/icons/vectorart-panahblue.png')}
+    className="w-5 h-5"
+    resizeMode="contain"
+  />
         </TouchableOpacity>
 
         <View className="border-b border-gray-300 my-4" />
 
         {/* Settings */}
-        <Text className="text-xl font-bold mb-4">Settings</Text>
+        <Text className="text-xl font-bold mb-4 font-poppins-bold">Settings</Text>
 
         {/* Riwayat */}
         <TouchableOpacity
@@ -73,9 +77,13 @@ export default function SettingScreen() {
                 resizeMode="contain"
               />
             </View>
-            <Text className="text-lg font-medium ml-5">Riwayat</Text>
+            <Text className="text-lg font-medium ml-5 font-poppins">Riwayat</Text>
           </View>
-          <Text className="text-2xl text-gray-500">{'>'}</Text>
+          <Image
+    source={require('../assets/icons/vectorart-panahblue.png')}
+    className="w-5 h-5"
+    resizeMode="contain"
+  />
         </TouchableOpacity>
 
         {/* Kontak Kami */}
@@ -91,35 +99,44 @@ export default function SettingScreen() {
                 resizeMode="contain"
               />
             </View>
-            <Text className="text-lg font-medium ml-5">Kontak Kami</Text>
+            <Text className="text-lg font-medium ml-5 font-poppins">Kontak Kami</Text>
           </View>
-          <Text className="text-2xl text-gray-500">{'>'}</Text>
+          <Image
+    source={require('../assets/icons/vectorart-panahblue.png')}
+    className="w-5 h-5"
+    resizeMode="contain"
+  />
         </TouchableOpacity>
 
         {/* FAQ */}
         <TouchableOpacity
-          onPress={() => router.push('/faq')}
-          className="flex-row items-center justify-between mb-4"
-        >
-          <View className="flex-row items-center space-x-3">
-            <View className="w-12 h-12 rounded-full bg-[#102E4A] items-center justify-center">
-              <Image
-                source={require('../assets/icons/vectorart-message.png')}
-                className="w-6 h-6"
-                resizeMode="contain"
-              />
-            </View>
-            <Text className="text-lg font-medium ml-5">FAQ</Text>
-          </View>
-          <Text className="text-2xl text-gray-500">{'>'}</Text>
-        </TouchableOpacity>
+  onPress={() => router.push('/faq')}
+  className="flex-row items-center justify-between mb-4"
+>
+  <View className="flex-row items-center space-x-3">
+    <View className="w-12 h-12 rounded-full bg-[#102E4A] items-center justify-center">
+      <Image
+        source={require('../assets/icons/vectorart-message.png')}
+        className="w-6 h-6"
+        resizeMode="contain"
+      />
+    </View>
+    <Text className="text-lg font-medium ml-5 font-poppins">FAQ</Text>
+  </View>
+  <Image
+    source={require('../assets/icons/vectorart-panahblue.png')}
+    className="w-5 h-5"
+    resizeMode="contain"
+  />
+</TouchableOpacity>
+
 
         {/* Logout */}
         <TouchableOpacity
           onPress={handleLogout}
           className="bg-red-600 py-3 rounded-xl mt-10"
         >
-          <Text className="text-white text-center font-bold text-base">Keluar</Text>
+          <Text className="text-white text-center font-poppins-bold text-base">Keluar</Text>
         </TouchableOpacity>
       </ScrollView>
 

@@ -83,40 +83,40 @@ export default function EditProfileScreen() {
       <View className="gap-2 mb-8">
         <TextInput
           placeholder="Username"
-          className="w-full p-3 mb-4 bg-white border border-gray-300 rounded-lg text-lg"
+          className="w-full p-3 mb-3 mt-4 bg-white border border-gray-300 rounded-xl text-l font-poppins-light"
           value={form.username}
           onChangeText={(text) => handleChange('username', text)}
         />
         <TextInput
           placeholder="Email"
           keyboardType="email-address"
-          className="w-full p-3 mb-4 bg-white border border-gray-300 rounded-lg text-lg"
+          className="w-full p-3 mb-3 bg-white border border-gray-300 rounded-xl text-l font-poppins-light"
           value={form.email}
           onChangeText={(text) => handleChange('email', text)}
         />
         <TextInput
           placeholder="Tanggal Lahir"
-          className="w-full p-3 mb-4 bg-white border border-gray-300 rounded-lg text-lg"
+          className="w-full p-3 mb-3 bg-white border border-gray-300 rounded-xl text-l font-poppins-light"
           value={form.dob}
           onChangeText={(text) => handleChange('dob', text)}
         />
         <TextInput
           placeholder="Kota"
-          className="w-full p-3 mb-4 bg-white border border-gray-300 rounded-lg text-lg"
+          className="w-full p-3 mb-3 bg-white border border-gray-300 rounded-xl text-l font-poppins-light"
           value={form.city}
           onChangeText={(text) => handleChange('city', text)}
         />
         <TextInput
           placeholder="Password"
           secureTextEntry
-          className="w-full p-3 mb-4 bg-white border border-gray-300 rounded-lg text-lg"
+          className="w-full p-3 mb-3 bg-white border border-gray-300 rounded-xl text-l font-poppins-light"
           value={form.password}
           onChangeText={(text) => handleChange('password', text)}
         />
         <TextInput
           placeholder="Konfirmasi password"
           secureTextEntry
-          className="w-full p-3 mb-4 bg-white border border-gray-300 rounded-lg text-lg"
+          className="w-full p-3 mb-3 bg-white border border-gray-300 rounded-xl text-l font-poppins-light"
           value={form.confirmPassword}
           onChangeText={(text) => handleChange('confirmPassword', text)}
         />
@@ -124,7 +124,7 @@ export default function EditProfileScreen() {
 
       <TouchableOpacity
         onPress={handleSubmit}
-        className="w-full p-3 bg-[#102E4A] rounded-lg items-center mb-4 mt-5"
+        className="w-full p-3 bg-[#102E4A] rounded-xl items-center mb-4 mt-5"
       >
         <Text className="text-white text-lg font-poppins-medium">Simpan</Text>
       </TouchableOpacity>
