@@ -14,6 +14,7 @@ import { useNavigation } from "@react-navigation/native";
 
 export default function EditProfileScreen() {
   const [image, setImage] = useState(null);
+  const navigation = useNavigation();
   const [form, setForm] = useState({
     username: '',
     email: '',
@@ -59,7 +60,7 @@ export default function EditProfileScreen() {
     className="flex-1"
   >
     <ScrollView className="bg-white/80 px-6 pt-12">
-    <TouchableOpacity className="-ml-2 mt-5 mb-5" onPress={() => navigation.goBack()}>
+    <TouchableOpacity className="-ml-2 mt-5 mb-5" onPress={() => navigation.navigate("settings")}>
                   <Image
                         source={require("../assets/icons/vectorart-backblue.png")}
                         style={{ width: 30, height: 30 }}

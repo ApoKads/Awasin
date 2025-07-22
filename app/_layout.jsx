@@ -77,6 +77,7 @@ const RootLayout = () => { // Ganti nama StackLayout menjadi RootLayout agar leb
       <Stack.Screen name="laporanForm" />
       <Stack.Screen name="maps" />
       <Stack.Screen name="postDetail" />
+      <Stack.Screen name="editProfile" />
     </Stack>
   );
 };

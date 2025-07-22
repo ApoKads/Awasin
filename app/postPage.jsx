@@ -12,6 +12,24 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import BottomNavbar from './components/BottomNavbar';
 
+const statuses = ['Menunggu','Ditinjau','Ditolak','Diproses','Selesai'];
+const statusColors = {
+  Menunggu: '#EAC1EA', 
+  Ditinjau: '#AED0FF', 
+  Ditolak: '#FAD8DD',  
+  Diproses: '#FFF085', 
+  Selesai: '#CDF0D7',  
+};
+
+const fontColors = {
+  Menunggu: '#553681', 
+  Ditinjau: '#33659B', 
+  Ditolak: '#C77680',  
+  Diproses: '#7D6630', 
+  Selesai: '#55B57A',  
+};
+
+
 const dummyPosts = [
   {
     id: 1,
@@ -20,7 +38,7 @@ const dummyPosts = [
     location: 'Bogor Selatan',
     description: 'Jalan berlubang cukup parah di daerah Dipo, rawan kecelakaan.',
     image: require('../assets/kdm.jpg'),
-    status: 'Dalam Penanganan',
+    status: statuses[0],
     trending: true,
     category: 'Roads',
   },
@@ -31,7 +49,7 @@ const dummyPosts = [
     location: 'Bogor Barat',
     description: 'Air menggenangi jalan utama sejak pagi.',
     image: require('../assets/kdm.jpg'),
-    status: 'Menunggu Tindakan',
+    status: statuses[4],
     trending: false,
     category: 'Floods',
   },
@@ -42,11 +60,19 @@ const dummyPosts = [
     location: 'Ciomas',
     description: 'Mohon perbaikan segera, sudah banyak korban terjatuh.',
     image: require('../assets/kdm.jpg'),
-    status: 'Dilaporkan',
+    status: statuses[3],
     trending: true,
     category: 'Roads',
   },
 ];
+function getTransparentColor(hex, alpha) {
+  // Ubah hex ke rgba
+  const r = parseInt(hex.slice(1, 3), 16);
+  const g = parseInt(hex.slice(3, 5), 16);
+  const b = parseInt(hex.slice(5, 7), 16);
+  return `rgba(${r},${g},${b},${alpha})`;
+}
+
 
 export default function HomePostList() {
   const insets = useSafeAreaInsets();
@@ -167,14 +193,12 @@ export default function HomePostList() {
                       #1 Trending
                     </Text>
                   )}
-                  <View className="absolute bottom-2 right-2 bg-[#102E4A] px-2 py-1 rounded">
-                    <Text className="text-white text-xs font-semibold">
-                      {post.status}
-                    </Text>
-                  </View>
+                  
+
                 </View>
 
                 <View className="px-4 py-3">
+                
                   <Text className="text-sm text-gray-500 mb-1">{post.username}</Text>
                   <Text className="text-lg font-bold text-gray-900 mb-1">{post.title}</Text>
 
@@ -190,6 +214,16 @@ export default function HomePostList() {
                   </View>
 
                   <Text className="text-sm text-gray-700">{post.description}</Text>
+                  <View
+                      className="absolute top-2 right-2 px-2 py-1 rounded"
+                      style={{
+                        backgroundColor: getTransparentColor(statusColors[post.status] || '#102E4A', 1),
+                      }}
+                    >
+                    <Text className="text-white text-sm font-poppins-semibold opacity-100" style={{color: fontColors[post.status] || '#FFFFFF'  }}>
+                      {post.status}
+                    </Text>
+                  </View>
                 </View>
               </TouchableOpacity>
             ))
