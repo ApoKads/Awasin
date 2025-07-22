@@ -38,7 +38,7 @@ const UploadImage = ({images, setForm}) => {
   return (
     <View className="w-full items-center">
       <TouchableOpacity
-        className="flex flex-row justify-between items-center w-full mb-5"
+        className="flex flex-row justify-between items-center w-full mb-3"
         onPress={handleAddImage}
       >
         <View className="flex flex-row items-center gap-[10] w-[200]">

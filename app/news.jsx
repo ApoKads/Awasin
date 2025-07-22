@@ -109,10 +109,10 @@ const News = () => {
                             <Text className="text-sm text-gray-500">Lihat Semua</Text>
                         </Link>
                     </View>
-                    <View className="gap-4 w-full">
+                    <View className="w-full">
                         {jsonData.map((item) => (
                             <Link key={item.id} href="/detailNews" asChild>
-                                <TouchableOpacity className="flex-row items-center mb-4 w-full">
+                                <TouchableOpacity className="flex-row mb-4 w-full border-b border-b-gray-100 pb-4">
                                     <Image
                                         source={imageMap[item.image]}
                                         className="w-16 h-16 rounded-lg mr-4"
