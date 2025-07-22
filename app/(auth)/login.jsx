@@ -41,14 +41,14 @@ const SignInScreen = () => {
         // Role-based Redirect: Cek kredensial admin
         if (username.toLowerCase() === 'admin' && password === 'admin') {
             Alert.alert('Login Berhasil', 'Selamat datang, Admin!');
-            router.replace('/admin'); // Gunakan replace agar tidak bisa kembali ke login
+            router.replace('/postPageAdmin'); // Gunakan replace agar tidak bisa kembali ke login
             return;
         }
         
         // Redirect untuk user biasa
         // Di sini Anda biasanya akan memanggil API untuk verifikasi user
         Alert.alert('Login Berhasil', `Selamat datang, ${username}!`);
-        router.replace('/news'); // Gunakan replace agar tidak bisa kembali ke login
+        router.replace('/postPage'); // Gunakan replace agar tidak bisa kembali ke login
     };
 
     return (
@@ -65,17 +65,17 @@ const SignInScreen = () => {
                 >
                     <View className="w-full max-w-sm bg-white/90 rounded-2xl p-8 shadow-lg">
                         
-                        <Text className={`text-4xl font-bold text-center text-[${primaryDark}]`}>
+                        <Text className={`text-4xl font-poppins-bold text-center text-[${primaryDark}]`}>
                             Hi, Awasers!
                         </Text>
 
                         <Image
                             source={require('../../assets/logo-awasin-dark.png')}
-                            className="w-24 h-24 self-center my-6"
+                            className="w-64 h-64 self-center"
                             resizeMode="contain"
                         />
 
-                        <Text className={`text-center text-gray-600 mb-6 text-[${primaryDark}]`}>
+                        <Text className={`text-center font-poppins-bold text-gray-600 mb-6 text-[${primaryDark}]`}>
                             Please sign in to your account
                         </Text>
 
@@ -104,7 +104,7 @@ const SignInScreen = () => {
                         ) : null}
 
                         <TouchableOpacity className="self-end mt-2">
-                            <Text className={`text-sm text-gray-500`}>
+                            <Text className={`text-sm font-poppins underline text-gray-500`}>
                                 Forgot password?
                             </Text>
                         </TouchableOpacity>
@@ -115,16 +115,16 @@ const SignInScreen = () => {
                             activeOpacity={0.8}
                             onPress={handleSignIn} 
                         >
-                            <Text className="text-white text-center font-bold text-lg">
+                            <Text className="text-white font-poppins-medium text-center font-bold text-lg">
                                 SIGN IN
                             </Text>
                         </TouchableOpacity>
 
                         {/* Link ke halaman Register */}
                         <View className="flex-row justify-center items-center mt-8">
-                            <Text className="text-gray-600">Belum punya akun? </Text>
+                            <Text className="font-poppins text-gray-600">Belum punya akun? </Text>
                             <TouchableOpacity onPress={() => router.push('/register')}>
-                                <Text className={`font-bold text-[${primaryDark}] underline`}>
+                                <Text className={`font-poppins-bold text-[${primaryDark}] underline`}>
                                     REGISTER
                                 </Text>
                             </TouchableOpacity>

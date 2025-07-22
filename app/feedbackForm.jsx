@@ -48,12 +48,12 @@ const FeedbackForm = () => {
           onPress={() => router.back()}
           className="absolute left-4 top-4 p-2 rounded-full z-50"
         >
-          <Image 
-            source={require("../assets/icons/vectorart-backblue.png")} 
+          <Image
+            source={require("../assets/icons/vectorart-backblue.png")}
             className="w-[30] h-[30]"
-            />
+          />
         </TouchableOpacity>
-        
+
         <Text className="text-3xl text-gray-800 font-bold mt-12 mb-[10] font-poppins-bold">
           Balas Laporan
         </Text>
@@ -62,6 +62,7 @@ const FeedbackForm = () => {
           <TextInput
             className="border border-gray-400 rounded-md px-4 py-2 w-full h-[55] mb-[20] font-poppins"
             placeholder="Title"
+            placeholderTextColor="#A0AEC0"
             value={form.title}
             onChangeText={(text) =>
               setForm((prevForm) => ({ ...prevForm, title: text }))
@@ -69,10 +70,11 @@ const FeedbackForm = () => {
           />
 
           <TextInput
-            className="border border-gray-400 rounded-md px-4 py-2 w-full h-[55] mb-[25] font-poppins"
+            className="border border-gray-400 rounded-md px-4 py-2 w-full h-[100] mb-5 font-poppins"
             placeholder="Description"
+            placeholderTextColor="#A0AEC0"
             multiline
-            numberOfLines={5}
+            textAlignVertical="top"
             value={form.desc}
             onChangeText={(text) =>
               setForm((prevForm) => ({ ...prevForm, desc: text }))

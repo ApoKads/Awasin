@@ -24,7 +24,7 @@ export default function SettingScreen() {
           text: "Ya",
           onPress: () => {
             console.log("User logged out");
-            router.replace('/login');
+            router.replace('/landing');
           }
         }
       ],
