@@ -53,7 +53,7 @@ export default function FAQScreen() {
           />
         </TouchableOpacity>
 
-        <Text className="text-2xl font-poppins-bold text-center mb-6">FAQ</Text>
+        <Text className="text-5xl font-poppins-bold text-center mb-16">FAQ</Text>
 
         {faqData.map((item, index) => {
           const isOpen = openIndexes.includes(index);
