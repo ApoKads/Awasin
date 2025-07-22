@@ -12,6 +12,100 @@ import {
 } from "react-native";
 import { useRouter } from "expo-router"; // gunakan router dari expo-router
 
+
+  const statuses = ["Menunggu", "Ditinjau", "Ditolak", "Diproses", "Selesai"];
+  const statusColors = {
+  Menunggu: "#EAC1EA",
+  Ditinjau: "#AED0FF",
+  Ditolak: "#FAD8DD",
+  Diproses: "#FFF085",
+  Selesai: "#CDF0D7",
+};
+
+const fontColors = {
+  Menunggu: "#553681",
+  Ditinjau: "#33659B",
+  Ditolak: "#C77680",
+  Diproses: "#7D6630",
+  Selesai: "#55B57A",
+};
+const reports = [
+  {
+    id: 1,
+    title: "Lampu Jalan Mati",
+    date: "21 Jul, 2025",
+    status: "Menunggu",
+    image: require("../assets/feedback.jpg"),
+  },
+  {
+    id: 2,
+    title: "Sampah Menumpuk",
+    date: "20 Jul, 2025",
+    status: "Ditinjau",
+    image: require("../assets/feedback.jpg"),
+  },
+  {
+    id: 3,
+    title: "Kebocoran Pipa",
+    date: "19 Jul, 2025",
+    status: "Diproses",
+    image: require("../assets/feedback.jpg"),
+  },
+  {
+    id: 4,
+    title: "Jalan Berlubang",
+    date: "17 Jul, 2025",
+    status: "Ditolak",
+    image: require("../assets/feedback.jpg"),
+  },
+  {
+    id: 5,
+    title: "Pohon Tumbang",
+    date: "15 Sep, 2025",
+    status: "Selesai",
+    image: require("../assets/feedback.jpg"),
+  },
+];
+
+const ReportCard = ({ report }) => {
+  return (
+    <View className="mt-4 rounded-xl py-2 bg-white flex border-gray-500 border-[0.25px] h-40">
+      <View className="px-7">
+        <Text className="font-poppins text-sm text-gray-500 mb-2">
+          {report.date}
+        </Text>
+      </View>
+      <View className="flex-row px-4">
+        <View className="w-[30%] justify-start items-center">
+          <Image
+            source={report.image}
+            className="rounded-xl"
+            style={{ width: 85, height: 85 }}
+          />
+        </View>
+        <View className="w-[70%] flex-col justify-start px-2">
+          <Text className="font-poppins-semibold text-lg">{report.title}</Text>
+          <View
+            className="w-fit px-4 py-1 rounded-3xl mt-2 self-start"
+            style={{
+              backgroundColor: statusColors[report.status],
+            }}
+          >
+            <Text
+              className="font-poppins-semibold text-sm"
+              style={{
+                color: fontColors[report.status],
+              }}
+            >
+              {report.status}
+            </Text>
+          </View>
+        </View>
+      </View>
+    </View>
+  );
+};
+
 const history = () => {
   const [form, setForm] = useState({
     name: "",
@@ -31,6 +125,9 @@ const history = () => {
     console.log(form);
   };
 
+
+
+  
   return (
     <ImageBackground
       source={require("../assets/Background.png")}
@@ -53,156 +150,20 @@ const history = () => {
         {/* Judul dan Deskripsi */}
         <Text className="text-2xl font-poppins-bold mb-1">Laporan Anda</Text>
 
-        <View className="mt-4 h-[135px] rounded-xl py-2 bg-white flex border-gray-500 border-[0.25px]">
-          <View className="w-[30%] h-[25%] flex justify-center items-center gap-1">
-            <Text className="font-poppins text-sm">31 May, 2018</Text>
-          </View>
+         {/* Render laporan berdasarkan kategori status */}
+        {statuses.map((status) => {
+          const filtered = reports.filter((r) => r.status === status);
+          if (filtered.length === 0) return null;
 
-          <View className="flex w-[100%] h-[75%] flex-row">
-            <View className="w-[30%]  justify-start items-center">
-              <Image
-                source={require("../assets/feedback.jpg")}
-                className="h-20 w-20 rounded-xl"
-                style={{ width: 85, height: 85 }}
-              />
+          return (
+            <View key={status} className="">
+              {/* <Text className="text-xl font-poppins-semibold mb-2">{status}</Text> */}
+              {filtered.map((report) => (
+                <ReportCard key={report.id} report={report} />
+              ))}
             </View>
-            <View className="w-[70%] flex flex-col justify-start">
-              <Text className="font-poppins-semibold text-2xl">Judul</Text>
-
-              <View className="w-28 flex justify-center items-center px-4 py-2 bg-yellow-200 rounded-3xl mt-2">
-                <Text className="text-yellow-700 font-poppins-semibold">
-                  Proses
-                </Text>
-              </View>
-            </View>
-          </View>
-        </View>
-
-        <View className="mt-4 h-[135px] rounded-xl py-2 bg-white flex border-gray-500 border-[0.25px]">
-          <View className="w-[30%] h-[25%] flex justify-center items-center gap-1">
-            <Text className="font-poppins text-sm">31 May, 2018</Text>
-          </View>
-
-          <View className="flex w-[100%] h-[75%] flex-row">
-            <View className="w-[30%]  justify-start items-center">
-              <Image
-                source={require("../assets/feedback.jpg")}
-                className="h-20 w-20 rounded-xl"
-                style={{ width: 85, height: 85 }}
-              />
-            </View>
-            <View className="w-[70%] flex flex-col justify-start">
-              <Text className="font-poppins-semibold text-2xl">Judul</Text>
-
-              <View className="w-28 flex justify-center items-center px-4 py-2 bg-red-200 rounded-3xl mt-2">
-                <Text className="text-red-700 font-poppins-semibold">
-                  Cancel
-                </Text>
-              </View>
-            </View>
-          </View>
-        </View>
-
-
-        <View className="mt-4 h-[135px] rounded-xl py-2 bg-white flex border-gray-500 border-[0.25px]">
-          <View className="w-[30%] h-[25%] flex justify-center items-center gap-1">
-            <Text className="font-poppins text-sm">31 May, 2018</Text>
-          </View>
-
-          <View className="flex w-[100%] h-[75%] flex-row">
-            <View className="w-[30%]  justify-start items-center">
-              <Image
-                source={require("../assets/feedback.jpg")}
-                className="h-20 w-20 rounded-xl"
-                style={{ width: 85, height: 85 }}
-              />
-            </View>
-            <View className="w-[70%] flex flex-col justify-start">
-              <Text className="font-poppins-semibold text-2xl">Judul</Text>
-
-              <View className="w-28 flex justify-center items-center px-4 py-2 bg-green-200 rounded-3xl mt-2">
-                <Text className="text-green-700 font-poppins-semibold">
-                  Selesai
-                </Text>
-              </View>
-            </View>
-          </View>
-        </View>
-
-        <View className="mt-4 h-[135px] rounded-xl py-2 bg-white flex border-gray-500 border-[0.25px]">
-          <View className="w-[30%] h-[25%] flex justify-center items-center gap-1">
-            <Text className="font-poppins text-sm">31 May, 2018</Text>
-          </View>
-
-          <View className="flex w-[100%] h-[75%] flex-row">
-            <View className="w-[30%]  justify-start items-center">
-              <Image
-                source={require("../assets/feedback.jpg")}
-                className="h-20 w-20 rounded-xl"
-                style={{ width: 85, height: 85 }}
-              />
-            </View>
-            <View className="w-[70%] flex flex-col justify-start">
-              <Text className="font-poppins-semibold text-2xl">Judul</Text>
-
-              <View className="w-28 flex justify-center items-center px-4 py-2 bg-green-200 rounded-3xl mt-2">
-                <Text className="text-green-700 font-poppins-semibold">
-                  Selesai
-                </Text>
-              </View>
-            </View>
-          </View>
-        </View>
-
-        <View className="mt-4 h-[135px] rounded-xl py-2 bg-white flex border-gray-500 border-[0.25px]">
-          <View className="w-[30%] h-[25%] flex justify-center items-center gap-1">
-            <Text className="font-poppins text-sm">31 May, 2018</Text>
-          </View>
-
-          <View className="flex w-[100%] h-[75%] flex-row">
-            <View className="w-[30%]  justify-start items-center">
-              <Image
-                source={require("../assets/feedback.jpg")}
-                className="h-20 w-20 rounded-xl"
-                style={{ width: 85, height: 85 }}
-              />
-            </View>
-            <View className="w-[70%] flex flex-col justify-start">
-              <Text className="font-poppins-semibold text-2xl">Judul</Text>
-
-              <View className="w-28 flex justify-center items-center px-4 py-2 bg-green-200 rounded-3xl mt-2">
-                <Text className="text-green-700 font-poppins-semibold">
-                  Selesai
-                </Text>
-              </View>
-            </View>
-          </View>
-        </View>
-
-        <View className="mt-4 h-[135px] rounded-xl py-2 bg-white flex border-gray-500 border-[0.25px]">
-          <View className="w-[30%] h-[25%] flex justify-center items-center gap-1">
-            <Text className="font-poppins text-sm">31 May, 2018</Text>
-          </View>
-
-          <View className="flex w-[100%] h-[75%] flex-row">
-            <View className="w-[30%]  justify-start items-center">
-              <Image
-                source={require("../assets/feedback.jpg")}
-                className="h-20 w-20 rounded-xl"
-                style={{ width: 85, height: 85 }}
-              />
-            </View>
-            <View className="w-[70%] flex flex-col justify-start">
-              <Text className="font-poppins-semibold text-2xl">Judul</Text>
-
-              <View className="w-28 flex justify-center items-center px-4 py-2 bg-green-200 rounded-3xl mt-2">
-                <Text className="text-green-700 font-poppins-semibold">
-                  Selesai
-                </Text>
-              </View>
-            </View>
-          </View>
-        </View>
+          );
+        })}
 
         <View className="w-full h-[200px]"></View>
       </ScrollView>
