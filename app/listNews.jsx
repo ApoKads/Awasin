@@ -80,7 +80,7 @@ const DiscoverNews = () => {
             <View className="p-6 pt-8">
                 {filteredNews.map((item) => (
                     <Link key={item.id} href="/detailNews" asChild>
-                        <TouchableOpacity className="flex-row items-center mb-4">
+                        <TouchableOpacity className="flex-row  mb-4 border-b border-b-gray-100 pb-4">
                             <Image
                                 source={imageMap[item.image]}
                                 className="w-16 h-16 rounded-lg mr-4"

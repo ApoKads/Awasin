@@ -71,7 +71,7 @@ const SignInScreen = () => {
 
                         <Image
                             source={require('../../assets/logo-awasin-dark.png')}
-                            className="w-64 h-64 self-center"
+                            className="h-40 self-center mt-3 mb-4"
                             resizeMode="contain"
                         />
 
