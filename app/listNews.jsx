@@ -34,21 +34,6 @@ const DiscoverNews = () => {
             <View style={{ paddingTop: insets.top + 10 }} className="px-6 z-10">
                 {/* Header Row */}
                 <View className="flex-row items-center mb-3">
-                    <TouchableOpacity
-                        onPress={() => router.back()}
-                        style={{
-                            position: 'absolute',
-                            top: insets.top + 10,
-                            left: 16,
-                            zIndex: 20,
-                            padding: 8,
-                        }}
-                    >
-                        <Image
-                            source={require('../assets/icons/vectorart-back.png')}
-                            style={{ width: 24, height: 24, tintColor: 'white' }}
-                        />
-                    </TouchableOpacity>
                     <View>
                         <Text className="text-3xl font-poppins-extrabold text-white">Discover</Text>
                         <Text className="text-sm text-[#d0d0d0] font-poppins-light">News from Bogor</Text>
