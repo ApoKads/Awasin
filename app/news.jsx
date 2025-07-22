@@ -5,6 +5,8 @@ import BottomNavbar from './components/BottomNavbar';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import jsonData from '../assets/data/newsData.json';
+import { LinearGradient } from 'expo-linear-gradient';
+
 
 const { width: windowWidth } = Dimensions.get('window');
 
@@ -54,14 +56,18 @@ const News = () => {
                             />
 
                             {/* Overlay bawah dengan kategori dan judul */}
-                            <View
+                            <LinearGradient
+                                colors={['transparent', 'rgba(0,0,0,0.7)']}
+                                start={{ x: 0, y: 0.4 }}
+                                end={{ x: 0, y: 1 }}
                                 style={{
                                     position: 'absolute',
                                     bottom: 0,
                                     left: 0,
                                     right: 0,
-                                    padding: 12,
-                                    backgroundColor: 'rgba(0,0,0,0.4)',
+                                    height: '100%',
+                                    padding: 16,
+                                    justifyContent: 'flex-end',
                                 }}
                             >
                                 <View
@@ -90,7 +96,7 @@ const News = () => {
                                 >
                                     {item.title}
                                 </Text>
-                            </View>
+                            </LinearGradient>
                         </View>
                     ))}
                 </ScrollView>
