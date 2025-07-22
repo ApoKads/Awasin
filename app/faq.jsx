@@ -45,7 +45,7 @@ export default function FAQScreen() {
     >
       <ScrollView className="bg-white/70 px-4 pt-12 pb-10">
         {/* Tombol Back */}
-        <TouchableOpacity className="-ml-2 mt-5 mb-5" onPress={() => router.back()}>
+        <TouchableOpacity className="ml-2 mt-5 mb-5" onPress={() => router.back()}>
           <Image
             source={require("../assets/icons/vectorart-backblue.png")}
             style={{ width: 30, height: 30 }}
