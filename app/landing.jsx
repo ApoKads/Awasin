@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import {
     SafeAreaView,
     View,
@@ -6,6 +6,8 @@ import {
     Image,
     TouchableOpacity,
     StatusBar,
+    Animated,
+    Easing,
 } from 'react-native';
 import { useRouter } from 'expo-router';
 
@@ -15,70 +17,85 @@ export const options = {
 };
 
 const WelcomeScreen = () => {
-    // Dengan router, Anda bisa membuat tombolnya berfungsi
     const router = useRouter();
 
+    const progress = useRef(new Animated.Value(0)).current;
+
+    useEffect(() => {
+        Animated.loop(
+            Animated.timing(progress, {
+                toValue: 1,
+                duration: 4000,
+                easing: Easing.linear, 
+                useNativeDriver: true,
+            })
+        ).start();
+    }, []);
+
+    const float1 = progress.interpolate({
+        inputRange: [0, 0.5, 1],
+        outputRange: [0, -10, 0], 
+    });
+    const float2 = progress.interpolate({
+        inputRange: [0, 0.5, 1],
+        outputRange: [-5, 5, -5], 
+    });
+    const float3 = progress.interpolate({
+        inputRange: [0, 0.5, 1],
+        outputRange: [5, -5, 5], 
+    });
+
     return (
-        // Menggunakan SafeAreaView untuk menghindari notch dan status bar
         <SafeAreaView className="flex-1 bg-[#1E3A5F]">
-            {/* Mengatur warna ikon di status bar menjadi terang */}
             <StatusBar barStyle="light-content" />
-
-            {/* Container utama untuk menengahkan semua konten */}
             <View className="flex-1 justify-center items-center p-6 pt-32">
-
-                {/* Bagian Logo */}
                 <Image
-                    source={require('../assets/logo-awasin.png')} // pastikan path ini benar
+                    source={require('../assets/logo-awasin.png')}
                     className="absolute top-4 w-40 h-40"
                     resizeMode="contain"
-
                 />
-
-                {/* Bagian Ilustrasi dengan gambar-gambar yang mengorbit */}
                 <View className="relative mb-8 items-center justify-center">
-                    {/* Lingkaran utama */}
                     <View className="w-64 h-64 rounded-full overflow-hidden bg-sky-200">
                         <Image
-                            source={require('../assets/monument.png')} // pastikan path ini benar
+                            source={require('../assets/monument.png')}
                             className="w-full h-full"
                             resizeMode="cover"
                         />
                     </View>
 
-                    {/* Gambar-gambar kecil yang diposisikan secara absolut */}
-                    <Image
-                        source={require('../assets/gedung.png')} // pastikan path ini benar
-                        className="w-14 h-14 rounded-full absolute top-8 left-0 border-2 border-white"
+                    {/* Gambar-gambar kecil dengan floating */}
+                    <Animated.Image
+                        source={require('../assets/gedung.png')}
+                        className="w-12 h-12 rounded-full absolute top-20 left-[-20] border-2 border-white"
                         resizeMode="cover"
+                        style={{ transform: [{ translateY: float1 }] }}
                     />
-                    <Image
-                        source={require('../assets/gedung.png')} // pastikan path ini benar
-                        className="w-14 h-14 rounded-full absolute top-4 right-[-10px] border-2 border-white"
+                    <Animated.Image
+                        source={require('../assets/gedung.png')}
+                        className="w-12 h-12 rounded-full absolute top-4 right-0 border-2 border-white"
                         resizeMode="cover"
+                        style={{ transform: [{ translateY: float2 }] }}
                     />
-                    <Image
-                        source={require('../assets/gedung.png')} // pastikan path ini benar
-                        className="w-14 h-14 rounded-full absolute bottom-8 right-6 border-2 border-white"
+                    <Animated.Image
+                        source={require('../assets/gedung.png')}
+                        className="w-12 h-12 rounded-full absolute bottom-0 right-8 border-2 border-white"
                         resizeMode="cover"
+                        style={{ transform: [{ translateY: float3 }] }}
                     />
                 </View>
 
-                {/* Bagian Teks */}
-                <Text className="text-white text-3xl font-poppins-bold text-center">
+                <Text className="text-white text-2xl font-poppins-bold text-center">
                     Bersama Awasin, Kita Beresin
                 </Text>
                 <Text className="text-slate-300 font-poppins text-base text-center mt-4 px-4">
-                    Laporkan fasilitas yang rusak, untuk kota yang lebih baik. Setiap laporan mu membuat perbedaan!
+                    Laporkan fasilitas yang rusak, untuk kota yang lebih baik. Setiap laporanmu membuat perbedaan!
                 </Text>
 
-                {/* Bagian Tombol */}
-                <View className="w-full mt-10">
+                <View className="w-full mt-20">
                     <TouchableOpacity
                         className="bg-[#6B9EBD] w-full py-4 rounded-xl shadow-lg"
                         activeOpacity={0.8}
-                        // ↓↓↓ Ini akan mengarahkan ke halaman sign-in (misalnya, app/sign-in.js) ↓↓↓
-                        onPress={() => router.push('/login')} 
+                        onPress={() => router.push('/login')}
                     >
                         <Text className="text-white text-center font-poppins-bold text-lg">
                             SIGN IN
@@ -88,8 +105,7 @@ const WelcomeScreen = () => {
                     <TouchableOpacity
                         className="border border-slate-300 w-full py-4 rounded-xl mt-4"
                         activeOpacity={0.8}
-                        // ↓↓↓ Ini akan mengarahkan ke halaman register (misalnya, app/register.js) ↓↓↓
-                        onPress={() => router.push('/register')} 
+                        onPress={() => router.push('/register')}
                     >
                         <Text className="text-white text-center font-poppins-bold text-lg">
                             REGISTER
