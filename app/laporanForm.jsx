@@ -29,6 +29,7 @@ const LaporanForm = () => {
     longitude: null,
   });
 
+  const [error, setError] = useState(""); // hanya 1 error aktif
   const [categoryDropdownVisible, setCategoryDropdownVisible] = useState(false);
 
   const categories = ["Jalanan", "Gedung", "Taman", "Lainnya"];
@@ -69,14 +70,32 @@ const LaporanForm = () => {
   };
 
   const validateForm = () => {
-    if (!form.title || !form.desc || form.images.length === 0 || !form.type) {
-      Alert.alert("Error", "Semua field harus diisi");
+    if (!form.title) {
+      setError("Judul harus diisi.");
+      return false;
+    }
+    if (!form.type) {
+      setError("Jenis fasilitas harus dipilih.");
+      return false;
+    }
+    if (!form.desc) {
+      setError("Deskripsi harus diisi.");
+      return false;
+    }
+    if (form.images.length === 0) {
+      setError("Minimal 1 gambar harus diupload.");
+      return false;
+    }
+    if (!form.type) {
+      setError("Jenis fasilitas harus dipilih.");
       return false;
     }
     if (form.type === "lainnya" && !form.customType) {
-      Alert.alert("Error", "Semua field harus diisi");
+      setError("Jenis lainnya harus diisi.");
       return false;
     }
+
+    setError(""); 
     return true;
   };
 
@@ -88,7 +107,10 @@ const LaporanForm = () => {
   };
 
   return (
-    <SafeAreaView className="flex-1 bg-white" style={{ paddingTop: insets.top }}>
+    <SafeAreaView
+      className="flex-1 bg-white"
+      style={{ paddingTop: insets.top }}
+    >
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View className="flex-1 items-center px-6 pt-4">
           <TouchableOpacity
@@ -106,25 +128,39 @@ const LaporanForm = () => {
           </Text>
 
           <View className="w-full flex-1">
+            {/* Title */}
             <TextInput
-              className="border border-gray-400 rounded-md px-4 py-2 w-full h-[55] text-[1rem] mb-5 font-poppins"
+              className={`border rounded-md px-4 py-2 w-full h-[55] text-[1rem] mb-5 font-poppins ${
+                error === "Judul harus diisi."
+                  ? "border-red-500"
+                  : "border-gray-400"
+              }`}
               placeholder="Title"
               placeholderTextColor="#A0AEC0"
               value={form.title}
-              onChangeText={(text) =>
-                setForm((prevForm) => ({ ...prevForm, title: text }))
-              }
+              onChangeText={(text) => {
+                setForm((prevForm) => ({ ...prevForm, title: text }));
+                if (error) setError(""); // hapus error saat user edit
+              }}
             />
 
-            {/* Custom Dropdown for Jenis */}
+            {/* Dropdown */}
             <TouchableOpacity
-              className="border border-gray-400 rounded-lg px-4 py-4 mb-5 bg-white"
+              className={`border rounded-lg px-4 py-4 mb-5 bg-white ${
+                error === "Jenis fasilitas harus dipilih."
+                  ? "border-red-500"
+                  : "border-gray-400"
+              }`}
               onPress={() => setCategoryDropdownVisible((prev) => !prev)}
             >
-              <Text className={`text-base font-poppins ${
-    form.type ? 'text-black' : 'text-[#A0AEC0]'
-  }`}>
-                {form.type ? form.type.charAt(0).toUpperCase() + form.type.slice(1) : "Pilih Jenis"}
+              <Text
+                className={`text-base font-poppins ${
+                  form.type ? "text-black" : "text-[#A0AEC0]"
+                }`}
+              >
+                {form.type
+                  ? form.type.charAt(0).toUpperCase() + form.type.slice(1)
+                  : "Pilih Jenis"}
               </Text>
             </TouchableOpacity>
 
@@ -140,6 +176,7 @@ const LaporanForm = () => {
                         customType: "",
                       }));
                       setCategoryDropdownVisible(false);
+                      if (error) setError("");
                     }}
                     className="px-4 py-3 border-b border-gray-200"
                   >
@@ -151,29 +188,43 @@ const LaporanForm = () => {
               </View>
             )}
 
+            {/* Custom Type */}
             {form.type === "lainnya" && (
               <TextInput
-                className="border border-gray-400 rounded-md px-4 py-2 w-full h-[55] text-[1rem] mb-5 font-poppins"
+                className={`border rounded-md px-4 py-2 w-full h-[55] text-[1rem] mb-5 font-poppins ${
+                  error === "Jenis lainnya harus diisi."
+                    ? "border-red-500"
+                    : "border-gray-400"
+                }`}
                 placeholder="Tulis jenis fasilitas lainnya"
                 placeholderTextColor="#A0AEC0"
                 value={form.customType}
-                onChangeText={(text) =>
-                  setForm((prevForm) => ({ ...prevForm, customType: text }))
-                }
+                onChangeText={(text) => {
+                  setForm((prevForm) => ({ ...prevForm, customType: text }));
+                  if (error) setError("");
+                }}
               />
             )}
 
+            {/* Description */}
             <TextInput
-              className="border border-gray-400 rounded-md px-4 py-2 w-full h-[100] mb-5 font-poppins"
+              className={`border rounded-md p-4 w-full h-[100] mb-5 font-poppins ${
+                error === "Deskripsi harus diisi."
+                  ? "border-red-500"
+                  : "border-gray-400"
+              }`}
               placeholder="Description"
               placeholderTextColor="#A0AEC0"
               multiline
+              textAlignVertical="top"
               value={form.desc}
-              onChangeText={(text) =>
-                setForm((prevForm) => ({ ...prevForm, desc: text }))
-              }
+              onChangeText={(text) => {
+                setForm((prevForm) => ({ ...prevForm, desc: text }));
+                if (error) setError("");
+              }}
             />
 
+            {/* Location */}
             <TouchableOpacity
               className="flex flex-row justify-between items-center w-full mb-5"
               onPress={handleLocation}
@@ -201,10 +252,17 @@ const LaporanForm = () => {
               </Text>
             )}
 
+            {/* Upload Image */}
             <UploadImage images={form.images} setForm={setForm} />
 
+            {/* Single Error Message */}
+            {error ? (
+              <Text className="text-red-500 text-center mb-4">{error}</Text>
+            ) : null}
+
+            {/* Submit Button */}
             <TouchableOpacity
-              className="rounded-lg bg-[#102E4A] py-3 w-full mt-6"
+              className="rounded-lg bg-[#102E4A] py-3 w-full mt-2"
               onPress={handleSubmit}
             >
               <Text className="text-white text-center font-poppins-bold">
