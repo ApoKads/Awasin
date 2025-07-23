@@ -20,6 +20,9 @@ export default function FormPostNews() {
     const [selectedCategory, setSelectedCategory] = useState('');
     const [imageUri, setImageUri] = useState(null);
 
+    // Tambahkan state errors
+    const [errors, setErrors] = useState({});
+
     const categories = ['Politik', 'Sosial', 'Ekonomi', 'Lingkungan'];
 
     const router = useRouter();
@@ -37,14 +40,25 @@ export default function FormPostNews() {
     };
 
     const handleSubmit = () => {
+        let newErrors = {};
+
+        if (!title) newErrors.title = true;
+        if (!selectedCategory) newErrors.category = true;
+        if (!description) newErrors.description = true;
+        if (!imageUri) newErrors.image = true;
+
+        setErrors(newErrors);
+
+        if (Object.keys(newErrors).length > 0) return;
+
         const postData = {
             title,
             description,
             category: selectedCategory,
             image: imageUri,
         };
+
         console.log('Submit data:', postData);
-        // Kirim data ke backend atau proses selanjutnya
     };
 
     return (
@@ -78,13 +92,26 @@ export default function FormPostNews() {
                     value={title}
                     onChangeText={setTitle}
                     placeholder="Enter title"
-                    className="border border-gray-300 rounded-md px-4 py-3 mb-4 text-base"
+                    className="border rounded-md px-4 py-3 mb-1 text-base"
+                    style={[
+                        { borderWidth: 1, borderRadius: 8, padding: 12, marginBottom: 4 },
+                        errors.title ? { borderColor: 'red' } : { borderColor: '#d1d5db' },
+                    ]}
                 />
 
                 {/* Dropdown Kategori */}
                 <TouchableOpacity
                     onPress={() => setCategoryDropdownVisible(!categoryDropdownVisible)}
-                    className="border border-gray-300 rounded-md px-4 py-3 mb-2 flex-row justify-between items-center"
+                    className="border rounded-md px-4 py-3 mb-1 flex-row justify-between items-center"
+                    style={[
+                        {
+                            borderWidth: 1,
+                            borderRadius: 8,
+                            padding: 12,
+                            marginBottom: 4,
+                        },
+                        errors.title ? { borderColor: 'red' } : { borderColor: '#d1d5db' }
+                    ]}
                 >
                     <Text className="text-base text-gray-700">
                         {selectedCategory || 'Enter Tags'}
@@ -116,12 +143,38 @@ export default function FormPostNews() {
                     placeholder="Enter Description"
                     multiline
                     numberOfLines={4}
-                    className="border border-gray-300 rounded-md px-4 py-3 mb-4 text-base text-gray-700"
-                    style={{ textAlignVertical: 'top' }}
+                    className="border rounded-md px-4 py-3 mb-1 text-base text-gray-700"
+                    style={[
+                        {
+                            textAlignVertical: 'top',
+                            borderWidth: 1,
+                            borderRadius: 8,
+                            padding: 12,
+                            marginBottom: 4,
+                        },
+                        errors.description ? { borderColor: 'red' } : { borderColor: '#d1d5db' }
+                    ]}
                 />
 
                 {/* Upload Gambar */}
                 <UploadImage imageUri={imageUri} />
+
+                {Object.keys(errors).length > 0 && (
+                    <Text
+                        style={{
+                            color: '#B91C1C',
+                            paddingVertical: 6,
+                            paddingHorizontal: 12,
+                            borderRadius: 8,
+                            textAlign: 'center',
+                            fontSize: 13,
+                            marginBottom: 12,
+                        }}
+                    >
+                        Harap lengkapi semua kolom
+                    </Text>
+                )}
+
 
                 {/* Tombol Submit */}
                 <TouchableOpacity

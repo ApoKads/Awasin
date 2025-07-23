@@ -10,7 +10,7 @@ import {
     StatusBar,
     KeyboardAvoidingView,
     Platform,
-    Alert, // Kita akan gunakan Alert untuk feedback
+    Alert,
 } from 'react-native';
 import { useRouter } from 'expo-router';
 
@@ -22,33 +22,48 @@ const SignInScreen = () => {
     const router = useRouter();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    // 1. State baru untuk menyimpan pesan error
     const [error, setError] = useState('');
 
     const primaryDark = '#102E4A'; 
 
-    // 2. Fungsi baru untuk menangani logika Sign In
+    // --- PERUBAHAN UTAMA ADA DI DALAM FUNGSI INI ---
     const handleSignIn = () => {
         // Reset error setiap kali tombol ditekan
         setError('');
 
-        // Validasi: Cek apakah field kosong
-        if (!username.trim() || !password.trim()) {
-            setError('Username dan password tidak boleh kosong.');
-            return; // Hentikan fungsi jika ada yang kosong
+        const trimmedUsername = username.trim();
+        const trimmedPassword = password.trim();
+
+        // 1. Validasi: Cek jika KEDUA field kosong
+        if (!trimmedUsername && !trimmedPassword) {
+            setError('Username dan Password harus diisi.');
+            return;
+        }
+        
+        // 2. Validasi: Cek jika HANYA username yang kosong
+        if (!trimmedUsername) {
+            setError('Username tidak boleh kosong.');
+            return;
         }
 
+        // 3. Validasi: Cek jika HANYA password yang kosong
+        if (!trimmedPassword) {
+            setError('Password tidak boleh kosong.');
+            return;
+        }
+
+        // Jika semua validasi lolos, lanjutkan ke logika redirect
+        
         // Role-based Redirect: Cek kredensial admin
-        if (username.toLowerCase() === 'admin' && password === 'admin') {
+        if (trimmedUsername.toLowerCase() === 'admin' && trimmedPassword === 'admin') {
             Alert.alert('Login Berhasil', 'Selamat datang, Admin!');
-            router.replace('/postPageAdmin'); // Gunakan replace agar tidak bisa kembali ke login
+            router.replace('/postPageAdmin');
             return;
         }
         
         // Redirect untuk user biasa
-        // Di sini Anda biasanya akan memanggil API untuk verifikasi user
-        Alert.alert('Login Berhasil', `Selamat datang, ${username}!`);
-        router.replace('/postPage'); // Gunakan replace agar tidak bisa kembali ke login
+        Alert.alert('Login Berhasil', `Selamat datang, ${trimmedUsername}!`);
+        router.replace('/postPage');
     };
 
     return (
@@ -65,7 +80,7 @@ const SignInScreen = () => {
                 >
                     <View className="w-full max-w-sm bg-white/90 rounded-2xl p-8 shadow-lg">
                         
-                        <Text className={`text-4xl font-poppins-bold text-center text-[${primaryDark}]`}>
+                        <Text className={`text-4xl font-bold text-center text-[${primaryDark}]`}>
                             Hi, Awasers!
                         </Text>
 
@@ -75,11 +90,12 @@ const SignInScreen = () => {
                             resizeMode="contain"
                         />
 
-                        <Text className={`text-center font-poppins-bold text-gray-600 mb-6 text-[${primaryDark}]`}>
+                        <Text className={`text-center font-bold text-gray-600 mb-6 text-[${primaryDark}]`}>
                             Please sign in to your account
                         </Text>
 
                         <View>
+                            {/* Styling border merah ini akan tetap berfungsi dengan benar */}
                             <TextInput
                                 className={`bg-white/80 rounded-xl px-4 py-3 text-base border ${error && !username.trim() ? 'border-red-500' : 'border-gray-300'}`}
                                 placeholder="Username"
@@ -98,33 +114,31 @@ const SignInScreen = () => {
                             />
                         </View>
                         
-                        {/* 3. Tampilkan pesan error jika ada */}
+                        {/* Tampilkan pesan error spesifik jika ada */}
                         {error ? (
                             <Text className="text-red-500 text-center mt-4">{error}</Text>
                         ) : null}
 
                         <TouchableOpacity className="self-end mt-2">
-                            <Text className={`text-sm font-poppins underline text-gray-500`}>
+                            <Text className={`text-sm underline text-gray-500`}>
                                 Forgot password?
                             </Text>
                         </TouchableOpacity>
 
-                        {/* 4. Hubungkan tombol Sign In ke fungsi handleSignIn */}
                         <TouchableOpacity
                             className={`bg-[${primaryDark}] w-full py-4 rounded-xl mt-6`}
                             activeOpacity={0.8}
                             onPress={handleSignIn} 
                         >
-                            <Text className="text-white font-poppins-medium text-center font-bold text-lg">
+                            <Text className="text-white text-center font-bold text-lg">
                                 SIGN IN
                             </Text>
                         </TouchableOpacity>
 
-                        {/* Link ke halaman Register */}
                         <View className="flex-row justify-center items-center mt-8">
-                            <Text className="font-poppins text-gray-600">Belum punya akun? </Text>
+                            <Text className="text-gray-600">Belum punya akun? </Text>
                             <TouchableOpacity onPress={() => router.push('/register')}>
-                                <Text className={`font-poppins-bold text-[${primaryDark}] underline`}>
+                                <Text className={`font-bold text-[${primaryDark}] underline`}>
                                     REGISTER
                                 </Text>
                             </TouchableOpacity>
