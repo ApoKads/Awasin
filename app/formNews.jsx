@@ -12,6 +12,7 @@ import * as ImagePicker from 'expo-image-picker';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import UploadImage from "./components/UploadImage";
 import { useRouter } from 'expo-router';
+import AlertCustom from './components/alertCustom';
 
 export default function FormPostNews() {
     const [title, setTitle] = useState('');
@@ -22,6 +23,7 @@ export default function FormPostNews() {
 
     // Tambahkan state errors
     const [errors, setErrors] = useState({});
+    const [showAlert, setShowAlert] = useState(false);
 
     const categories = ['Politik', 'Sosial', 'Ekonomi', 'Lingkungan'];
 
@@ -58,7 +60,7 @@ export default function FormPostNews() {
             image: imageUri,
         };
 
-        console.log('Submit data:', postData);
+        setShowAlert(true);
     };
 
     return (
@@ -78,6 +80,15 @@ export default function FormPostNews() {
             >
                 <Ionicons name="arrow-back" size={24} color="white" />
             </TouchableOpacity>
+
+            <AlertCustom
+                visible={showAlert}
+                onClose={() => setShowAlert(false)}
+                title="Siap Tuan Muda!"
+                message="Berita berhasil diterbitkan dan sudah bisa dibaca oleh pengguna lain. Terimakasih!"
+                buttonText="Mengerti"
+                redirectTo="/news"
+            />
 
             {/* Form Content */}
             <ScrollView

@@ -13,6 +13,7 @@ import {
     Alert,
 } from 'react-native';
 import { useRouter } from 'expo-router';
+import AlertCustom from '../components/alertCustom';
 
 export const options = {
     headerShown: false,
@@ -23,6 +24,7 @@ const SignInScreen = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const [showAlert, setShowAlert] = useState(false);
 
     const primaryDark = '#102E4A'; 
 
@@ -60,10 +62,7 @@ const SignInScreen = () => {
             router.replace('/postPageAdmin');
             return;
         }
-        
-        // Redirect untuk user biasa
-        Alert.alert('Login Berhasil', `Selamat datang, ${trimmedUsername}!`);
-        router.replace('/postPage');
+        setShowAlert(true);
     };
 
     return (
@@ -73,6 +72,15 @@ const SignInScreen = () => {
         >
             <SafeAreaView className="flex-1">
                 <StatusBar barStyle="light-content" />
+
+                <AlertCustom
+                    visible={showAlert}
+                    onClose={() => setShowAlert(false)}
+                    title="Login Berhasil!"
+                    message={`Selamat datang ${username.trim()}, Setiap laporan kerusakan dari Anda berarti menjadikan Bogor selangkah lebih baik.`}
+                    buttonText="Mengerti"
+                    redirectTo="/postPage"
+                />
 
                 <KeyboardAvoidingView
                     behavior={Platform.OS === 'ios' ? 'padding' : 'height'}

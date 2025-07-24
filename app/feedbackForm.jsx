@@ -15,10 +15,12 @@ import * as ImagePicker from "expo-image-picker";
 import UploadImage from "./components/UploadImage";
 import { router, useNavigation } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import AlertCustom from "./components/alertCustom";
 
 const FeedbackForm = () => {
   const insets = useSafeAreaInsets();
   const navigation = useNavigation();
+  const [showAlert, setShowAlert] = useState(false);
   const [form, setForm] = useState({
     title: "",
     desc: "",
@@ -36,14 +38,22 @@ const FeedbackForm = () => {
 
   const handleSubmit = () => {
     if (validateForm()) {
-      Alert.alert("Success", "Form submitted successfully!");
-      navigation.navigate("news");
+      setShowAlert(true);
     }
   };
 
   return (
     <SafeAreaView className="flex-1" style={{ paddingTop: insets.top }}>
       <View className="flex-1 items-center">
+        <AlertCustom
+          visible={showAlert}
+          onClose={() => setShowAlert(false)}
+          title="Siap Tuan Muda!"
+          message="Feedback berhasil dikirimkan, Terima kasih sudah peduli dengan fasilitas umum!"
+          buttonText="Mengerti"
+          redirectTo="/postPage"
+        />
+
         <TouchableOpacity
           onPress={() => router.back()}
           className="absolute left-4 top-4 p-2 rounded-full z-50"

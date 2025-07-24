@@ -13,6 +13,7 @@ import {
 import UploadImage from "./components/UploadImage";
 import { useLocalSearchParams, router } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import AlertCustom from "./components/alertCustom";
 
 const LaporanForm = () => {
   const insets = useSafeAreaInsets();
@@ -29,6 +30,7 @@ const LaporanForm = () => {
     longitude: null,
   });
 
+  const [showAlert, setShowAlert] = useState(false);
   const [error, setError] = useState(""); // hanya 1 error aktif
   const [categoryDropdownVisible, setCategoryDropdownVisible] = useState(false);
 
@@ -101,8 +103,7 @@ const LaporanForm = () => {
 
   const handleSubmit = () => {
     if (validateForm()) {
-      Alert.alert("Success", "Form submitted successfully!");
-      router.replace("/news");
+      setShowAlert(true);
     }
   };
 
@@ -114,7 +115,7 @@ const LaporanForm = () => {
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View className="flex-1 items-center px-6 pt-4">
           <TouchableOpacity
-            onPress={() => router.back()}
+            onPress={() => router.replace('/postPage')}
             className="absolute left-4 top-4 p-2 rounded-full z-50"
           >
             <Image
@@ -122,6 +123,15 @@ const LaporanForm = () => {
               className="w-[30] h-[30]"
             />
           </TouchableOpacity>
+
+          <AlertCustom
+            visible={showAlert}
+            onClose={() => setShowAlert(false)}
+            title="Siap Tuan Muda!"
+            message="Kerusakan berhasil dilaporkan, Tim kami akan segera meninjau laporan Anda. Terimakasih!"
+            buttonText="Mengerti"
+            redirectTo="/postPage"
+          />
 
           <Text className="text-3xl text-gray-800 font-bold mb-10 mt-12 font-poppins-bold">
             Buat Laporan
