@@ -7,8 +7,7 @@ import {
   Dimensions,
   StyleSheet,
   FlatList,
-} from "react-native"; // Tambahkan Dimensions
-
+} from "react-native";
 import MapView, { Marker } from "react-native-maps";
 import * as Location from "expo-location";
 import { useState } from "react";
@@ -19,45 +18,42 @@ import { useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-const { width } = Dimensions.get("window"); // Tetap gunakan ini jika perlu untuk layout responsif
+const { width } = Dimensions.get("window");
 const carouselImages = [
   require("../assets/berita1.png"),
   require("../assets/berita2.png"),
   require("../assets/berita3.png"),
 ];
 
+// --- NEW: statuses and color maps ---
+const statuses = ['Menunggu','Ditinjau','Ditolak','Diproses','Selesai'];
+const statusColors = {
+  Menunggu: '#EAC1EA',
+  Ditinjau: '#AED0FF',
+  Ditolak: '#FAD8DD',
+  Diproses: '#FFF085',
+  Selesai: '#CDF0D7',
+};
+
+const fontColors = {
+  Menunggu: '#553681',
+  Ditinjau: '#33659B',
+  Ditolak: '#C77680',
+  Diproses: '#7D6630',
+  Selesai: '#55B57A',
+};
+// -----------------------------------------
+
 const PostDetail = () => {
+  // upvote state
+const [isUpvoted, setIsUpvoted] = useState(false);
+// contoh nilai awal, 11400 = 11.4K
+const [upvotes, setUpvotes] = useState(11400);
   const navigation = useNavigation();
   const insets = useSafeAreaInsets();
   const [activeIndex, setActiveIndex] = React.useState(0);
   const [status, setStatus] = useState("Diproses");
 
-  // Fungsi untuk mengubah warna berdasarkan status
-  const getStatusStyles = (status) => {
-    switch (status) {
-      case "Belum":
-        return "bg-red-200 text-red-800";
-      case "Diproses":
-        return "bg-yellow-200 text-yellow-800";
-      case "Beres":
-        return "bg-green-200 text-green-800";
-      default:
-        return "bg-yellow-200 text-yellow-800";
-    }
-  };
-
-  const getStatusTextColor = (status) => {
-    switch (status) {
-      case "Belum":
-        return "#b91c1c";
-      case "Diproses":
-        return "#92400e";
-      case "Beres":
-        return "#166534";
-      default:
-        return "#92400e";
-    }
-  };
   return (
     <ScrollView className="flex-1 p-6 pt-10 font-poppins">
       <TouchableOpacity className="-ml-2" onPress={() => navigation.goBack()}>
@@ -68,23 +64,34 @@ const PostDetail = () => {
         <Text className="py-2 px-4 bg-[#102E4A] text-white rounded-xl font-light">
           Category
         </Text>
+
+        {/* Dynamic color wrapper menggunakan inline style */}
         <View
-          className={`rounded-xl overflow-hidden ${getStatusStyles(status)}`}
+          style={{
+            backgroundColor: statusColors[status] || statusColors['Diproses'],
+            borderRadius: 16,
+            overflow: "hidden",
+            paddingLeft: 8,
+            paddingRight: 8,
+            height: 40, // kunci tinggi wrapper
+            justifyContent: "center",
+          }}
         >
           <Picker
             selectedValue={status}
             onValueChange={(itemValue) => setStatus(itemValue)}
             style={{
-              height:50,
+              height: 55,        
               width: 150,
-              color: getStatusTextColor(status),
-              margin: -8,
+              color: fontColors[status] || fontColors['Diproses'],
+              paddingLeft: 6,    
+              
             }}
-            dropdownIconColor={getStatusTextColor(status)}
+            dropdownIconColor={fontColors[status] || fontColors['Diproses']}
           >
-            <Picker.Item label="Belum" value="Belum" />
-            <Picker.Item label="Diproses" value="Diproses" />
-            <Picker.Item label="Beres" value="Beres" />
+            {statuses.map((s) => (
+              <Picker.Item key={s} label={s} value={s} />
+            ))}
           </Picker>
         </View>
       </View>
@@ -140,31 +147,53 @@ const PostDetail = () => {
       </View>
 
       <View className="flex flex-row mt-3 gap-4">
-        <View className=" flex flex-row justify-center items-center gap-1">
-          <View className="flex w-8 h-8 justify-center items-center bg-[#102E4A] rounded-full">
-                      <Image
-                        source={require("../assets/icons/vectorart-upvote.png")}
-                        style={{ width: 24, height: 24 }}
-                        className="w-6 h-6"
-                        resizeMode="contain"
-                      />
-                    </View>
-          <Text className="text-[#102E4A] font-poppins mt-1">
-            11,4K upvotes
-          </Text>
-        </View>
-        <View className=" flex flex-row justify-center items-center gap-1">
-          <View className="flex w-8 h-8 justify-center items-center bg-[#102E4A] rounded-full">
-                      <Image
-                        source={require("../assets/icons/vectorart-eyes.png")}
-                        style={{ width: 24, height: 24 }}
-                        className="w-6 h-6"
-                        resizeMode="contain"
-                      />
-                    </View>
-          <Text className="text-[#102E4A] font-poppins mt-1">10,1K seen</Text>
-        </View>
-      </View>
+  <View className="flex flex-row justify-center items-end">
+    <TouchableOpacity
+      onPress={() => {
+        setIsUpvoted(prev => {
+          const next = !prev;
+          setUpvotes(count => (next ? count + 100 : count - 100));
+          return next;
+        });
+      }}
+    >
+      <Image
+        source={
+          isUpvoted
+            ? require("../assets/icons/Upvote-birubanget.png")
+            : require("../assets/icons/Upvote-WhitebLue.png")
+        }
+        style={{ 
+          width: 30, 
+          height: 25,
+          opacity: 1 // Pastikan opacity selalu 1
+        }}
+        resizeMode="contain"
+        fadeDuration={0} // Ini yang paling penting - nonaktifkan fade animation
+      />
+    </TouchableOpacity>
+
+    <Text
+      className="text-[#102E4A] font-poppins"
+    >
+      {/* format 11,4K jika mau, atau tampilkan number */}
+      {upvotes >= 1000 ? `${(upvotes / 1000).toFixed(1).replace('.', ',')}K upvotes` : `${upvotes} upvotes`}
+    </Text>
+  </View>
+
+  <View className="flex flex-row justify-center items-center gap-1">
+    <View className="flex w-8 h-8 justify-center items-center">
+      <Image
+        source={require("../assets/icons/eye-WhiteBlue.png")}
+        style={{ width: 35, height: 35 }}
+        className="w-6 h-6"
+        resizeMode="contain"
+      />
+    </View>
+    <Text className="text-[#102E4A] font-poppins mt-1 ml-2">10,1K seen</Text>
+  </View>
+</View>
+
 
       <View className="mt-8 gap-4 mb-12">
         <Text className="text-3xl text-[#102E4A] tracking-wide font-poppins-bold">
@@ -215,7 +244,7 @@ const PostDetail = () => {
             Feedback
           </Text>
           <TouchableOpacity className="bg-[#102E4A] px-4 py-1.5 flex justify-center items-center rounded-lg" onPress={() => navigation.navigate('feedbackForm')}>
-                          <Text className="font-poppins-semibold text-white ">Tanggapi +</Text>
+            <Text className="font-poppins-semibold text-white ">Tanggapi +</Text>
           </TouchableOpacity>
         </View>
 
@@ -224,7 +253,6 @@ const PostDetail = () => {
             source={require("../assets/feedback.jpg")}
             style={styles.image}
             className="w-full h-full object-cover border-[1px] border-black"
-            // resizeMode="contain"
           />
         </View>
         <View className="mb-2">
@@ -254,12 +282,12 @@ const PostDetail = () => {
 
 const styles = StyleSheet.create({
   image: {
-    flex: 1, // Gambar akan mengisi seluruh ruang yang tersedia di dalam parent View
-    width: "100%", // Juga bisa ditambahkan untuk memastikan lebar 100%
-    height: "100%", // Dan tinggi 100%
+    flex: 1,
+    width: "100%",
+    height: "100%",
   },
   carouselItem: {
-    width: width - 56, // agar ada padding sisi kiri-kanan (p-6)
+    width: width - 56,
     height: 240,
     marginRight: 20,
     borderRadius: 10,
@@ -283,7 +311,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     backgroundColor: "#FFFFFF",
     borderWidth: 1,
-    borderColor: "#FFFFFF", // bikin semua dot kelihatan rapi
+    borderColor: "#FFFFFF",
   },
 
   dotActive: {
@@ -292,7 +320,7 @@ const styles = StyleSheet.create({
     height: 12,
     borderRadius: 6,
     borderWidth: 2,
-    borderColor: "#FFFFFF", // warna border gelap biar kontras
+    borderColor: "#FFFFFF",
   },
 
   container: {

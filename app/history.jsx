@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import { router } from "expo-router";
 import {
   View,
   Text,
@@ -67,9 +67,26 @@ const reports = [
   },
 ];
 
+const handleEdit = (report) => {
+  router.push({
+    pathname: "/laporanFormEdit",
+    params: {
+      id: report.id,
+      title: report.title,
+      desc: "test",       // kalau nanti ada di datanya
+      type: report.type || "Jalanan",       // jenis fasilitas
+      location: report.location || "Babakan Madang",
+      latitude: report.latitude || -6.200000,
+      longitude: report.longitude || 106.816666,
+      images: JSON.stringify(report.images || ['../assets/berita1.png','jalanRusak.png']),
+    },
+  });
+};
+
+
 const ReportCard = ({ report }) => {
   return (
-    <View className="mt-4 rounded-xl py-2 bg-white flex border-gray-500 border-[0.25px] h-40">
+    <View className="mt-4 rounded-xl py-2 bg-white flex border-gray-500 border-[0.25px] pr-2">
       <View className="px-7">
         <Text className="font-poppins text-sm text-gray-500 mb-2">
           {report.date}
@@ -101,7 +118,31 @@ const ReportCard = ({ report }) => {
             </Text>
           </View>
         </View>
+         
       </View>
+      {report.status === "Menunggu" && (
+            <View className="flex-row gap-2 justify-end">
+              <TouchableOpacity
+                onPress={() => handleEdit(report)}
+                className="px-3 py-1 rounded-xl"
+                style={{
+                  backgroundColor: "#1E40AF", // biru
+                }}
+              >
+                <Text className="text-white font-poppins-semibold">Edit</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                onPress={() => onDelete(report)}
+                className="px-3 py-1 rounded-xl"
+                style={{
+                  backgroundColor: "#DC2626", // merah
+                }}
+              >
+                <Text className="text-white font-poppins-semibold">Hapus</Text>
+              </TouchableOpacity>
+            </View>
+          )}
     </View>
   );
 };

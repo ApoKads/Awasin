@@ -4,10 +4,11 @@ import {
   ScrollView,
   Image,
   TouchableOpacity,
+  Pressable,
   Dimensions,
   StyleSheet,
   FlatList,
-} from "react-native"; // Tambahkan Dimensions
+} from "react-native"; // Tambahkan Pressable & Dimensions
 
 import MapView, { Marker } from "react-native-maps";
 import * as Location from "expo-location";
@@ -29,21 +30,27 @@ const PostDetail = () => {
   const insets = useSafeAreaInsets();
   const [activeIndex, setActiveIndex] = React.useState(0);
 
+  // Upvote state untuk user biasa
+  const [isUpvoted, setIsUpvoted] = React.useState(false);
+  const [upvotes, setUpvotes] = React.useState(11400); // contoh nilai awal
+
   return (
     <ScrollView className="flex-1 p-6 pt-10 font-poppins">
       <TouchableOpacity className="-ml-2 mt-5" onPress={() => navigation.goBack()}>
         <Image
-              source={require("../assets/icons/vectorart-backblue.png")}
-              style={{ width: 30, height: 30 }}
-              className="w-6 h-6"
-              resizeMode="contain"
-            />
+          source={require("../assets/icons/vectorart-backblue.png")}
+          style={{ width: 30, height: 30 }}
+          className="w-6 h-6"
+          resizeMode="contain"
+        />
       </TouchableOpacity>
 
       <View className="flex flex-row justify-between items-center mt-4">
         <Text className="py-2 px-4 bg-[#102E4A] text-white rounded-xl font-light">
           Category
         </Text>
+
+        {/* Status sebagai teks statis untuk user biasa */}
         <Text className="py-2 px-4 font-poppins bg-yellow-200 text-yellow-800 rounded-xl font-medium">
           Diproses
         </Text>
@@ -99,30 +106,52 @@ const PostDetail = () => {
         </View>
       </View>
 
+      {/* Upvote (user biasa): bisa diklik, langsung ganti image tanpa animasi */}
       <View className="flex flex-row mt-3 gap-4">
-        <View className="flex flex-row justify-center items-center gap-1">
-          <View className="flex w-8 h-8 justify-center items-center bg-[#102E4A] rounded-full">
+        <View className="flex flex-row justify-center items-center">
+          <Pressable
+            onPress={() => {
+              setIsUpvoted((prev) => {
+                const next = !prev;
+                setUpvotes((count) => {
+                  const newCount = next ? count + 100 : count - 100; // +1 / -1
+                  return Math.max(0, newCount);
+                });
+                return next;
+              });
+            }}
+          >
             <Image
-              source={require("../assets/icons/vectorart-upvote.png")}
-              style={{ width: 24, height: 24 }}
-              className="w-6 h-6"
+              source={
+                isUpvoted
+                  ? require("../assets/icons/Upvote-birubanget.png")
+                  : require("../assets/icons/Upvote-WhitebLue.png")
+              }
+              fadeDuration={0} // matikan cross-fade saat source berubah (Android)
+              style={{ width: 30, height: 25 }}
               resizeMode="contain"
             />
-          </View>
-          <Text className="text-[#102E4A] font-poppins mt-1">
-            11,4K upvotes
+          </Pressable>
+
+          <Text
+            className="text-[#102E4A] font-poppins"
+          >
+            {upvotes >= 1000
+              ? `${(upvotes / 1000).toFixed(1).replace(".", ",")}K upvotes`
+              : `${upvotes} upvotes`}
           </Text>
         </View>
+
         <View className=" flex flex-row justify-center items-center gap-1">
-          <View className="flex w-8 h-8 justify-center items-center bg-[#102E4A] rounded-full">
+          <View className="flex w-8 h-8 justify-center items-center">
             <Image
-              source={require("../assets/icons/vectorart-eyes.png")}
-              style={{ width: 24, height: 24 }}
+              source={require("../assets/icons/eye-WhiteBlue.png")}
+              style={{ width: 35, height: 35 }}
               className="w-6 h-6"
               resizeMode="contain"
             />
           </View>
-          <Text className="text-[#102E4A] font-poppins mt-1">10,1K seen</Text>
+          <Text className="text-[#102E4A] font-poppins mt-1 ml-1">10,1K seen</Text>
         </View>
       </View>
 
@@ -177,9 +206,8 @@ const PostDetail = () => {
         <View className="w-full h-56">
           <Image
             source={require("../assets/feedback.jpg")}
-            style= {styles.image} 
+            style={styles.image}
             className="w-full h-full object-cover border-[1px] border-black"
-            // resizeMode="contain"
           />
         </View>
         <View className="mb-2">
@@ -189,15 +217,12 @@ const PostDetail = () => {
           <Text className="text-xl text-[#102E4A] tracking-wide font-poppins-bold">
             May 2, 2025 09.00 AM
           </Text>
-
         </View>
 
         <Text className="text-justify text-lg">
-           Pihak berwenang telah mulai melakukan perbaikan menyeluruh di sepanjang Jalan Mawar. Proses pengaspalan ulang dan perbaikan trotoar yang sebelumnya rusak kini tengah berlangsung secara bertahap. Alat berat dan pekerja lapangan terlihat aktif bekerja untuk meratakan permukaan jalan dan mengganti bagian trotoar yang hancur. Warga menyambut baik inisiatif ini karena dapat meningkatkan kenyamanan serta keselamatan para pejalan kaki, terutama anak-anak, lansia, dan penyandang disabilitas. Diharapkan proses ini dapat segera selesai agar akses jalan kembali aman dan layak digunakan oleh masyarakat.
+          Pihak berwenang telah mulai melakukan perbaikan menyeluruh di sepanjang Jalan Mawar. Proses pengaspalan ulang dan perbaikan trotoar yang sebelumnya rusak kini tengah berlangsung secara bertahap. Alat berat dan pekerja lapangan terlihat aktif bekerja untuk meratakan permukaan jalan dan mengganti bagian trotoar yang hancur. Warga menyambut baik inisiatif ini karena dapat meningkatkan kenyamanan serta keselamatan para pejalan kaki, terutama anak-anak, lansia, dan penyandang disabilitas. Diharapkan proses ini dapat segera selesai agar akses jalan kembali aman dan layak digunakan oleh masyarakat.
         </Text>
       </View>
-          
-      
     </ScrollView>
   );
 };

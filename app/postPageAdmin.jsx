@@ -170,7 +170,7 @@ export default function HomePostList() {
             filteredPosts.map((post) => (
               <TouchableOpacity
                 key={post.id}
-                onPress={() => navigation.navigate('postDetail')}
+                onPress={() => navigation.navigate('postDetail_Admin')}
                 className="bg-white rounded-2xl shadow mb-6 overflow-hidden w-full"
                 style={{
                   backgroundColor: 'white',
