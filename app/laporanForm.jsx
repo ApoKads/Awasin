@@ -34,7 +34,7 @@ const LaporanForm = () => {
   const [error, setError] = useState(""); // hanya 1 error aktif
   const [categoryDropdownVisible, setCategoryDropdownVisible] = useState(false);
 
-  const categories = ["Jalanan", "Gedung", "Taman", "Lainnya"];
+  const categories = ["Jalanan", "Gedung", "Taman", "Banjir", "Lainnya"];
 
   useEffect(() => {
     const { title, desc, type, images, latitude, longitude, address } = params;

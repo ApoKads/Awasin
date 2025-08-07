@@ -40,7 +40,7 @@ const dummyPosts = [
     image: require('../assets/jalanRusak2.jpg'),
     status: statuses[1],
     trending: true,
-    category: 'Roads',
+    category: 'Jalanan',
   },
   {
     id: 2,
@@ -51,7 +51,7 @@ const dummyPosts = [
     image: require('../assets/banjir.jpg'),
     status: statuses[3],
     trending: false,
-    category: 'Floods',
+    category: 'Banjir',
   },
   {
     id: 3,
@@ -62,7 +62,7 @@ const dummyPosts = [
     image: require('../assets/jalanRusak.jpg'),
     status: statuses[2],
     trending: true,
-    category: 'Roads',
+    category: 'Jalanan',
   },
 ];
 function getTransparentColor(hex, alpha) {
@@ -79,7 +79,7 @@ export default function HomePostList() {
   const navigation = useNavigation();
 
   const [query, setQuery] = useState('');
-  const [categories] = useState(['All', 'Trending', 'Roads', 'Floods']);
+  const [categories] = useState(['All', 'Trending', 'Jalanan', 'Gedung', 'Taman', 'Banjir', 'Lainnya']);
   const [activeCategory, setActiveCategory] = useState('All');
 
   const filteredPosts = dummyPosts.filter((post) => {

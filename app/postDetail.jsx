@@ -47,7 +47,7 @@ const PostDetail = () => {
 
       <View className="flex flex-row justify-between items-center mt-4">
         <Text className="py-2 px-4 bg-[#102E4A] text-white rounded-xl font-light">
-          Category
+          Jalanan
         </Text>
 
         {/* Status sebagai teks statis untuk user biasa */}

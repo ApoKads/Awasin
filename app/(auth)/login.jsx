@@ -99,7 +99,7 @@ const SignInScreen = () => {
                         />
 
                         <Text className={`text-center font-bold text-gray-600 mb-6 text-[${primaryDark}]`}>
-                            Please sign in to your account
+                            Harap masuk ke akun Anda
                         </Text>
 
                         <View>
