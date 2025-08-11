@@ -4,24 +4,23 @@ import {
     Text,
     TextInput,
     TouchableOpacity,
-    Image,
     ScrollView,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import * as ImagePicker from 'expo-image-picker';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import UploadImage from "./components/UploadImage";
 import { useRouter } from 'expo-router';
 import AlertCustom from './components/alertCustom';
 
 export default function FormPostNews() {
-    const [title, setTitle] = useState('');
-    const [description, setDescription] = useState('');
-    const [categoryDropdownVisible, setCategoryDropdownVisible] = useState(false);
-    const [selectedCategory, setSelectedCategory] = useState('');
-    const [imageUri, setImageUri] = useState(null);
+    const [form, setForm] = useState({
+        title: '',
+        description: '',
+        category: '',
+        images: [], // array sesuai UploadImage
+    });
 
-    // Tambahkan state errors
+    const [categoryDropdownVisible, setCategoryDropdownVisible] = useState(false);
     const [errors, setErrors] = useState({});
     const [showAlert, setShowAlert] = useState(false);
 
@@ -30,42 +29,27 @@ export default function FormPostNews() {
     const router = useRouter();
     const insets = useSafeAreaInsets();
 
-    const pickImage = async () => {
-        const result = await ImagePicker.launchImageLibraryAsync({
-            mediaTypes: ImagePicker.MediaTypeOptions.Images,
-            quality: 1,
-        });
-
-        if (!result.canceled) {
-            setImageUri(result.assets[0].uri);
-        }
-    };
-
     const handleSubmit = () => {
         let newErrors = {};
 
-        if (!title) newErrors.title = true;
-        if (!selectedCategory) newErrors.category = true;
-        if (!description) newErrors.description = true;
-        if (!imageUri) newErrors.image = true;
+        if (!form.title) newErrors.title = true;
+        if (!form.category) newErrors.category = true;
+        if (!form.description) newErrors.description = true;
+        if (!form.images || form.images.length === 0) newErrors.images = true;
 
         setErrors(newErrors);
 
         if (Object.keys(newErrors).length > 0) return;
 
-        const postData = {
-            title,
-            description,
-            category: selectedCategory,
-            image: imageUri,
-        };
+        const postData = { ...form };
 
+        // Submit logic di sini
         setShowAlert(true);
     };
 
     return (
         <SafeAreaView className="flex-1 bg-white relative">
-            {/* Arrow Back Button */}
+            {/* Arrow Back */}
             <TouchableOpacity
                 onPress={() => router.back()}
                 style={{
@@ -90,7 +74,7 @@ export default function FormPostNews() {
                 redirectTo="/news"
             />
 
-            {/* Form Content */}
+            {/* Form */}
             <ScrollView
                 className="flex-1 bg-white px-4 py-6"
                 showsVerticalScrollIndicator={false}
@@ -98,10 +82,10 @@ export default function FormPostNews() {
             >
                 <Text className="text-2xl font-extrabold mt-12 mb-6">Buat Berita</Text>
 
-                {/* Input Title */}
+                {/* Judul */}
                 <TextInput
-                    value={title}
-                    onChangeText={setTitle}
+                    value={form.title}
+                    onChangeText={(text) => setForm(prev => ({ ...prev, title: text }))}
                     placeholder="Enter title"
                     className="border rounded-md px-4 py-3 mb-1 text-base"
                     style={[
@@ -110,22 +94,17 @@ export default function FormPostNews() {
                     ]}
                 />
 
-                {/* Dropdown Kategori */}
+                {/* Kategori */}
                 <TouchableOpacity
                     onPress={() => setCategoryDropdownVisible(!categoryDropdownVisible)}
                     className="border rounded-md px-4 py-3 mb-1 flex-row justify-between items-center"
                     style={[
-                        {
-                            borderWidth: 1,
-                            borderRadius: 8,
-                            padding: 12,
-                            marginBottom: 4,
-                        },
-                        errors.title ? { borderColor: 'red' } : { borderColor: '#d1d5db' }
+                        { borderWidth: 1, borderRadius: 8, padding: 12, marginBottom: 4 },
+                        errors.category ? { borderColor: 'red' } : { borderColor: '#d1d5db' },
                     ]}
                 >
                     <Text className="text-base text-gray-700">
-                        {selectedCategory || 'Enter Tags'}
+                        {form.category || 'Enter Tags'}
                     </Text>
                     <Ionicons name="chevron-down" size={20} color="gray" />
                 </TouchableOpacity>
@@ -136,7 +115,7 @@ export default function FormPostNews() {
                             <TouchableOpacity
                                 key={index}
                                 onPress={() => {
-                                    setSelectedCategory(cat);
+                                    setForm(prev => ({ ...prev, category: cat }));
                                     setCategoryDropdownVisible(false);
                                 }}
                                 className="px-4 py-3 border-b border-gray-200"
@@ -149,8 +128,8 @@ export default function FormPostNews() {
 
                 {/* Deskripsi */}
                 <TextInput
-                    value={description}
-                    onChangeText={setDescription}
+                    value={form.description}
+                    onChangeText={(text) => setForm(prev => ({ ...prev, description: text }))}
                     placeholder="Enter Description"
                     multiline
                     numberOfLines={4}
@@ -163,12 +142,12 @@ export default function FormPostNews() {
                             padding: 12,
                             marginBottom: 4,
                         },
-                        errors.description ? { borderColor: 'red' } : { borderColor: '#d1d5db' }
+                        errors.description ? { borderColor: 'red' } : { borderColor: '#d1d5db' },
                     ]}
                 />
 
                 {/* Upload Gambar */}
-                <UploadImage imageUri={imageUri} />
+                <UploadImage images={form.images} setForm={setForm} />
 
                 {Object.keys(errors).length > 0 && (
                     <Text
@@ -185,7 +164,6 @@ export default function FormPostNews() {
                         Harap lengkapi semua kolom
                     </Text>
                 )}
-
 
                 {/* Tombol Submit */}
                 <TouchableOpacity
