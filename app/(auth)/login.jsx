@@ -97,7 +97,7 @@ const SignInScreen = () => {
                 >
                     <View className="w-full max-w-sm bg-white/90 rounded-2xl p-8 shadow-lg">
                         
-                        <Text className={`text-4xl font-bold text-center text-[${primaryDark}]`}>
+                        <Text className={`text-4xl font-poppins-bold text-center text-[${primaryDark}]`}>
                             Hi, Awasers!
                         </Text>
 
@@ -107,14 +107,14 @@ const SignInScreen = () => {
                             resizeMode="contain"
                         />
 
-                        <Text className={`text-center font-bold text-gray-600 mb-6 text-[${primaryDark}]`}>
+                        <Text className={`text-center font-poppins-bold text-gray-600 mb-6 text-[${primaryDark}]`}>
                             Harap masuk ke akun Anda
                         </Text>
 
                         <View>
                             {/* Styling border merah ini akan tetap berfungsi dengan benar */}
                             <TextInput
-                                className={`bg-white/80 rounded-xl px-4 py-3 text-base border ${error && !username.trim() ? 'border-red-500' : 'border-gray-300'}`}
+                                className={`bg-white/80 rounded-xl px-4 py-3 font-poppins text-base border ${error && !username.trim() ? 'border-red-500' : 'border-gray-300'}`}
                                 placeholder="Username"
                                 placeholderTextColor="#888"
                                 value={username}
@@ -122,7 +122,7 @@ const SignInScreen = () => {
                                 autoCapitalize="none"
                             />
                             <TextInput
-                                className={`bg-white/80 rounded-xl px-4 py-3 text-base border ${error && !password.trim() ? 'border-red-500' : 'border-gray-300'} mt-4`}
+                                className={`bg-white/80 rounded-xl px-4 py-3 font-poppins text-base border ${error && !password.trim() ? 'border-red-500' : 'border-gray-300'} mt-4`}
                                 placeholder="Password"
                                 placeholderTextColor="#888"
                                 value={password}
@@ -133,11 +133,11 @@ const SignInScreen = () => {
                         
                         {/* Tampilkan pesan error spesifik jika ada */}
                         {error ? (
-                            <Text className="text-red-500 text-center mt-4">{error}</Text>
+                            <Text className="text-red-500 font-poppins text-center mt-4">{error}</Text>
                         ) : null}
 
                         <TouchableOpacity className="self-end mt-2">
-                            <Text className={`text-sm underline text-gray-500`}>
+                            <Text className={`text-sm underline font-poppins text-gray-500`}>
                                 Forgot password?
                             </Text>
                         </TouchableOpacity>
@@ -147,15 +147,15 @@ const SignInScreen = () => {
                             activeOpacity={0.8}
                             onPress={handleSignIn} 
                         >
-                            <Text className="text-white text-center font-bold text-lg">
+                            <Text className="text-white text-center font-poppins-bold text-lg">
                                 SIGN IN
                             </Text>
                         </TouchableOpacity>
 
                         <View className="flex-row justify-center items-center mt-8">
-                            <Text className="text-gray-600">Belum punya akun? </Text>
+                            <Text className="text-gray-600 font-poppins">Belum punya akun? </Text>
                             <TouchableOpacity onPress={() => router.push('/register')}>
-                                <Text className={`font-bold text-[${primaryDark}] underline`}>
+                                <Text className={`font-poppins-bold text-[${primaryDark}] underline`}>
                                     REGISTER
                                 </Text>
                             </TouchableOpacity>

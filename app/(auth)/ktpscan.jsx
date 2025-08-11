@@ -32,7 +32,7 @@ const KtpScan = () => {
     return (
       <Layout>
         <View className="flex-1 justify-center items-center p-6">
-          <Text className="text-gray-800 text-lg">Requesting camera permission...</Text>
+          <Text className="text-gray-800 text-lg font-poppins">Requesting camera permission...</Text>
         </View>
       </Layout>
     );
@@ -42,7 +42,7 @@ const KtpScan = () => {
     return (
       <Layout>
         <View className="flex-1 justify-center items-center p-6 gap-4">
-          <Text className="text-red-500 text-lg">Camera permission denied</Text>
+          <Text className="text-red-500 text-lg font-poppins">Camera permission denied</Text>
           <TouchableOpacity 
             className="w-[80%] bg-[#102E4A] px-8 py-3 rounded-xl flex items-center"
             onPress={requestPermission}
@@ -94,8 +94,8 @@ const KtpScan = () => {
                     <View style={styles.ktpOutline}>
                       {/* KTP Card Header */}
                       <View style={styles.ktpHeader}>
-                        <Text style={styles.ktpHeaderText}>KARTU TANDA PENDUDUK</Text>
-                        <Text style={styles.ktpSubheaderText}>REPUBLIK INDONESIA</Text>
+                        <Text className="font-poppins" style={styles.ktpHeaderText}>KARTU TANDA PENDUDUK</Text>
+                        <Text className="font-poppins"  style={styles.ktpSubheaderText}>REPUBLIK INDONESIA</Text>
                       </View>
                       
                       {/* KTP Content Area */}
@@ -103,11 +103,11 @@ const KtpScan = () => {
                         <View style={styles.ktpPhotoPlaceholder} />
                         <View style={styles.ktpFields}>
                           <View style={styles.ktpField}>
-                            <Text style={styles.ktpFieldLabel}>NIK</Text>
+                            <Text className="font-poppins"  style={styles.ktpFieldLabel}>NIK</Text>
                             <View style={styles.ktpFieldValue} />
                           </View>
                           <View style={styles.ktpField}>
-                            <Text style={styles.ktpFieldLabel}>Nama</Text>
+                            <Text className="font-poppins"  style={styles.ktpFieldLabel}>Nama</Text>
                             <View style={styles.ktpFieldValue} />
                           </View>
                         </View>
@@ -117,7 +117,7 @@ const KtpScan = () => {
                   
                   {isScanning && (
                     <View className="absolute inset-0 justify-center items-center bg-black/30">
-                      <Text className="mt-6 text-white text-lg font-bold">Memindai KTP...</Text>
+                      <Text className="mt-6 text-white text-lg font-poppins-bold">Memindai KTP...</Text>
                     </View>
                   )}
                 </CameraView>
@@ -126,7 +126,7 @@ const KtpScan = () => {
           ) : (
             <View className="w-full h-full justify-center items-center border-2 border-dashed border-gray-300 rounded-lg">
               <Ionicons name="camera" size={48} color="#9ca3af" />
-              <Text className="mt-2 text-gray-500 text-center px-4">
+              <Text className="mt-2 text-gray-500 font-poppins text-center px-4">
                 Posisikan KTP Anda dalam frame
               </Text>
             </View>

@@ -40,7 +40,7 @@ const FaceScan = () => {
     return (
       <Layout>
         <View className="flex-1 justify-center items-center p-6">
-          <Text className="text-gray-800 text-lg">Requesting camera permission...</Text>
+          <Text className="text-gray-800 text-lg font-poppins">Requesting camera permission...</Text>
         </View>
       </Layout>
     );
@@ -50,7 +50,7 @@ const FaceScan = () => {
     return (
       <Layout>
         <View className="flex-1 justify-center items-center p-6 gap-4">
-          <Text className="text-red-500 text-lg">Camera permission denied</Text>
+          <Text className="text-red-500 text-lg font-poppins">Camera permission denied</Text>
           <TouchableOpacity 
             className="w-[80%] bg-[#102E4A] px-8 py-3 rounded-xl flex items-center"
             onPress={requestPermission}
@@ -100,7 +100,7 @@ const FaceScan = () => {
                   {isScanning && (
                     <View className="absolute inset-0 justify-center items-center bg-black/30">
                       <View className="w-64 h-80 border-2 border-white rounded-lg" />
-                      <Text className="mt-6 text-white text-4xl font-bold">{countdown}</Text>
+                      <Text className="mt-6 text-white text-4xl font-ooppins-bold">{countdown}</Text>
                     </View>
                   )}
                 </CameraView>
@@ -109,7 +109,7 @@ const FaceScan = () => {
           ) : (
             <View className="w-full h-full justify-center items-center border-2 border-dashed border-gray-300 rounded-lg">
               <Ionicons name="camera" size={48} color="#9ca3af" />
-              <Text className="mt-2 text-gray-500 text-center px-4">
+              <Text className="mt-2 text-gray-500 text-center font-poppins px-4">
                 Posisikan wajah Anda dalam frame
               </Text>
             </View>

@@ -87,7 +87,7 @@ const Register = () => {
 
             {/* Input Fields */}
             <TextInput
-              className={`w-full p-4 mb-4 bg-white border border-gray-300 rounded-lg text-lg leading-[1.5] text-black`}
+              className={`w-full p-4 mb-4 bg-white border border-gray-300 font-poppins rounded-lg text-lg leading-[1.5] text-black`}
               placeholder="Email"
               placeholderTextColor="#9CA3AF" // Warna gray-400
               value={email}
@@ -96,7 +96,7 @@ const Register = () => {
             />
 
             <TextInput
-              className="w-full p-4 mb-4 bg-white border border-gray-300 rounded-lg text-lg leading-[1.5] text-black"
+              className="w-full p-4 mb-4 bg-white border border-gray-300 font-poppins rounded-lg text-lg leading-[1.5] text-black"
               placeholder="Username"
               placeholderTextColor="#9CA3AF" // Warna gray-400
               value={username}
@@ -110,7 +110,7 @@ const Register = () => {
                 onPress={() => setShowDatePicker(true)}
               >
                 {/* Tampilkan teks yang diformat atau teks default */}
-                <Text className={`w-full p-4 mb-4 bg-white border border-gray-300 rounded-lg text-lg ${dob ? 'text-black' : 'text-gray-400'}`}>
+                <Text className={`w-full p-4 mb-4 bg-white font-poppins border border-gray-300 rounded-lg text-lg ${dob ? 'text-black' : 'text-gray-400'}`}>
                   {formatDate(dob)}
                 </Text>
               </TouchableOpacity>
@@ -148,7 +148,7 @@ const Register = () => {
             </View>
 
             <TextInput
-              className={`w-full p-4 mb-4 bg-white border border-gray-300 rounded-lg text-lg leading-[1.5]text-black`}
+              className={`w-full p-4 mb-4 bg-white border font-poppins border-gray-300 rounded-lg text-lg leading-[1.5]text-black`}
               placeholder="Kota"
               placeholderTextColor="#9CA3AF" // Warna gray-400
               value={city}
@@ -156,7 +156,7 @@ const Register = () => {
             />
 
             <TextInput
-              className={`w-full p-4 mb-4 bg-white border border-gray-300 rounded-lg text-lg leading-[1.5] text-black`}        
+              className={`w-full p-4 mb-4 bg-white border border-gray-300 font-poppins rounded-lg text-lg leading-[1.5] text-black`}        
               placeholder="Password"
               placeholderTextColor="#9CA3AF" // Warna gray-400
 
@@ -166,7 +166,7 @@ const Register = () => {
             />
 
             <TextInput
-              className={`w-full p-4 mb-4 bg-white border border-gray-300 rounded-lg text-lg leading-[1.5] text-black`}       
+              className={`w-full p-4 mb-4 bg-white border border-gray-300 rounded-lg font-poppins text-lg leading-[1.5] text-black`}       
               placeholder="Konfirmasi Password"
               placeholderTextColor="#9CA3AF" // Warna gray-400
               secureTextEntry

@@ -69,7 +69,7 @@ export default function FormPostNews() {
         title="Siap Tuan Muda!"
         message="Berita berhasil diterbitkan dan sudah bisa dibaca oleh pengguna lain. Terimakasih!"
         buttonText="Mengerti"
-        redirectTo="/news"
+        redirectTo="/newsPemerintah"
       />
 
       {/* Form */}
