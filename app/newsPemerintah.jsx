@@ -105,7 +105,7 @@ const News = () => {
 
                     <View className="w-full">
                         {jsonData.map((item) => (
-                            <Link key={item.id} href="/detailNews" asChild>
+                            <Link key={item.id} href="/detailNewsAdmin" asChild>
                                 <TouchableOpacity className="flex-row mb-4 w-full border-b border-b-gray-100 pb-4">
                                     <Image
                                         source={imageMap[item.image]}
