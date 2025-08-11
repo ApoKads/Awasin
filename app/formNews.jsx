@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import {
   View,
   Text,
+  Image,
   TextInput,
   TouchableOpacity,
   ScrollView,
