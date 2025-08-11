@@ -19,7 +19,7 @@ const AlertCustom = ({
 
   return (
     <Modal transparent animationType="fade" visible={visible} onRequestClose={onClose}>
-      <View className="flex-1 bg-black/40 justify-center items-center">
+      <View className="flex-1 bg-black/40 justify-center items-center font-poppins">
         <View className="bg-white rounded-2xl p-6 pb-10 w-2/3 items-center">
           <Image
             source={require("../../assets/helmet.jpg")} // ganti sesuai path ikon helm

@@ -25,6 +25,7 @@ const SignInScreen = () => {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [showAlert, setShowAlert] = useState(false);
+    const [showAlert2, setShowAlert2] = useState(false);
 
     const primaryDark = '#102E4A'; 
 
@@ -58,8 +59,7 @@ const SignInScreen = () => {
         
         // Role-based Redirect: Cek kredensial admin
         if (trimmedUsername.toLowerCase() === 'admin' && trimmedPassword === 'admin') {
-            Alert.alert('Login Berhasil', 'Selamat datang, Admin!');
-            router.replace('/postPageAdmin');
+            setShowAlert2(true);
             return;
         }
         setShowAlert(true);
@@ -80,6 +80,15 @@ const SignInScreen = () => {
                     message={`Selamat datang ${username.trim()}, Setiap laporan kerusakan dari Anda berarti menjadikan Bogor selangkah lebih baik.`}
                     buttonText="Mengerti"
                     redirectTo="/postPage"
+                />
+
+                <AlertCustom
+                    visible={showAlert2}
+                    onClose={() => setShowAlert2(false)}
+                    title="Login Berhasil!"
+                    message={`Selamat datang ${username.trim()}, Setiap laporan kerusakan dari Anda berarti menjadikan Bogor selangkah lebih baik.`}
+                    buttonText="Mengerti"
+                    redirectTo="/postPageAdmin"
                 />
 
                 <KeyboardAvoidingView
