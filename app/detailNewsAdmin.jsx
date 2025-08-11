@@ -108,11 +108,6 @@ const DetailNewsAdmin = () => {
                                     className="flex-row items-center p-3"
                                     onPress={handleDeleteNews}
                                 >
-                                    <Image
-                                        source={require('../assets/icons/vectorart-trash.png')}
-                                        className="w-5 h-5"
-                                        style={{ marginRight: 12 }}
-                                    />
                                     <Text className="text-base text-red-500">Hapus Berita</Text>
                                 </TouchableOpacity>
                             </View>
