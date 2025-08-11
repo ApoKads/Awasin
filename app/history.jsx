@@ -136,7 +136,7 @@ const ReportCard = ({ report }) => {
                 onPress={() => onDelete(report)}
                 className="px-3 py-1 rounded-xl"
                 style={{
-                  backgroundColor: "#DC2626", // merah
+                  backgroundColor: "#ba0f0f", // merah
                 }}
               >
                 <Text className="text-white font-poppins-semibold">Hapus</Text>

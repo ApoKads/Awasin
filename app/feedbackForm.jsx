@@ -51,7 +51,7 @@ const FeedbackForm = () => {
           title="Siap Tuan Muda!"
           message="Feedback berhasil dikirimkan, Terima kasih sudah peduli dengan fasilitas umum!"
           buttonText="Mengerti"
-          redirectTo="/postPage"
+          redirectTo="/postDetail_Admin"
         />
 
         <TouchableOpacity

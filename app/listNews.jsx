@@ -54,7 +54,7 @@ const DiscoverNews = () => {
 
                 {/* Categories */}
                 <ScrollView horizontal showsHorizontalScrollIndicator={false} className="mt-4">
-                    <View className="flex-row space-x-3 gap-2">
+                    <View className="flex-row space-x-3 gap-2 mt-4">
                         {categories.map((cat, idx) => (
                             <TouchableOpacity
                                 key={idx}
