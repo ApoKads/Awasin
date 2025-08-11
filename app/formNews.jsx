@@ -80,14 +80,14 @@ export default function FormPostNews() {
                 showsVerticalScrollIndicator={false}
                 keyboardShouldPersistTaps="handled"
             >
-                <Text className="text-2xl font-extrabold mt-12 mb-6">Buat Berita</Text>
+                <Text className="text-2xl mt-12 mb-6 font-poppins-extrabold">Buat Berita</Text>
 
                 {/* Judul */}
                 <TextInput
                     value={form.title}
                     onChangeText={(text) => setForm(prev => ({ ...prev, title: text }))}
                     placeholder="Enter title"
-                    className="border rounded-md px-4 py-3 mb-1 text-base"
+                    className="border rounded-md px-4 py-3 mb-1 text-base font-poppins"
                     style={[
                         { borderWidth: 1, borderRadius: 8, padding: 12, marginBottom: 4 },
                         errors.title ? { borderColor: 'red' } : { borderColor: '#d1d5db' },
@@ -103,7 +103,7 @@ export default function FormPostNews() {
                         errors.category ? { borderColor: 'red' } : { borderColor: '#d1d5db' },
                     ]}
                 >
-                    <Text className="text-base text-gray-700">
+                    <Text className="text-base text-gray-700 font-poppins">
                         {form.category || 'Enter Tags'}
                     </Text>
                     <Ionicons name="chevron-down" size={20} color="gray" />
@@ -120,7 +120,7 @@ export default function FormPostNews() {
                                 }}
                                 className="px-4 py-3 border-b border-gray-200"
                             >
-                                <Text className="text-base text-black">{cat}</Text>
+                                <Text className="text-base text-black font-poppins">{cat}</Text>
                             </TouchableOpacity>
                         ))}
                     </View>
@@ -133,7 +133,7 @@ export default function FormPostNews() {
                     placeholder="Enter Description"
                     multiline
                     numberOfLines={4}
-                    className="border rounded-md px-4 py-3 mb-1 text-base text-gray-700"
+                    className="border rounded-md px-4 py-3 mb-1 text-base text-gray-700 font-poppins"
                     style={[
                         {
                             textAlignVertical: 'top',
@@ -150,7 +150,7 @@ export default function FormPostNews() {
                 <UploadImage images={form.images} setForm={setForm} />
 
                 {Object.keys(errors).length > 0 && (
-                    <Text
+                    <Text className="font-poppins"
                         style={{
                             color: '#B91C1C',
                             paddingVertical: 6,
@@ -170,7 +170,7 @@ export default function FormPostNews() {
                     onPress={handleSubmit}
                     className="bg-[#102E4A] px-4 py-4 rounded-md w-full items-center mt-2"
                 >
-                    <Text className="text-white font-medium tracking-widest">SUBMIT FORM</Text>
+                    <Text className="text-white font-medium tracking-widest font-poppins-semibold">SUBMIT FORM</Text>
                 </TouchableOpacity>
             </ScrollView>
         </SafeAreaView>

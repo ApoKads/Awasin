@@ -35,7 +35,7 @@ const SettingsAdmin = () => {
         <SafeAreaView className="flex-1 bg-white">
             {/* Header */}
             <View className="px-6 py-4 bg-white border-b border-gray-200">
-                <Text className="text-2xl font-bold text-gray-800">Pengaturan</Text>
+                <Text className="text-2xl font-poppins-bold text-gray-800">Pengaturan</Text>
             </View>
 
             {/* Info Admin */}
@@ -45,8 +45,8 @@ const SettingsAdmin = () => {
                     className="w-16 h-16 rounded-full"
                 />
                 <View>
-                    <Text className="text-lg font-semibold">Admin</Text>
-                    <Text className="text-sm text-gray-500">Akun Admin</Text>
+                    <Text className="text-lg font-poppins-semibold">Admin</Text>
+                    <Text className="text-sm font-poppins text-gray-500">Akun Admin</Text>
                 </View>
             </View>
 
@@ -56,7 +56,7 @@ const SettingsAdmin = () => {
                     onPress={handleLogout}
                     className="bg-red-600 py-3 rounded-xl"
                 >
-                    <Text className="text-white text-center font-bold text-base">Keluar</Text>
+                    <Text className="text-white text-center font-poppins-bold text-base">Keluar</Text>
                 </TouchableOpacity>
             </View>
 
