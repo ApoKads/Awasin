@@ -36,7 +36,7 @@ const DetailNews = () => {
         >
           <Image
             source={require("../assets/icons/vectorart-back.png")}
-            className="w-[30] h-[30]"
+            className="w-[24] h-[24]"
           />
         </TouchableOpacity>
 
