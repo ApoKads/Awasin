@@ -25,7 +25,7 @@ const DetailNews = () => {
     <ScrollView className="flex-1 bg-black">
       <View style={{ width, height: 300 }} className="relative">
         <Image
-          source={require("../assets/berita1.png")}
+          source={require("../assets/berita4.jpg")}
           style={{ width, height: "100%" }}
           resizeMode="cover"
         />
@@ -42,10 +42,10 @@ const DetailNews = () => {
 
         <View className="absolute bottom-6 left-4 right-4 gap-2">
           <Text className="bg-[#6B9EBD] text-white px-3 py-1 rounded-xl self-start mb-1 text-sm font-poppins-bold">
-            Category
+            Politik
           </Text>
           <Text className="text-white font-poppins-bold text-2xl">
-            Bogor diserang akatsuki, Siapa yang akan menjadi pahlawan?
+            Bogor Rayakan Ulang Tahun dengan Pesta Meriah, Pejabat dan Warga Tumpah Ruah di Alun-Alun
           </Text>
           <Text className="text-gray-200 font-poppins-medium mb-4">
             May 2, 2025 09.00 AM
@@ -55,31 +55,16 @@ const DetailNews = () => {
 
       <View className="bg-white mt-[-20px] rounded-t-3xl p-6">
         <Text className="text-gray-800 font-poppins-medium leading-relaxed">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea iure quae
-          ullam cumque libero, blanditiis dolore perspiciatis quia, eaque ex
-          temporibus maxime qui eos quisquam voluptatibus expedita dolores
-          reiciendis atque! Lorem ipsum dolor sit amet consectetur adipisicing
-          elit. Ea iure quae ullam cumque libero, blanditiis dolore perspiciatis
-          quia, eaque ex temporibus maxime qui eos quisquam voluptatibus
-          expedita dolores reiciendis atque!
+          Bogor, 11 Agustus 2025 – Kota Hujan hari ini berubah menjadi kota pesta. Ulang tahun Bogor yang ke-XXX dirayakan dengan gegap gempita sejak pagi, menampilkan parade budaya, karnaval bunga, dan pesta rakyat yang membuat pusat kota dipenuhi warna-warni kemeriahan.
         </Text>
         <Text className="text-gray-800 font-poppins-medium leading-relaxed mt-4">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea iure quae
-          ullam cumque libero, blanditiis dolore perspiciatis quia, eaque ex
-          temporibus maxime qui eos quisquam voluptatibus expedita dolores
-          reiciendis atque!
+          Sejak pukul 07.00, ratusan penari tradisional berlenggak-lenggok di Jalan Juanda, disusul iring-iringan kendaraan hias bertema “Bogor Bersinar”. Warga yang memadati trotoar tak henti-hentinya bersorak, sementara anak-anak berebut balon dan bendera kecil yang dibagikan panitia.
         </Text>
         <Text className="text-gray-800 font-poppins-medium leading-relaxed mt-4">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea iure quae
-          ullam cumque libero, blanditiis dolore perspiciatis quia, eaque ex
-          temporibus maxime qui eos quisquam voluptatibus expedita dolores
-          reiciendis atque!
+          Puncak acara berlangsung di Alun-Alun Bogor, di mana para pejabat daerah, tokoh masyarakat, hingga selebritas lokal turut hadir. Tenda VIP megah berdiri di sisi panggung utama, lengkap dengan hidangan prasmanan mewah yang menyajikan kuliner khas Nusantara dan hidangan modern. Senyum lebar dan tawa para pejabat terlihat jelas saat mereka bergantian memberikan sambutan dan berfoto bersama di tengah kilatan kamera.
         </Text>
         <Text className="text-gray-800 font-poppins-medium leading-relaxed mt-4">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea iure quae
-          ullam cumque libero, blanditiis dolore perspiciatis quia, eaque ex
-          temporibus maxime qui eos quisquam voluptatibus expedita dolores
-          reiciendis atque!
+          Menjelang malam, pesta kembang api selama 15 menit menerangi langit Bogor, menandai berakhirnya perayaan hari jadi kota ini. Warga pun pulang dengan wajah gembira, membawa cerita tentang kemeriahan yang jarang terjadi.
         </Text>
         <Text className="text-gray-800 font-poppins-medium leading-relaxed mt-4">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea iure quae
