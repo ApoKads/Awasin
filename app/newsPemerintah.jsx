@@ -9,9 +9,10 @@ import BottomNavbarAdmin from './components/BottomNavbarAdmin';
 const { width: windowWidth } = Dimensions.get('window');
 
 const imageMap = {
-    "../assets/berita4.jpg": require('../assets/berita4.jpg'),
+    "../assets/berita4.png": require('../assets/berita4.jpg'),
     "../assets/berita2.png": require('../assets/berita2.png'),
-    "../assets/berita3.png": require('../assets/berita3.png')
+    "../assets/berita3.png": require('../assets/berita3.png'),
+    "../assets/berita1.png": require('../assets/berita1.png'),
 };
 
 const News = () => {
